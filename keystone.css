@@ -692,3 +692,130 @@ textarea:focus-visible { outline-offset: 0; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   SESSION ADDITIONS — CEO profile, footer contact, contact phones
+   ============================================================ */
+
+/* ─── NAMED CEO PROFILE (about page) ─── */
+.ceo-profile {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 4rem;
+  align-items: start;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--k-border);
+}
+.ceo-profile__photo {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--k-border);
+  background: var(--k-card);
+}
+.ceo-profile__photo img { width: 100%; height: auto; display: block; }
+.ceo-profile__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 -80px 60px -40px rgba(12,12,18,0.5);
+  pointer-events: none;
+}
+.ceo-profile__body { padding-top: 0.5rem; }
+.ceo-profile__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.75rem;
+}
+.ceo-profile__name {
+  font-family: var(--font-head);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.1;
+}
+.ceo-profile__role {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--k-mid);
+  margin-top: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.ceo-profile__body p {
+  font-size: 0.95rem;
+  color: var(--k-grey);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.ceo-profile__body p:last-child { margin-bottom: 0; }
+
+/* ─── FOOTER CONTACT BLOCK (all pages) ─── */
+.k-footer__contact {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.k-footer__contact a {
+  font-size: 0.82rem;
+  color: var(--k-mid);
+  transition: color 0.2s;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.k-footer__contact a:hover { color: var(--k-gold); }
+.k-footer__contact .cc {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--k-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-sm);
+  padding: 0.1rem 0.35rem;
+}
+
+/* ─── CONTACT PAGE — DIRECT PHONE ROWS ─── */
+.contact-direct__phones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.contact-direct__phones a {
+  font-size: 0.9rem;
+  color: var(--k-grey);
+  font-weight: 500;
+  border-bottom: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  transition: color 0.2s;
+}
+.contact-direct__phones a:hover { color: var(--k-white); }
+.contact-direct__cc {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--k-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-sm);
+  padding: 0.15rem 0.4rem;
+}
+
+/* ─── CEO profile + footer contact: mobile ─── */
+@media (max-width: 768px) {
+  .ceo-profile { grid-template-columns: 1fr; gap: 2rem; }
+  .ceo-profile__photo { max-width: 320px; }
+  .ceo-profile__name { font-size: 2rem; }
+}
