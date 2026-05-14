@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keystone Intelligence Group — AI for Founder-Led Businesses</title>
-<meta name="description" content="Keystone goes into founder-led businesses turning over €1M–€50M and builds AI hubs that increase revenue, cut costs, and protect margin. Average 3× annual saving on implementation cost. Fixed price. One call.">
+<title>Keystone Intelligence Group: AI for Your Business</title>
+<meta name="description" content="Keystone goes into businesses turning over €1M–€50M and builds AI workflows that increase revenue, cut costs, and protect margin. Average 3× annual saving on implementation cost. Fixed price. One call.">
 <link rel="canonical" href="https://keystoneintelligence.ie/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="keystone.css">
+<script src="keystone.js" defer></script>
 <style>
 /* ── PAGE-SPECIFIC STYLES ── */
 
@@ -45,11 +46,16 @@
 .hero__inner {
   max-width: var(--w-max);
   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.hero__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
   align-items: center;
-  width: 100%;
 }
 .hero__content {}
 .hero__tag {
@@ -94,26 +100,34 @@
   flex-wrap: wrap;
 }
 .hero__proof {
-  margin-top: 3.5rem;
-  padding-top: 2rem;
+  width: 100%;
+  padding-top: 2.5rem;
   border-top: 1px solid var(--k-border);
   display: flex;
-  gap: 2.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
   flex-wrap: wrap;
+}
+.hero__proof-item {
+  flex: 1 1 0;
+  min-width: 140px;
 }
 .hero__proof-item span:first-child {
   display: block;
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
   font-weight: 700;
   color: var(--k-gold);
   line-height: 1;
+  letter-spacing: -0.01em;
 }
 .hero__proof-item span:last-child {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--k-mid);
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.55rem;
+  line-height: 1.4;
 }
 
 /* Hero right panel */
@@ -155,7 +169,9 @@
   margin-top: 0.05rem;
 }
 
-/* PROBLEM SECTION */
+/* PROBLEM SECTION
+   Replaced left-stripe hover pattern with a full-border hover state
+   so we don't repeat the side-stripe ban shape on hover. */
 .problem-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,10 +185,9 @@
 .problem-cell {
   background: var(--k-bg-2);
   padding: 2.25rem 2rem;
-  border-left: 3px solid transparent;
-  transition: border-color 0.25s;
+  transition: background 0.25s;
 }
-.problem-cell:hover { border-left-color: rgba(196,154,60,0.4); }
+.problem-cell:hover { background: rgba(196,154,60,0.04); }
 .problem-cell__num {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -196,7 +211,10 @@
   line-height: 1.65;
 }
 
-/* WHAT WE DO */
+/* WHAT WE DO
+   Removed: icon-in-rounded-box pattern (brand-register ban: "Large rounded-corner
+   icons above every heading. Screams template.")
+   Replaced with typographic numerals matching .phase__num treatment. */
 .offer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -206,115 +224,128 @@
 .offer-card {
   background: var(--k-card);
   border: 1px solid var(--k-border);
-  border-top: 2px solid rgba(196,154,60,0.35);
   border-radius: var(--r-lg);
-  padding: 2rem;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  padding: 2.25rem 2rem 2rem;
+  transition: border-color 0.25s, background 0.25s;
+  position: relative;
 }
 .offer-card:hover {
-  border-color: var(--k-gold);
-  border-top-color: var(--k-gold);
-  box-shadow: 0 0 28px rgba(196,154,60,0.08);
+  border-color: var(--k-border-h);
+  background: var(--k-card-h);
 }
-.offer-card__icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  background: rgba(196,154,60,0.1);
-  border: 1px solid rgba(196,154,60,0.2);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-.offer-card__icon svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  stroke: var(--k-gold);
-  fill: none;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.offer-card__num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--k-gold);
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+  display: block;
+  opacity: 0.85;
 }
 .offer-card h4 {
   font-family: var(--font-head);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--k-white);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
 }
 .offer-card p {
-  font-size: 0.875rem;
-  color: var(--k-mid);
-  line-height: 1.7;
+  font-size: 0.92rem;
+  color: var(--k-grey);
+  line-height: 1.75;
 }
 
-/* PROCESS */
+/* PROCESS
+   Rewritten for alignment: each step is its own grid with named rows so
+   circles, week pills, headlines and bodies all share a baseline across columns.
+   The connector line sits behind the row of circles at their exact center. */
 .process-steps {
   margin-top: 3.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 1.5rem;
   position: relative;
 }
 .process-steps::before {
   content: '';
   position: absolute;
-  top: 2rem;
-  left: 6%;
-  right: 6%;
+  /* Circle is 4.5rem (72px); its vertical center is 2.25rem from the top of the step */
+  top: 2.25rem;
+  left: calc(12.5% + 2.5rem);
+  right: calc(12.5% + 2.5rem);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--k-gold), var(--k-gold), transparent);
-  opacity: 0.3;
+  background: var(--k-gold);
+  opacity: 0.28;
   pointer-events: none;
+  z-index: 0;
 }
 .process-step {
-  text-align: center;
-  padding: 0 1.5rem;
   position: relative;
+  z-index: 1;
+  display: grid;
+  /* row 1: circle, row 2: week pill, row 3: headline, row 4: body */
+  grid-template-rows: 4.5rem auto auto 1fr;
+  row-gap: 1.25rem;
+  justify-items: center;
+  text-align: center;
+  padding: 0 0.5rem;
 }
 .process-step__num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
-  background: var(--k-bg);
-  border: 1px solid var(--k-gold);
+  background: var(--k-bg-2);
+  border: 1.5px solid var(--k-gold);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--k-gold);
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 6px var(--k-bg-2);
   position: relative;
-  z-index: 1;
-}
-.process-step h4 {
-  font-family: var(--font-head);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--k-white);
-  margin-bottom: 0.6rem;
-}
-.process-step p {
-  font-size: 0.85rem;
-  color: var(--k-mid);
-  line-height: 1.65;
+  z-index: 2;
+  margin: 0;
 }
 .process-step__week {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--k-gold);
   background: var(--k-gold-dim);
-  border: 1px solid rgba(196,154,60,0.2);
-  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(196,154,60,0.22);
+  padding: 0.3rem 0.75rem;
   border-radius: 100px;
-  margin-bottom: 0.75rem;
+  margin: 0;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.process-step h4 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.25;
+  margin: 0;
+  max-width: 14ch;
+}
+.process-step p {
+  font-size: 0.88rem;
+  color: var(--k-mid);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 24ch;
 }
 
 /* FOUNDERS */
@@ -501,8 +532,13 @@
 }
 @media (max-width: 768px) {
   .hero { padding: 8rem 1.5rem 4rem; min-height: auto; }
-  .hero__inner { grid-template-columns: 1fr; gap: 3rem; }
-  .hero__panel { display: none; }
+  .hero__inner { gap: 3rem; }
+  .hero__grid { grid-template-columns: 1fr; gap: 3rem; }
+  /* Hero panel kept visible on mobile, it carries five conversion-bearing bullets
+     that were previously hidden, which weakened mobile conversions. */
+  .hero__panel { padding: 2rem; }
+  .hero__proof { padding-top: 2rem; gap: 1.5rem; }
+  .hero__proof-item { flex: 1 1 45%; min-width: 0; }
   .problem-grid { grid-template-columns: 1fr; }
   .offer-grid { grid-template-columns: 1fr; }
   .founders-grid { grid-template-columns: 1fr; }
@@ -519,60 +555,67 @@
 </head>
 <body>
 
+<a class="k-skip-link" href="#main">Skip to content</a>
+
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="k-nav" aria-label="Main navigation">
-  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <a href="index.html" class="k-nav__logo" aria-current="page">Keystone <em>Intelligence</em></a>
   <ul class="k-nav__links">
     <li><a href="about.html">About</a></li>
     <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
     <li><a href="industries.html">Case Studies</a></li>
     <li><a href="blog.html">Insights</a></li>
     <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
   </ul>
-  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+  <button class="k-nav__mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<main id="main">
+
 <!-- ═══ HERO ═══ -->
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero__inner">
-    <div class="hero__content">
-      <div class="hero__tag">AI Consultancy for Serious Operators</div>
-      <h1 id="hero-heading">We built businesses.<br><em>Then we built AI</em><br>into all of them.</h1>
-      <p class="hero__sub">Keystone goes into founder-led businesses turning over €1M–€50M and builds AI hubs that increase revenue, cut costs, and protect margin. Our average client sees a 3× annual saving on implementation cost. Fixed price. One 20-minute call to know if we can help.</p>
-      <div class="hero__actions">
-        <a href="contact.html" class="btn-primary">Book a Free Discovery Call</a>
-        <a href="how-it-works.html" class="btn-outline">See How It Works</a>
+    <div class="hero__grid">
+      <div class="hero__content">
+        <div class="hero__tag">AI Consultancy for your business</div>
+        <h1 id="hero-heading">We built businesses.<br><em>Then we built AI</em><br>into all of them.</h1>
+        <p class="hero__sub">Keystone goes into businesses turning over €1M–€50M and builds AI workflows that increase revenue, cut costs, and protect margin. Our average client sees a 3× annual saving on implementation cost. Fixed price. One 20-minute call to know if we can help.</p>
+        <div class="hero__actions">
+          <a href="contact.html" class="btn-primary">Book a Free Discovery Call</a>
+          <a href="how-it-works.html" class="btn-outline">See How It Works</a>
+        </div>
       </div>
-      <div class="hero__proof">
-        <div class="hero__proof-item">
-          <span>3×</span>
-          <span>Average annual saving</span>
-        </div>
-        <div class="hero__proof-item">
-          <span>€8K–20K</span>
-          <span>Hub build cost</span>
-        </div>
-        <div class="hero__proof-item">
-          <span>3–6 mo</span>
-          <span>Typical payback</span>
-        </div>
-        <div class="hero__proof-item">
-          <span>Cross-sector</span>
-          <span>Patterns rhyme everywhere</span>
-        </div>
+      <div class="hero__panel">
+        <p class="hero__panel-title">What one call tells you</p>
+        <ul class="hero__checklist">
+          <li>Exactly which workflows in your business AI can improve</li>
+          <li>What we would build and in what sequence</li>
+          <li>The fixed cost and timeline for your first implementation</li>
+          <li>Whether you are the right fit, and if not, we'll tell you honestly</li>
+          <li>How long before it pays back</li>
+        </ul>
       </div>
     </div>
-    <div class="hero__panel" aria-hidden="true">
-      <p class="hero__panel-title">What one call tells you</p>
-      <ul class="hero__checklist">
-        <li>Exactly which workflows in your business AI can improve</li>
-        <li>What we would build and in what sequence</li>
-        <li>The fixed cost and timeline for your first implementation</li>
-        <li>Whether you are the right fit — and if not, we'll tell you honestly</li>
-        <li>How long before it pays back</li>
-      </ul>
+    <div class="hero__proof" aria-label="At-a-glance metrics">
+      <div class="hero__proof-item">
+        <span>3×</span>
+        <span>Average annual saving</span>
+      </div>
+      <div class="hero__proof-item">
+        <span>€1K–€20K</span>
+        <span>Workflow build cost</span>
+      </div>
+      <div class="hero__proof-item">
+        <span>3–6 mo</span>
+        <span>Typical payback</span>
+      </div>
+      <div class="hero__proof-item">
+        <span>Sector-agnostic</span>
+        <span>Patterns rhyme everywhere</span>
+      </div>
     </div>
   </div>
 </section>
@@ -582,7 +625,7 @@
   <div class="k-inner">
     <span class="k-label">The Reality</span>
     <h2 class="k-h2" id="problem-heading">Your business is running on human effort<br>where it should be running on systems.</h2>
-    <p class="k-lead" style="margin-top:1rem;">Most founder-led businesses at this stage have the same problem. Good people doing repetitive work. Revenue slipping through the gaps. Decisions made on instinct when the data exists to make them properly. None of it is a talent problem. It is a systems problem.</p>
+    <p class="k-lead" style="margin-top:1rem;">Most businesses at this stage have the same problem. Good people doing repetitive work. Revenue slipping through the gaps. Decisions made on instinct when the data exists to make them properly. None of it is a talent problem. It is a systems problem.</p>
 
     <div class="problem-grid">
       <div class="problem-cell">
@@ -603,7 +646,7 @@
       <div class="problem-cell">
         <div class="problem-cell__num">04</div>
         <h4>You're making decisions on gut, not data</h4>
-        <p>The information exists somewhere. But extracting it takes a morning. So you run on instinct. It’s served you well. But it only gets you so far.</p>
+        <p>The information exists somewhere. But extracting it takes a morning. So you run on instinct. It's served you well. But it only gets you so far.</p>
       </div>
     </div>
   </div>
@@ -623,28 +666,22 @@
 <section class="k-section k-section--dark" aria-labelledby="offer-heading">
   <div class="k-inner">
     <span class="k-label">What We Build</span>
-    <h2 class="k-h2" id="offer-heading">A brain above your business —<br>and every business after it.</h2>
+    <h2 class="k-h2" id="offer-heading">A brain above your business.<br>And every business after it.</h2>
     <p class="k-lead" style="margin-top:1rem;">We build one central AI hub that sits above your existing systems. Connect what you already have. Layer intelligence on top. Then reuse the same core across every business you run. Each new app costs less and ships faster than the last because the hub already has the data, the connections, and the intelligence behind it. The longer you run it, the more it compounds.</p>
 
     <div class="offer-grid">
       <div class="offer-card">
-        <div class="offer-card__icon">
-          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
+        <span class="offer-card__num">Layer 01 · Revenue</span>
         <h4>Revenue Workflows</h4>
         <p>Pipeline management, lead follow-up, quote automation, and client communication. Built so nothing slips through and your team focuses on closing, not chasing.</p>
       </div>
       <div class="offer-card">
-        <div class="offer-card__icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </div>
+        <span class="offer-card__num">Layer 02 · Operations</span>
         <h4>Operations Automation</h4>
         <p>Form completion, data entry, status updates, reporting. The repetitive tasks costing your people hours every week, automated and reliable.</p>
       </div>
       <div class="offer-card">
-        <div class="offer-card__icon">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-        </div>
+        <span class="offer-card__num">Layer 03 · Decisions</span>
         <h4>Decision Intelligence</h4>
         <p>Dashboards and reporting that surface what matters, automatically. Stop compiling and start deciding. Your data works for you instead of sitting in a spreadsheet.</p>
       </div>
@@ -664,25 +701,25 @@
         <div class="process-step__num">01</div>
         <span class="process-step__week">Free · 20 minutes</span>
         <h4>Discovery Call</h4>
-        <p>A short call to understand the business and the pressure points. We tell you honestly whether AI is the right move — and if it is, where we'd start.</p>
+        <p>A short call to understand the business and the pressure points. We tell you honestly whether AI is the right move, and if it is, where we'd start.</p>
       </div>
       <div class="process-step">
         <div class="process-step__num">02</div>
-        <span class="process-step__week">€999 · 48 hours</span>
+        <span class="process-step__week">€1,000 · 48 hours</span>
         <h4>Discovery Report</h4>
-        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected return. Take it away and build it yourself, hand it to another team, or come back to us. The €999 is credited against the build if you do.</p>
+        <p>A 1–2 hour deep-dive call with the people closest to the work. A written report within 48 hours mapping the highest-value AI opportunities, costed and prioritised. €1,000 credited against the build if you proceed.</p>
       </div>
       <div class="process-step">
         <div class="process-step__num">03</div>
-        <span class="process-step__week">€8K–€20K · Fixed price</span>
-        <h4>Build the Hub</h4>
-        <p>We build the core intelligence hub for your business. Fixed scope, fixed price, typically four weeks. You own it on day one and your team uses it on real data immediately.</p>
+        <span class="process-step__week">€1K–€20K · Fixed price</span>
+        <h4>Workflow Development</h4>
+        <p>We build the first workflow for your business. Fixed scope, fixed price, typically four weeks. Your team uses it on real data from day one.</p>
       </div>
       <div class="process-step">
         <div class="process-step__num">04</div>
         <span class="process-step__week">Ongoing · Economies of scale</span>
-        <h4>Expand the Hub</h4>
-        <p>Every new app you build on the hub costs less and ships faster than the last, because the hub already has the data, the connections, and the intelligence. The more you run it, the more it compounds.</p>
+        <h4>Continued Development</h4>
+        <p>Every new workflow ships faster and costs less than the last, because the platform already has the data, the connections, and the intelligence. From €1,000 per app. The more it runs, the more it compounds.</p>
       </div>
     </div>
   </div>
@@ -699,7 +736,7 @@
       <div class="founder-card">
         <div class="founder-card__role">Operators First</div>
         <h4>Pattern recognition from running businesses.</h4>
-        <p>The partners are business owners. Plural. Across multiple sectors. Every operational problem you're wrestling with — revenue leakage, margin pressure, fee-earners doing admin, decisions made on instinct when the data exists — has been dealt with from the inside, not read about in a case study. That's the experience every Keystone engagement starts with.</p>
+        <p>The partners are business owners. Plural. Across multiple sectors. Every operational problem you're wrestling with (revenue leakage, margin pressure, fee-earners doing admin, decisions made on instinct when the data exists) has been dealt with from the inside, not read about in a case study. That's the experience every Keystone engagement starts with.</p>
         <div class="founder-card__quote">"Every problem in a client business, we've solved in our own first."</div>
       </div>
       <div class="founder-card">
@@ -715,7 +752,7 @@
       <div class="hero__proof-item"><span>5+</span><span>Sectors covered</span></div>
       <div class="hero__proof-item"><span>9</span><span>Live agents in our largest hub</span></div>
       <div class="hero__proof-item"><span>3×</span><span>Average annual saving</span></div>
-      <div class="hero__proof-item"><span>100%</span><span>Fixed-price engagements</span></div>
+      <div class="hero__proof-item"><span>100%</span><span>Fixed-price builds</span></div>
     </div>
   </div>
 </section>
@@ -725,12 +762,12 @@
   <div class="k-inner">
     <span class="k-label">The Work</span>
     <h2 class="k-h2" id="cases-heading">Sectors differ. Operations rhyme.</h2>
-    <p class="k-lead" style="margin-top:1rem;">We've built and operated businesses in waste management, financial services, healthcare, construction and professional services. The operational levers — where revenue leaks, where margin gets squeezed, where the team is doing work a system should — repeat across all of them. The same playbook now runs in client businesses across construction and legal services too. Different industries, same patterns. We don't sell sector specialisation. We sell pattern recognition.</p>
+    <p class="k-lead" style="margin-top:1rem;">We've built and operated businesses in waste management, financial services, healthcare, construction and professional services. The operational levers (where revenue leaks, where margin gets squeezed, where the team is doing work a system should) repeat across all of them. The same playbook now runs in client businesses across construction and legal services too. Different industries, same patterns. We don't sell sector specialisation. We sell pattern recognition.</p>
 
     <div class="industries-grid">
       <a href="industries.html#construction-hub" class="industry-card">
         <h4>Five workflows under one roof for an Irish construction company</h4>
-        <p>Pipeline, contracts, invoicing and project delivery — consolidated into a single platform with AI-powered payment-schedule extraction. Live ahead of the 2026 construction season.</p>
+        <p>Pipeline, contracts, invoicing and project delivery, consolidated into a single platform with AI-powered payment-schedule extraction. Live ahead of the 2026 construction season.</p>
       </a>
       <a href="industries.html#legal-call-actions" class="industry-card">
         <h4>Client calls turned into action items, automatically</h4>
@@ -771,19 +808,19 @@
       <a href="blog/blog-is-your-business-ready-for-ai.html" class="blog-card">
         <span class="blog-card__tag">AI Strategy</span>
         <h4>Is Your Irish Business Ready for AI? 5 Signs It's Time to Start</h4>
-        <p>Five signals that your business is ready to start with AI — and the single most important thing to do before spending money on any technology.</p>
+        <p>Five signals that your business is ready to start with AI, and the single most important thing to do before spending money on any technology.</p>
         <span class="blog-card__date">May 2026</span>
       </a>
       <a href="blog/blog-ai-for-irish-solicitors.html" class="blog-card">
         <span class="blog-card__tag">Legal</span>
         <h4>AI for Irish Solicitors: Automating Legal Aid Claims and Court Management</h4>
-        <p>LA1, LA10, CLA11, CF1 — generated automatically from case data. Here is what that looks like in practice.</p>
+        <p>LA1, LA10, CLA11, CF1, generated automatically from case data. Here is what that looks like in practice.</p>
         <span class="blog-card__date">May 2026</span>
       </a>
       <a href="blog/blog-ai-for-irish-gp-practices.html" class="blog-card">
         <span class="blog-card__tag">Healthcare</span>
         <h4>AI for Irish GP Practices: Reducing Admin Overhead Without Compromising Care</h4>
-        <p>Three to five hours of administrative overhead a day in a busy GP practice. AI fixes the systems problem — often without adding staff.</p>
+        <p>Three to five hours of administrative overhead a day in a busy GP practice. AI fixes the systems problem, often without adding staff.</p>
         <span class="blog-card__date">May 2026</span>
       </a>
     </div>
@@ -805,12 +842,14 @@
   </div>
 </section>
 
+</main>
+
 <!-- ═══ FOOTER ═══ -->
 <footer class="k-footer" role="contentinfo">
   <div class="k-footer__inner">
     <div class="k-footer__brand">
       <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
-      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+      <p>AI consultancy for businesses that want to grow. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
     </div>
     <div class="k-footer__col">
       <h5>Company</h5>
@@ -822,29 +861,4 @@
       <h5>Case Studies</h5>
       <a href="industries.html#construction-hub">Construction Hub</a>
       <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
-      <a href="industries.html#waste-hub">Waste Operations Hub</a>
-      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
-      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
-      <a href="industries.html#email-triage">Email Triage Agent</a>
-      <a href="industries.html#balance-sheet">Balance Sheet Recon</a>
-    </div>
-    <div class="k-footer__col">
-      <h5>Insights</h5>
-      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
-      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
-      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
-      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
-      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
-    </div>
-  </div>
-  <div class="k-footer__bottom">
-    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
-    <div style="display:flex;gap:1.5rem;">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="contact.html">Book a Discovery Call</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+      <a href="industries.html#w

@@ -1,7 +1,13 @@
 /* ============================================================
-   KEYSTONE INTELLIGENCE GROUP — SHARED STYLESHEET
-   Version: 1.0
-   For handoff to WordPress designer
+   KEYSTONE INTELLIGENCE GROUP · SHARED STYLESHEET
+   Version: 1.1
+   Changes vs 1.0:
+   - Lightened --k-mid token to meet WCAG AA contrast on body text
+   - Added :focus-visible rules site-wide for keyboard accessibility
+   - Added aria-current="page" rule for active nav state
+   - Replaced .k-callout left-stripe with full-border + gold tint
+   - Added mobile nav open state with hamburger animation
+   - Reduced top-stripe accent on non-featured cards
    ============================================================ */
 
 /* ─── GOOGLE FONTS ─── */
@@ -14,23 +20,23 @@ html { scroll-behavior: smooth; }
 /* ─── DESIGN TOKENS ─── */
 :root {
   /* Backgrounds */
-  --k-bg:        #0C0C12;   /* page background — near black */
+  --k-bg:        #0C0C12;   /* page background, near black */
   --k-bg-2:      #111118;   /* secondary sections */
   --k-bg-3:      #161622;   /* tertiary / cards */
   --k-card:      rgba(255,255,255,0.03);
   --k-card-h:    rgba(255,255,255,0.055);
 
   /* Brand colours */
-  --k-gold:      #C49A3C;   /* primary accent — amber gold */
+  --k-gold:      #C49A3C;   /* primary accent, amber gold */
   --k-gold-l:    #D4AF5A;   /* hover / light gold */
   --k-gold-dim:  rgba(196,154,60,0.12);
   --k-border:    rgba(196,154,60,0.13);
   --k-border-h:  rgba(196,154,60,0.32);
 
-  /* Text */
+  /* Text. Note: --k-mid lightened from #706B62 (3.55:1) to #8E887D (~5.0:1) for WCAG AA on dark */
   --k-white:     #FFFFFF;
   --k-grey:      #C0BBB3;   /* body text */
-  --k-mid:       #706B62;   /* secondary text */
+  --k-mid:       #8E887D;   /* secondary text, now AA-compliant on --k-bg */
   --k-dark-txt:  #0C0C12;   /* text on gold bg */
 
   /* Typography */
@@ -60,6 +66,34 @@ body {
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+
+/* ─── FOCUS STATES (site-wide keyboard accessibility) ─── */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--k-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Form inputs get their own focus styling defined per-page; suppress the default ring there */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible { outline-offset: 0; }
+
+/* ─── SKIP LINK (a11y) ─── */
+.k-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  background: var(--k-gold);
+  color: var(--k-dark-txt);
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 999;
+  transition: top 0.2s;
+}
+.k-skip-link:focus { top: 1rem; }
 
 /* ─── NAVIGATION ─── */
 .k-nav {
@@ -102,6 +136,24 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.2s;
 }
 .k-nav__links a:hover { color: var(--k-white); }
+
+/* Active page indicator (replaces inline color styles) */
+.k-nav__links a[aria-current="page"] {
+  color: var(--k-white);
+}
+.k-nav__links a[aria-current="page"]:not(.btn-nav) {
+  position: relative;
+}
+.k-nav__links a[aria-current="page"]:not(.btn-nav)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--k-gold);
+  opacity: 0.6;
+}
 
 /* ─── BUTTONS ─── */
 .btn-primary {
@@ -155,6 +207,15 @@ a { color: inherit; text-decoration: none; }
   transition: background 0.2s;
 }
 .btn-nav:hover { background: var(--k-gold-l); }
+
+/* When .btn-nav is the current page (contact page), invert to outline style */
+.k-nav__links a.btn-nav[aria-current="page"] {
+  background: var(--k-gold-dim);
+  color: var(--k-gold);
+  border: 1px solid rgba(196,154,60,0.3);
+  padding: calc(0.5rem - 1px) calc(1.25rem - 1px);
+}
+.k-nav__links a.btn-nav[aria-current="page"]::after { display: none; }
 
 /* ─── SECTION WRAPPER ─── */
 .k-section {
@@ -266,14 +327,25 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.5;
 }
 
-/* ─── CALLOUT / PULLQUOTE ─── */
+/* ─── CALLOUT / PULLQUOTE ───
+   Replaces former left-stripe border with full-border + tinted background.
+   Same visual emphasis, no side-stripe ban violation. */
 .k-callout {
-  background: var(--k-card);
-  border: 1px solid var(--k-border);
-  border-left: 3px solid var(--k-gold);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
-  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(196,154,60,0.08), rgba(196,154,60,0.03));
+  border: 1px solid var(--k-border-h);
+  border-radius: var(--r-md);
+  padding: 1.75rem 2rem;
   margin: 2.5rem 0;
+  position: relative;
+}
+.k-callout::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--k-gold);
+  margin-bottom: 1rem;
+  opacity: 0.8;
 }
 .k-callout p {
   font-family: var(--font-head);
@@ -503,14 +575,22 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ─── MOBILE HAMBURGER (nav) ─── */
+/* Tap target sized to WCAG 2.5.5 / iOS HIG minimum: 44×44 CSS pixels.
+   The visual bars stay tight (22px wide, 14px tall stack) but the click
+   area is generously padded so thumbs reliably hit it. */
 .k-nav__mobile-toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: none;
   border: none;
+  margin: -8px;
 }
 .k-nav__mobile-toggle span {
   display: block;
@@ -519,6 +599,18 @@ a { color: inherit; text-decoration: none; }
   background: var(--k-white);
   border-radius: 2px;
   transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+
+/* Hamburger → X animation when nav is open */
+.k-nav--open .k-nav__mobile-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.k-nav--open .k-nav__mobile-toggle span:nth-child(2) {
+  opacity: 0;
+}
+.k-nav--open .k-nav__mobile-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ─── RESPONSIVE ─── */
@@ -531,8 +623,53 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 768px) {
   .k-nav { padding: 1rem 1.5rem; }
-  .k-nav__links { display: none; }
-  .k-nav__mobile-toggle { display: flex; }
+
+  /* Mobile menu: drops from under the nav, full-width */
+  .k-nav__links {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(12,12,18,0.98);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--k-border);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .k-nav--open .k-nav__links {
+    display: flex;
+  }
+  .k-nav__links li {
+    border-bottom: 1px solid var(--k-border);
+  }
+  .k-nav__links li:last-child {
+    border-bottom: none;
+    padding-top: 1rem;
+  }
+  .k-nav__links a {
+    display: block;
+    font-size: 1.05rem;
+    padding: 1rem 0.25rem;
+    color: var(--k-white);
+  }
+  .k-nav__links a[aria-current="page"]::after {
+    display: none;
+  }
+  .k-nav__links a.btn-nav {
+    text-align: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  .k-nav__mobile-toggle {
+    display: flex;
+  }
+
   .k-section { padding: 4rem 1.5rem; }
   .k-footer { padding: 3rem 1.5rem 1.5rem; }
   .k-footer__inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -544,4 +681,14 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 480px) {
   .k-h1 { font-size: 2.2rem; }
   .k-h2 { font-size: 1.75rem; }
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

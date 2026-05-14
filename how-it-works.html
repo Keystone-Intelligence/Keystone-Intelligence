@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How It Works — Keystone Intelligence Group</title>
-<meta name="description" content="Four steps. Fixed prices. Stop at any one. From the free 20-minute Discovery Call to the €999 Discovery Report, the €8K–€20K hub build, and ongoing apps with compounding economies of scale.">
+<title>How It Works | Keystone Intelligence Group</title>
+<meta name="description" content="Four steps. Fixed prices. Stop at any one. From the free 20-minute Discovery Call to the €1,000 Discovery Report (with a 1–2 hour deep-dive call), the €1K–€20K Workflow Development build, and Continued Development from €1,000 per app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="keystone.css">
+<script src="keystone.js" defer></script>
 <style>
 .page-hero {
   padding: 9rem 2.5rem 5rem;
@@ -292,21 +293,23 @@
 </head>
 <body>
 
+<a class="k-skip-link" href="#main">Skip to content</a>
+
 <nav class="k-nav" aria-label="Main navigation">
   <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
   <ul class="k-nav__links">
     <li><a href="about.html">About</a></li>
-    <li><a href="how-it-works.html" style="color:var(--k-white);">How It Works</a></li>
+    <li><a href="how-it-works.html" aria-current="page">How It Works</a></li>
     <li><a href="industries.html">Case Studies</a></li>
     <li><a href="blog.html">Insights</a></li>
     <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
   </ul>
-  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+  <button class="k-nav__mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<section class="page-hero">
+<section class="page-hero" id="main">
   <div class="page-hero__inner">
     <span class="k-label">How It Works</span>
     <h1>Four steps. Fixed prices.<br>Stop at any one.</h1>
@@ -316,21 +319,21 @@
       <div class="hero-phase">
         <span class="hero-phase__step">Step 01 · Free</span>
         <span class="hero-phase__name">Discovery Call</span>
-        <span class="hero-phase__time">20 minutes — no cost</span>
+        <span class="hero-phase__time">20 minutes, no cost</span>
       </div>
       <div class="hero-phase">
-        <span class="hero-phase__step">Step 02 · €999</span>
+        <span class="hero-phase__step">Step 02 · €1,000</span>
         <span class="hero-phase__name">Discovery Report</span>
         <span class="hero-phase__time">Yours within 48 hours</span>
       </div>
       <div class="hero-phase">
-        <span class="hero-phase__step">Step 03 · €8K–€20K</span>
-        <span class="hero-phase__name">Build the Hub</span>
+        <span class="hero-phase__step">Step 03 · €1K–€20K</span>
+        <span class="hero-phase__name">Workflow Development</span>
         <span class="hero-phase__time">Typically four weeks</span>
       </div>
       <div class="hero-phase">
         <span class="hero-phase__step">Step 04 · Ongoing</span>
-        <span class="hero-phase__name">Expand the Hub</span>
+        <span class="hero-phase__name">Continued Development</span>
         <span class="hero-phase__time">Compounding economies of scale</span>
       </div>
     </div>
@@ -348,7 +351,7 @@
       </div>
       <div class="phase__content">
         <h3>The Discovery Call</h3>
-        <p>Twenty minutes. No cost. No obligation. We use it to understand the business, the pressure points, and where AI might genuinely move a metric. By the end of the call, you know whether Keystone is the right fit. If we're not, we'll tell you that — and we'll tell you why.</p>
+        <p>Twenty minutes. No cost. No obligation. We use it to understand the business, the pressure points, and where AI might genuinely move a metric. By the end of the call, you know whether Keystone is the right fit. If we're not, we'll tell you that, and we'll tell you why.</p>
         <p>This is not a sales call dressed up as a consultation. It is a diagnostic. We ask specific questions about your workflows, your revenue model, your team, and your biggest operational pain points. The output is an honest read on where AI can and cannot add value for your specific business.</p>
         <div class="phase__detail">
           <div class="phase__detail-item">
@@ -365,14 +368,18 @@
 
     <div class="phase">
       <div class="phase__marker">
-        <span class="phase__week">Step 02 · €999</span>
+        <span class="phase__week">Step 02 · €1,000</span>
         <div class="phase__num">02</div>
       </div>
       <div class="phase__content">
         <h3>The Discovery Report</h3>
-        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected financial return. Delivered within 48 hours of the call. Yours to keep regardless of what you decide next.</p>
-        <p>Take it away and build it yourself. Hand it to another team to build. Come back to us. The report is decision-grade material either way — specific to your business, costed, and prioritised. If you do come back to us for the build, the €999 is credited in full against the build cost.</p>
+        <p>Before the report is written, we run a 1–2 hour deep-dive call with you and the people closest to the workflows that matter most. That call is what the report is built on: specific workflows, real numbers, named systems. The written report follows within 48 hours.</p>
+        <p>What you get back is decision-grade material. The highest-value AI opportunities in your business, what each would cost to build, and the projected financial return. Take it away and build it yourself. Hand it to another team to build. Come back to us. The €1,000 is credited in full against the build cost if you do.</p>
         <div class="phase__detail">
+          <div class="phase__detail-item">
+            <strong>1–2 hour deep-dive call</strong>
+            <span>Held within a few days of the Discovery Call. We sit with the people doing the work and map exactly where the time is going.</span>
+          </div>
           <div class="phase__detail-item">
             <strong>Workflows mapped</strong>
             <span>Top three AI opportunities specific to your business, in priority order, with the rationale for each.</span>
@@ -382,12 +389,8 @@
             <span>Build cost for each workflow. Expected annual saving or revenue uplift. Payback timeline. Numbers, not theatre.</span>
           </div>
           <div class="phase__detail-item">
-            <strong>Architecture sketch</strong>
-            <span>How the hub would sit above your existing systems. What it connects to. What data it uses.</span>
-          </div>
-          <div class="phase__detail-item">
-            <strong>€999 credited if you proceed</strong>
-            <span>The full €999 is offset against the build cost if you commission us at Step 03. Otherwise the report is yours to use however you want.</span>
+            <strong>Delivered in 48 hours</strong>
+            <span>The written report lands within 48 hours of the deep-dive call. Yours to act on however you want. €1,000 credited against the build if you proceed.</span>
           </div>
         </div>
       </div>
@@ -395,13 +398,13 @@
 
     <div class="phase">
       <div class="phase__marker">
-        <span class="phase__week">Step 03 · €8K–€20K</span>
+        <span class="phase__week">Step 03 · €1K–€20K</span>
         <div class="phase__num">03</div>
       </div>
       <div class="phase__content">
-        <h3>Build the Hub</h3>
-        <p>We build the core intelligence hub for your business. Fixed scope, fixed price, typically four weeks. The same people who scoped the report are the ones building it — no handoffs to a delivery team, no account managers playing telephone. The hub goes live on your real data with your team using it from day one.</p>
-        <p>The hub becomes the foundation everything else gets built on. It connects to your existing systems, holds your data, and runs the first set of agents we identified together. Whatever scale you start at, you own the whole thing.</p>
+        <h3>Workflow Development</h3>
+        <p>We build the core intelligence hub for your business. Fixed scope, fixed price, typically four weeks. The same people who scoped the report are the ones building it, no handoffs to a delivery team, no account managers playing telephone. The hub goes live on your real data with your team using it from day one.</p>
+        <p>The first workflow becomes the foundation everything else gets built on. It connects to your existing systems, holds your data, and runs the agents we identified together. From day one, it's working on real operations inside your business.</p>
         <div class="phase__detail">
           <div class="phase__detail-item">
             <strong>One core hub</strong>
@@ -412,8 +415,8 @@
             <span>The highest-priority workflows from the Discovery Report, built into the hub and running on day one.</span>
           </div>
           <div class="phase__detail-item">
-            <strong>You own it</strong>
-            <span>The hub belongs to you. No vendor lock-in. No platform fees to Keystone. The code, the data, the systems — yours.</span>
+            <strong>Built for your operation</strong>
+            <span>Configured to your data, your systems, your way of working. Not generic software you have to adapt around.</span>
           </div>
           <div class="phase__detail-item">
             <strong>Fixed price, no surprises</strong>
@@ -429,8 +432,8 @@
         <div class="phase__num">04</div>
       </div>
       <div class="phase__content">
-        <h3>Expand the Hub</h3>
-        <p>Once the hub is running, new agents and workflows go on top of it. And because the hard part — the data, the connections, the intelligence layer — already exists, each new app is faster and cheaper than the last. The more you run the hub, the more it compounds.</p>
+        <h3>Continued Development</h3>
+        <p>Once the hub is running, new agents and workflows go on top of it. And because the hard part (the data, the connections, the intelligence layer) already exists, each new app is faster and cheaper than the last. The more you run the hub, the more it compounds.</p>
         <p>The hub also extends across multiple businesses. If you run several companies, the same core layer can serve all of them. One hub. Many businesses. Each new application using the data and patterns the others have already established.</p>
         <div class="phase__detail">
           <div class="phase__detail-item">
@@ -472,7 +475,7 @@
       <div class="deliverable">
         <div class="deliverable__num">02</div>
         <h4>Documented Scope</h4>
-        <p>A written scope that defines exactly what was built, how it works, and how to maintain it. Documented and yours to own.</p>
+        <p>A written scope that defines exactly what was built, how it works, and how to operate it. Clearly documented for your team.</p>
       </div>
       <div class="deliverable">
         <div class="deliverable__num">03</div>
@@ -489,51 +492,18 @@
         <h4>A Roadmap Forward</h4>
         <p>A clear picture of the next highest-value workflow to build, informed by what you've learned from the first. Not a theoretical plan. A practical next step.</p>
       </div>
-      <div class="deliverable">
-        <div class="deliverable__num">06</div>
-        <h4>Full Ownership</h4>
-        <p>You own what we build. No vendor lock-in. No ongoing licence fees to Keystone unless you want ongoing development. What we build is yours.</p>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING SUMMARY (full pricing detail lives on /pricing) -->
 <section class="k-section k-section--dark">
   <div class="k-inner">
     <span class="k-label">Pricing</span>
-    <h2 class="k-h2">Fixed prices. No surprises.</h2>
-    <p class="k-lead" style="margin-top:1rem;">Four steps. Every price fixed in writing before any work begins. You can stop at any stage. There is no obligation to proceed past the step you are on.</p>
-
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-card__label">Step 01</div>
-        <h4>Discovery Call</h4>
-        <div class="price-card__price">Free · 20 minutes</div>
-        <hr class="price-card__divider">
-        <p>A short call. You talk through the business, the problems, the pressure points. We tell you honestly whether AI is the right move. No pitch. No deck. Just a straight conversation about whether we can help.</p>
-      </div>
-      <div class="price-card price-card--featured">
-        <div class="price-card__label">Step 02</div>
-        <h4>Discovery Report</h4>
-        <div class="price-card__price">€999 · Within 48 hours</div>
-        <hr class="price-card__divider">
-        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected return. You can act on it yourself, hand it to another team, or ask us to build it. The report is yours regardless of what you decide next. If you do commission us at Step 03, the full €999 is credited against the build.</p>
-      </div>
-      <div class="price-card">
-        <div class="price-card__label">Step 03</div>
-        <h4>Build the Hub</h4>
-        <div class="price-card__price">€8,000–€20,000 · Fixed price</div>
-        <hr class="price-card__divider">
-        <p>We build the core intelligence hub: the central layer that sits above your existing systems and runs the first set of agents. Scope agreed in writing before a single hour is spent. Typically four weeks from kickoff to live. Your team uses it on day one. If it does not deliver what we said it would, we fix it.</p>
-      </div>
-      <div class="price-card">
-        <div class="price-card__label">Step 04</div>
-        <h4>Expand the Hub</h4>
-        <div class="price-card__price">Per app · From €1,000</div>
-        <hr class="price-card__divider">
-        <p>New agents and workflows go on top of the hub once it's live. Each new app costs less and ships faster than the last because the hub already has the data, the connections, and the intelligence. The longer you run it, the more it compounds. No retainer, no lock-in.</p>
-      </div>
+    <h2 class="k-h2">Every step is fixed-price.<br>Stop whenever you want.</h2>
+    <p class="k-lead" style="margin-top:1rem;">Discovery Call is free. The Discovery Report is €1,000 (credited back if you build with us). Workflow Development is €1,000–€20,000 fixed. Continued Development is from €1,000 per app, dropping with every iteration.</p>
+    <div style="margin-top:2rem;">
+      <a href="pricing.html" class="btn-outline">See full pricing</a>
     </div>
   </div>
 </section>
@@ -550,12 +520,13 @@
   <div class="k-footer__inner">
     <div class="k-footer__brand">
       <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
-      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+      <p>AI consultancy for businesses that want to grow. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
     </div>
     <div class="k-footer__col">
       <h5>Company</h5>
       <a href="about.html">About Us</a>
       <a href="how-it-works.html">How It Works</a>
+      <a href="pricing.html">Pricing</a>
       <a href="contact.html">Contact</a>
     </div>
     <div class="k-footer__col">
@@ -588,3 +559,4 @@
 
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
