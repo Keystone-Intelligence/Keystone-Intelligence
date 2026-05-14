@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="keystone.css">
 <script src="keystone.js" defer></script>
 <style>
+/* Case-study counter — drives the "01 / 07" markers on .industry-section */
+body { counter-reset: casestudy; }
+
 /* HERO */
 .page-hero {
   padding: 9rem 2.5rem 4rem;
@@ -59,10 +62,27 @@
 
 /* INDUSTRY SECTIONS */
 .industry-section {
-  padding: 5rem 0;
-  border-bottom: 1px solid var(--k-border);
+  padding: 6rem 0 5rem;
+  position: relative;
+  counter-increment: casestudy;
 }
-.industry-section:last-of-type { border-bottom: none; }
+.industry-section:first-of-type { padding-top: 2rem; }
+.industry-section:last-of-type { padding-bottom: 2rem; }
+
+/* Numbered chapter marker — also serves as the divider between studies.
+   Pure CSS counter; the page content itself is untouched. */
+.industry-section::before {
+  content: counter(casestudy, decimal-leading-zero) "  /  07";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--k-gold);
+  padding-bottom: 1.4rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(196,154,60,0.28);
+}
 
 .industry-section__header {
   display: grid;
@@ -184,6 +204,8 @@
 
 @media (max-width: 900px) {
   .page-hero { padding: 7rem 1.5rem 3rem; }
+  .industry-section { padding: 4rem 0 3.5rem; }
+  .industry-section::before { margin-bottom: 2rem; }
   .industry-section__header { grid-template-columns: 1fr; gap: 2rem; }
   .use-case-list { grid-template-columns: 1fr; }
   .industry-cta-bar { flex-direction: column; align-items: flex-start; }
