@@ -1,0 +1,47 @@
+# Keystone Intelligence Group
+> Irish AI consultancy building operational AI workflows for SMEs turning over €1M–€50M.
+
+## About
+Keystone Intelligence Group is an Irish AI consultancy that builds and deploys operational 
+AI workflows for small and medium businesses. Fixed-price engagements. No retainers.
+
+Founded by Jamie Walsh, CPA, former CFO of Kollect on Demand (Nasdaq Stockholm IPO, 
+subsequently acquired by Irish private equity). Operational AI was built inside the 
+partners' own businesses first — across waste management, financial services, construction 
+and legal services — before being offered to clients.
+
+## What We Do
+- AI workflow design and implementation for Irish SMEs
+- Fixed-price builds from €8,000
+- Discovery Report (€999, credited against build if you proceed)
+- Free 20-minute Discovery Call
+- Ongoing agent development from €1,000 per workflow
+
+## Proven Builds (Internal)
+- Nine-agent operations hub running a 30-vehicle waste management business
+- Invoice reconciliation across Salesforce and Xero (AR Guardian)
+- WIP-to-invoice automation
+- Email triage agent (Emily) — five-tier classification with feedback loop
+- Month-end balance sheet reconciliation agent
+
+## Client Builds
+- AI operations hub for an Irish construction company (five workflows)
+- Client call transcription and action item extraction for an Irish solicitor practice
+
+## Target Market
+Irish businesses turning over €1M–€50M across any sector. The Keystone proposition 
+is operational pattern recognition across sectors — not sector specialisation.
+
+## Contact
+- Website: https://keystoneintelligencegroup.com
+- Email: hello@keystoneintelligencegroup.com
+- Discovery Call: https://keystoneintelligencegroup.com/contact.html
+
+## Pages
+- Homepage: https://keystoneintelligencegroup.com/
+- About: https://keystoneintelligencegroup.com/about.html
+- How It Works: https://keystoneintelligencegroup.com/how-it-works.html
+- Case Studies: https://keystoneintelligencegroup.com/industries.html
+- Pricing: https://keystoneintelligencegroup.com/pricing.html
+- Insights: https://keystoneintelligencegroup.com/blog.html
+- Contact: https://keystoneintelligencegroup.com/contact.html

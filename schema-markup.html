@@ -1,0 +1,299 @@
+<!--
+  KEYSTONE INTELLIGENCE GROUP — SCHEMA MARKUP
+  ============================================
+  Instructions: Copy the relevant <script> block into the <head> of each page.
+  Each section is labelled with the target page.
+  
+  All blocks use JSON-LD format — paste directly before </head>
+-->
+
+
+<!-- ============================================================
+     ALL PAGES — Organization schema
+     Add this to EVERY page on the site
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Keystone Intelligence Group",
+  "legalName": "Keystone Intelligence Strategy and Advisory Limited",
+  "url": "https://keystoneintelligencegroup.com",
+  "email": "hello@keystoneintelligencegroup.com",
+  "description": "Irish AI consultancy building operational AI workflows for SMEs turning over €1M–€50M. Fixed-price engagements. Founded by Jamie Walsh, CPA.",
+  "founder": {
+    "@type": "Person",
+    "name": "Jamie Walsh"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ireland"
+  },
+  "knowsAbout": [
+    "Artificial Intelligence",
+    "Business Process Automation",
+    "AI Workflow Implementation",
+    "SME Consulting",
+    "Operational AI"
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     HOMEPAGE (index.html)
+     Add Organization + WebSite schema
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Keystone Intelligence Group",
+  "url": "https://keystoneintelligencegroup.com",
+  "description": "Keystone goes into Irish businesses turning over €1M–€50M and builds AI workflows that increase revenue, cut costs, and protect margin.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://keystoneintelligencegroup.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+
+<!-- ============================================================
+     ABOUT PAGE (about.html)
+     Add Person schema for Jamie Walsh
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jamie Walsh",
+  "jobTitle": "Chief Executive Officer",
+  "description": "CPA-qualified finance leader. Former CFO of Kollect on Demand, where he led the company's IPO on the Nasdaq First North exchange in Stockholm. Founded Keystone Intelligence Group to bring operational AI to Irish SMEs.",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "UCD Michael Smurfit Graduate Business School"
+    },
+    {
+      "@type": "Organization",
+      "name": "EY (Ernst & Young)"
+    }
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Chartered Accountant (CPA)"
+  },
+  "url": "https://keystoneintelligencegroup.com/about.html"
+}
+</script>
+
+
+<!-- ============================================================
+     HOW IT WORKS PAGE (how-it-works.html)
+     Add Service schema
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Workflow Implementation for Irish SMEs",
+  "provider": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ireland"
+  },
+  "description": "Keystone builds operational AI workflows for Irish businesses in four steps: free Discovery Call, Discovery Report (€999), fixed-price Build (€8,000–€20,000), and ongoing agent expansion from €1,000.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Keystone Engagement Steps",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Discovery Call",
+        "description": "A free 20-minute call to understand your business and pressure points.",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Discovery Report",
+        "description": "A written report mapping your highest-value AI opportunities, costed and prioritised. Credited against the build if you proceed.",
+        "price": "999",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Workflow Development",
+        "description": "Fixed-scope, fixed-price AI workflow build for your business.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "8000",
+          "maxPrice": "20000",
+          "priceCurrency": "EUR"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Continued Development",
+        "description": "Additional AI agents and workflows built on top of your existing hub. From €1,000 per app.",
+        "price": "1000",
+        "priceCurrency": "EUR"
+      }
+    ]
+  }
+}
+</script>
+
+
+<!-- ============================================================
+     PRICING PAGE (pricing.html)
+     Add FAQ schema — captures high-intent search queries
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does AI implementation cost for an Irish SME?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keystone's fixed-price builds start at €8,000 and go up to €20,000 depending on scope. Before any build, a Discovery Report costs €999 and maps out exactly what to build and what it will cost — and that €999 is credited against the build if you proceed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free consultation available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Keystone offers a free 20-minute Discovery Call to understand your business and give an honest read on whether AI is the right move."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does an AI workflow build take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The initial workflow build typically takes four weeks from kick-off to live deployment on real data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the return on investment for AI implementation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keystone clients see an average 3× annual saving relative to implementation cost, based on workflows live in the partners' own businesses."
+      }
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     CASE STUDIES PAGE (industries.html)
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Keystone Intelligence Group — AI Case Studies",
+  "description": "AI workflow implementations built by Keystone Intelligence Group for Irish businesses across construction, legal, waste management, and financial services.",
+  "url": "https://keystoneintelligencegroup.com/industries.html",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "AI Operations Hub — Irish Construction Company",
+      "description": "Five workflows under one roof: pipeline, contracts, invoicing and project delivery consolidated into a single platform with AI-powered payment-schedule extraction."
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Call Transcription and Action Items — Irish Solicitor Practice",
+      "description": "Every client call captured, transcribed, and turned into a structured action list. Twenty-five minutes of post-call admin compressed into three."
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Nine-Agent Operations Hub — 30-Vehicle Waste Business",
+      "description": "One operations hub, nine specialised agents working across operations, billing, customer service and reconciliation."
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Invoice Reconciliation — Salesforce and Xero",
+      "description": "Hundreds of invoices a month, two systems, manual reconciliation eliminated. Discrepancies surface in minutes instead of being chased at month-end."
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "WIP-to-Invoice Automation",
+      "description": "Work-in-progress data converted to invoiced amounts automatically. Cash conversion cycle compressed."
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     BLOG POST TEMPLATE
+     Copy this into each blog post and update the fields marked **UPDATE**
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "**UPDATE: Post title here**",
+  "description": "**UPDATE: Meta description here**",
+  "url": "**UPDATE: Full URL of this post**",
+  "datePublished": "**UPDATE: YYYY-MM-DD**",
+  "dateModified": "**UPDATE: YYYY-MM-DD**",
+  "author": {
+    "@type": "Person",
+    "name": "Jamie Walsh",
+    "url": "https://keystoneintelligencegroup.com/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "**UPDATE: Full URL of this post**"
+  }
+}
+</script>
+
+
+<!-- ============================================================
+     CONTACT PAGE (contact.html)
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Book a Free Discovery Call — Keystone Intelligence Group",
+  "url": "https://keystoneintelligencegroup.com/contact.html",
+  "description": "Book a free 20-minute Discovery Call with Keystone Intelligence Group. No pitch deck, no obligation. An honest read on whether AI is the right move for your business.",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "email": "hello@keystoneintelligencegroup.com",
+    "url": "https://keystoneintelligencegroup.com"
+  }
+}
+</script>
