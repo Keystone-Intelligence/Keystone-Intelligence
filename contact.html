@@ -247,6 +247,25 @@
   .contact-form-wrap { padding: 2rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; }
 }
+.contact-book {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1.5rem 0 0.5rem;
+}
+.contact-book .form-submit {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+.contact-book__alt {
+  font-size: 0.8rem;
+  color: var(--k-mid);
+  line-height: 1.6;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--k-border);
+}
 </style>
 </head>
 <body>
@@ -297,79 +316,15 @@
       </div>
     </div>
 
-    <!-- RIGHT, FORM -->
+    <!-- RIGHT, BOOK VIA CALENDAR -->
     <div class="contact-form-wrap">
       <h2>Book Your Discovery Call</h2>
-      <p>Fill in the form and we'll confirm a time within 24 hours. Calls are 20 minutes, held over video or phone, whichever works for you.</p>
-
-      <!-- NOTE FOR DEVELOPER: Connect this form to your preferred CRM or booking system (Calendly embed also works well here).
-           Client-side validation is handled by keystone.js; backend validation is still required. -->
-      <form class="k-contact-form" action="contact.html#" method="POST" novalidate="">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="first-name">First Name <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="first-name" name="first_name" placeholder="John" required="" aria-required="true" autocomplete="given-name" fdprocessedid="0n0sts">
-          </div>
-          <div class="form-group">
-            <label for="last-name">Last Name <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="last-name" name="last_name" placeholder="Murphy" required="" aria-required="true" autocomplete="family-name" fdprocessedid="prqyx">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" placeholder="john@yourbusiness.ie" required="" aria-required="true" autocomplete="email" inputmode="email" fdprocessedid="p8s2u">
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+353 87 000 0000" autocomplete="tel" inputmode="tel" fdprocessedid="v61dmk">
-        </div>
-        <div class="form-group">
-          <label for="company">Company Name <span class="req" aria-hidden="true">*</span></label>
-          <input type="text" id="company" name="company" placeholder="Your Business Ltd" required="" aria-required="true" autocomplete="organization" fdprocessedid="df6xnh">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="turnover">Annual Turnover <span class="req" aria-hidden="true">*</span></label>
-            <select id="turnover" name="turnover" required="" aria-required="true" fdprocessedid="wixmnb">
-              <option value="" disabled="" selected="">Select range</option>
-              <option value="1-3m">€1M – €3M</option>
-              <option value="3-10m">€3M – €10M</option>
-              <option value="10-25m">€10M – €25M</option>
-              <option value="25-50m">€25M – €50M</option>
-              <option value="50m+">€50M+</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="industry">Your Sector <span class="req" aria-hidden="true">*</span></label>
-            <select id="industry" name="industry" required="" aria-required="true" fdprocessedid="6fxye8">
-              <option value="" disabled="" selected="">Select your sector</option>
-              <option value="construction">Construction / Property</option>
-              <option value="legal">Legal / Professional Services</option>
-              <option value="healthcare">Healthcare / Medical</option>
-              <option value="finance">Finance / Banking</option>
-              <option value="waste">Waste Management / Environmental</option>
-              <option value="manufacturing">Manufacturing</option>
-              <option value="hospitality">Hospitality / Food &amp; Beverage</option>
-              <option value="retail">Retail / E-commerce</option>
-              <option value="technology">Technology / SaaS</option>
-              <option value="transport">Transport / Logistics</option>
-              <option value="agriculture">Agriculture / Agri-food</option>
-              <option value="education">Education / Training</option>
-              <option value="real-estate">Real Estate</option>
-              <option value="marketing">Marketing / Creative Services</option>
-              <option value="energy">Energy / Utilities</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="problem">What's the biggest operational problem in your business right now?</label>
-          <textarea id="problem" name="problem" placeholder="Tell us what&#39;s taking too much time, costing too much, or preventing growth..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary form-submit" fdprocessedid="y71b10q">Request Your Discovery Call</button>
-        <p class="form-status" data-form-status="" role="status" aria-live="polite"></p>
-        <p class="form-note">We'll confirm within 24 hours. Twenty minutes. No obligation.</p>
-      </form>
+      <p>Pick a time that suits you and we'll meet for 20 minutes over video or phone. No prep needed, no obligation, just a straight conversation about whether Keystone can help your business.</p>
+      <div class="contact-book">
+        <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary form-submit">Choose a Time</a>
+        <p class="form-note">Twenty minutes. Held over video or phone. No obligation.</p>
+      </div>
+      <p class="contact-book__alt">Prefer to talk first? Use the email or phone numbers on the left and we'll find a time that works.</p>
     </div>
 
   </div>
