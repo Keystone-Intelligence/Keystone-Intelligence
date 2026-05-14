@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Keystone Intelligence Group</title>
+<meta name="description" content="Four steps. Fixed prices. Stop at any one. From the free 20-minute Discovery Call to the €999 Discovery Report, the €8K–€20K hub build, and ongoing apps with compounding economies of scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="keystone.css">
+<style>
+.page-hero {
+  padding: 9rem 2.5rem 5rem;
+  background: linear-gradient(155deg, #111118 0%, var(--k-bg) 70%);
+  border-bottom: 1px solid var(--k-border);
+}
+.page-hero__inner { max-width: var(--w-max); margin: 0 auto; }
+.hero-phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 3.5rem;
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.hero-phase {
+  padding: 1.4rem 1.5rem;
+  border-right: 1px solid var(--k-border);
+  background: rgba(255,255,255,0.02);
+  transition: background .2s;
+}
+.hero-phase:last-child { border-right: none; }
+.hero-phase:hover { background: rgba(196,154,60,0.04); }
+.hero-phase__step {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--k-gold);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: .5rem;
+}
+.hero-phase__name {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--k-white);
+  display: block;
+  margin-bottom: .3rem;
+  line-height: 1.2;
+}
+.hero-phase__time {
+  font-size: .75rem;
+  color: var(--k-mid);
+  line-height: 1.4;
+  display: block;
+}
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--k-white);
+  max-width: 700px;
+  margin-top: 1rem;
+}
+.page-hero p {
+  font-size: 1.1rem;
+  color: var(--k-grey);
+  line-height: 1.75;
+  max-width: 580px;
+  margin-top: 1.5rem;
+}
+
+/* PHASE BLOCKS */
+.phase {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4rem;
+  padding: 4.5rem 0;
+  border-bottom: 1px solid var(--k-border);
+  align-items: start;
+}
+.phase:last-of-type { border-bottom: none; }
+.phase__marker {}
+.phase__week {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.phase__num {
+  font-family: var(--font-head);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(196,154,60,0.18);
+  line-height: 1;
+}
+.phase__content h3 {
+  font-family: var(--font-head);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.phase__content > p {
+  font-size: 0.95rem;
+  color: var(--k-grey);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+.phase__detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.phase__detail-item {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 2px solid rgba(196,154,60,0.35);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  transition: border-color .2s;
+}
+.phase__detail-item:hover {
+  border-top-color: var(--k-gold);
+  border-color: rgba(196,154,60,0.3);
+}
+.phase__detail-item strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--k-white);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+.phase__detail-item span {
+  font-size: 0.82rem;
+  color: var(--k-mid);
+  line-height: 1.6;
+}
+
+/* WHAT YOU GET */
+.deliverables {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.deliverable {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 2px solid rgba(196,154,60,0.35);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  transition: border-color .2s;
+}
+.deliverable:hover { border-top-color: var(--k-gold); }
+.deliverable__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--k-gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.deliverable h4 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.6rem;
+}
+.deliverable p {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.7;
+}
+
+/* PRICING */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.price-card {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 3px solid rgba(196,154,60,0.25);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  position: relative;
+  transition: border-color .2s, box-shadow .2s;
+}
+.price-card:hover {
+  border-top-color: var(--k-gold);
+  box-shadow: 0 0 24px rgba(196,154,60,0.07);
+}
+.price-card--featured {
+  border-color: rgba(196,154,60,0.45);
+  border-top: 3px solid var(--k-gold);
+  background: linear-gradient(145deg, rgba(196,154,60,0.06), var(--k-card));
+}
+.price-card--featured::before {
+  content: 'Most Common';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--k-gold);
+  color: var(--k-dark-txt);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+}
+.price-card__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.75rem;
+}
+.price-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.5rem;
+}
+.price-card__price {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--k-mid);
+  margin-bottom: 1rem;
+}
+.price-card__divider {
+  border: none;
+  border-top: 1px solid var(--k-border);
+  margin: 1rem 0;
+}
+.price-card p {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.7;
+}
+
+/* CTA */
+.hiw-cta {
+  text-align: center;
+  padding: 5rem 2.5rem;
+  background: var(--k-bg-2);
+  border-top: 1px solid var(--k-border);
+}
+.hiw-cta h2 {
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1rem;
+}
+.hiw-cta p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .page-hero { padding: 7rem 1.5rem 3.5rem; }
+  .phase { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 0; }
+  .phase__detail { grid-template-columns: 1fr; }
+  .deliverables { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .hiw-cta { padding: 3.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="how-it-works.html" style="color:var(--k-white);">How It Works</a></li>
+    <li><a href="industries.html">Case Studies</a></li>
+    <li><a href="blog.html">Insights</a></li>
+    <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <span class="k-label">How It Works</span>
+    <h1>Four steps. Fixed prices.<br>Stop at any one.</h1>
+    <p>A 20-minute call is all it takes to know whether Keystone can help your business. From there, you only continue when the value is clear. Every step is fixed price. There's no obligation to move past the step you're on.</p>
+
+    <div class="hero-phases">
+      <div class="hero-phase">
+        <span class="hero-phase__step">Step 01 · Free</span>
+        <span class="hero-phase__name">Discovery Call</span>
+        <span class="hero-phase__time">20 minutes — no cost</span>
+      </div>
+      <div class="hero-phase">
+        <span class="hero-phase__step">Step 02 · €999</span>
+        <span class="hero-phase__name">Discovery Report</span>
+        <span class="hero-phase__time">Yours within 48 hours</span>
+      </div>
+      <div class="hero-phase">
+        <span class="hero-phase__step">Step 03 · €8K–€20K</span>
+        <span class="hero-phase__name">Build the Hub</span>
+        <span class="hero-phase__time">Typically four weeks</span>
+      </div>
+      <div class="hero-phase">
+        <span class="hero-phase__step">Step 04 · Ongoing</span>
+        <span class="hero-phase__name">Expand the Hub</span>
+        <span class="hero-phase__time">Compounding economies of scale</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="k-section k-section--dark">
+  <div class="k-inner">
+
+    <div class="phase">
+      <div class="phase__marker">
+        <span class="phase__week">Step 01 · Free</span>
+        <div class="phase__num">01</div>
+      </div>
+      <div class="phase__content">
+        <h3>The Discovery Call</h3>
+        <p>Twenty minutes. No cost. No obligation. We use it to understand the business, the pressure points, and where AI might genuinely move a metric. By the end of the call, you know whether Keystone is the right fit. If we're not, we'll tell you that — and we'll tell you why.</p>
+        <p>This is not a sales call dressed up as a consultation. It is a diagnostic. We ask specific questions about your workflows, your revenue model, your team, and your biggest operational pain points. The output is an honest read on where AI can and cannot add value for your specific business.</p>
+        <div class="phase__detail">
+          <div class="phase__detail-item">
+            <strong>What we cover</strong>
+            <span>Your top operational pain points. Where revenue is slipping. What your team spends time on that a system should handle.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>What you leave with</strong>
+            <span>A clear, honest read on whether your business is ready for AI, and where we'd start if it is.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase__marker">
+        <span class="phase__week">Step 02 · €999</span>
+        <div class="phase__num">02</div>
+      </div>
+      <div class="phase__content">
+        <h3>The Discovery Report</h3>
+        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected financial return. Delivered within 48 hours of the call. Yours to keep regardless of what you decide next.</p>
+        <p>Take it away and build it yourself. Hand it to another team to build. Come back to us. The report is decision-grade material either way — specific to your business, costed, and prioritised. If you do come back to us for the build, the €999 is credited in full against the build cost.</p>
+        <div class="phase__detail">
+          <div class="phase__detail-item">
+            <strong>Workflows mapped</strong>
+            <span>Top three AI opportunities specific to your business, in priority order, with the rationale for each.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>Costs &amp; returns</strong>
+            <span>Build cost for each workflow. Expected annual saving or revenue uplift. Payback timeline. Numbers, not theatre.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>Architecture sketch</strong>
+            <span>How the hub would sit above your existing systems. What it connects to. What data it uses.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>€999 credited if you proceed</strong>
+            <span>The full €999 is offset against the build cost if you commission us at Step 03. Otherwise the report is yours to use however you want.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase__marker">
+        <span class="phase__week">Step 03 · €8K–€20K</span>
+        <div class="phase__num">03</div>
+      </div>
+      <div class="phase__content">
+        <h3>Build the Hub</h3>
+        <p>We build the core intelligence hub for your business. Fixed scope, fixed price, typically four weeks. The same people who scoped the report are the ones building it — no handoffs to a delivery team, no account managers playing telephone. The hub goes live on your real data with your team using it from day one.</p>
+        <p>The hub becomes the foundation everything else gets built on. It connects to your existing systems, holds your data, and runs the first set of agents we identified together. Whatever scale you start at, you own the whole thing.</p>
+        <div class="phase__detail">
+          <div class="phase__detail-item">
+            <strong>One core hub</strong>
+            <span>A single intelligence layer connecting your existing systems. Reusable across multiple workflows and, in time, multiple businesses.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>The first agents go live</strong>
+            <span>The highest-priority workflows from the Discovery Report, built into the hub and running on day one.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>You own it</strong>
+            <span>The hub belongs to you. No vendor lock-in. No platform fees to Keystone. The code, the data, the systems — yours.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>Fixed price, no surprises</strong>
+            <span>Scope, price, and delivery date agreed in writing before any build starts. We build exactly what we scoped.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase__marker">
+        <span class="phase__week">Step 04 · Ongoing</span>
+        <div class="phase__num">04</div>
+      </div>
+      <div class="phase__content">
+        <h3>Expand the Hub</h3>
+        <p>Once the hub is running, new agents and workflows go on top of it. And because the hard part — the data, the connections, the intelligence layer — already exists, each new app is faster and cheaper than the last. The more you run the hub, the more it compounds.</p>
+        <p>The hub also extends across multiple businesses. If you run several companies, the same core layer can serve all of them. One hub. Many businesses. Each new application using the data and patterns the others have already established.</p>
+        <div class="phase__detail">
+          <div class="phase__detail-item">
+            <strong>Compounding economies of scale</strong>
+            <span>Every new app benefits from the data and infrastructure the hub already has. Build cost drops with every iteration.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>One hub, many businesses</strong>
+            <span>If you run more than one company, the hub can serve all of them. The intelligence travels with you.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>Quarterly priorities</strong>
+            <span>We work with you to identify the highest-value next app, build it on the existing hub, and measure the result.</span>
+          </div>
+          <div class="phase__detail-item">
+            <strong>Stop whenever you want</strong>
+            <span>No retainers, no lock-in. The hub keeps running whether we're building on it or not. You decide when there's another app worth commissioning.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="k-section k-section--alt">
+  <div class="k-inner">
+    <span class="k-label">What You Get</span>
+    <h2 class="k-h2">Not a report. A working system.</h2>
+    <p class="k-lead" style="margin-top:1rem;">Every Keystone engagement ends with something running in your business. Something you can point to, measure, and build on.</p>
+
+    <div class="deliverables">
+      <div class="deliverable">
+        <div class="deliverable__num">01</div>
+        <h4>Working Software</h4>
+        <p>A live AI workflow built specifically for your business. Not generic software you have to adapt. Not a demo. Something running on your data, in your systems.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable__num">02</div>
+        <h4>Documented Scope</h4>
+        <p>A written scope that defines exactly what was built, how it works, and how to maintain it. Documented and yours to own.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable__num">03</div>
+        <h4>A Trained Team</h4>
+        <p>The people using the system know how to use it. Not from a manual. From having used it alongside us during deployment.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable__num">04</div>
+        <h4>Measured Results</h4>
+        <p>Data showing whether the system is delivering against the metrics agreed at the start. Honest, specific, and yours to act on.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable__num">05</div>
+        <h4>A Roadmap Forward</h4>
+        <p>A clear picture of the next highest-value workflow to build, informed by what you've learned from the first. Not a theoretical plan. A practical next step.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable__num">06</div>
+        <h4>Full Ownership</h4>
+        <p>You own what we build. No vendor lock-in. No ongoing licence fees to Keystone unless you want ongoing development. What we build is yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="k-section k-section--dark">
+  <div class="k-inner">
+    <span class="k-label">Pricing</span>
+    <h2 class="k-h2">Fixed prices. No surprises.</h2>
+    <p class="k-lead" style="margin-top:1rem;">Four steps. Every price fixed in writing before any work begins. You can stop at any stage. There is no obligation to proceed past the step you are on.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-card__label">Step 01</div>
+        <h4>Discovery Call</h4>
+        <div class="price-card__price">Free · 20 minutes</div>
+        <hr class="price-card__divider">
+        <p>A short call. You talk through the business, the problems, the pressure points. We tell you honestly whether AI is the right move. No pitch. No deck. Just a straight conversation about whether we can help.</p>
+      </div>
+      <div class="price-card price-card--featured">
+        <div class="price-card__label">Step 02</div>
+        <h4>Discovery Report</h4>
+        <div class="price-card__price">€999 · Within 48 hours</div>
+        <hr class="price-card__divider">
+        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected return. You can act on it yourself, hand it to another team, or ask us to build it. The report is yours regardless of what you decide next. If you do commission us at Step 03, the full €999 is credited against the build.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Step 03</div>
+        <h4>Build the Hub</h4>
+        <div class="price-card__price">€8,000–€20,000 · Fixed price</div>
+        <hr class="price-card__divider">
+        <p>We build the core intelligence hub: the central layer that sits above your existing systems and runs the first set of agents. Scope agreed in writing before a single hour is spent. Typically four weeks from kickoff to live. Your team uses it on day one. If it does not deliver what we said it would, we fix it.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card__label">Step 04</div>
+        <h4>Expand the Hub</h4>
+        <div class="price-card__price">Per app · From €1,000</div>
+        <hr class="price-card__divider">
+        <p>New agents and workflows go on top of the hub once it's live. Each new app costs less and ships faster than the last because the hub already has the data, the connections, and the intelligence. The longer you run it, the more it compounds. No retainer, no lock-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hiw-cta">
+  <span class="k-label" style="display:block;margin-bottom:1.5rem;">Start Here</span>
+  <h2>The Discovery Call is free.<br>Twenty minutes is all it takes.</h2>
+  <p>Book a call. We'll tell you honestly whether Keystone can help your business, where we'd start, and what the report and build would cost. No obligation, no follow-up pressure.</p>
+  <a href="contact.html" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book Your Discovery Call</a>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand">
+      <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
+      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+    </div>
+    <div class="k-footer__col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Case Studies</h5>
+      <a href="industries.html#construction-hub">Construction Hub</a>
+      <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
+      <a href="industries.html#waste-hub">Waste Operations Hub</a>
+      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
+      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
+      <a href="industries.html#email-triage">Email Triage Agent</a>
+      <a href="industries.html#balance-sheet">Balance Sheet Recon</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Insights</h5>
+      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
+      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
+      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
+      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
+    </div>
+  </div>
+  <div class="k-footer__bottom">
+    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Book a Discovery Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

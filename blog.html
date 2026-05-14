@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights — Keystone Intelligence Group</title>
+<meta name="description" content="Practical guidance on AI for Irish business owners. No theory, no hype. Real use cases, honest costs, and clear starting points from operators who've done it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="keystone.css">
+<style>
+.page-hero {
+  padding: 9rem 2.5rem 5rem;
+  background: linear-gradient(155deg, #111118 0%, var(--k-bg) 70%);
+  border-bottom: 1px solid var(--k-border);
+}
+.page-hero__inner { max-width: var(--w-max); margin: 0 auto; }
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--k-white);
+  max-width: 640px;
+  margin-top: 1rem;
+}
+.page-hero p {
+  font-size: 1.1rem;
+  color: var(--k-grey);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-top: 1.5rem;
+}
+
+/* FEATURED POST */
+.featured-post {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: 3rem;
+  text-decoration: none;
+  transition: border-color 0.25s;
+}
+.featured-post:hover { border-color: var(--k-border-h); }
+.featured-post__visual {
+  background: linear-gradient(135deg, #161622 0%, #1a1a2e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.featured-post__visual::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(196,154,60,0.15) 0%, transparent 70%);
+}
+.featured-post__visual-text {
+  font-family: var(--font-head);
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(196,154,60,0.15);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.featured-post__content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.featured-post__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 1rem;
+}
+.featured-post__content h2 {
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.featured-post__content p {
+  font-size: 0.9rem;
+  color: var(--k-mid);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.featured-post__meta {
+  font-size: 0.78rem;
+  color: var(--k-mid);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* BLOG GRID */
+.blog-listing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+.blog-listing-card {
+  display: block;
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.blog-listing-card:hover {
+  border-color: var(--k-border-h);
+  transform: translateY(-2px);
+}
+.blog-listing-card__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.85rem;
+}
+.blog-listing-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+.blog-listing-card p {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+.blog-listing-card__meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--k-mid);
+  border-top: 1px solid var(--k-border);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+/* NEWSLETTER / CTA */
+.blog-cta {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  padding: 3rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+.blog-cta h3 {
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.75rem;
+}
+.blog-cta p {
+  font-size: 0.9rem;
+  color: var(--k-mid);
+  max-width: 460px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .blog-listing-grid { grid-template-columns: 1fr 1fr; }
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-post__visual { display: none; }
+}
+@media (max-width: 600px) {
+  .page-hero { padding: 7rem 1.5rem 3.5rem; }
+  .blog-listing-grid { grid-template-columns: 1fr; }
+  .blog-cta { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="industries.html">Case Studies</a></li>
+    <li><a href="blog.html" style="color:var(--k-white);">Insights</a></li>
+    <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <span class="k-label">Keystone Insights</span>
+    <h1>From people<br>who've done it.</h1>
+    <p>Practical guidance on AI for Irish business owners. No theory, no hype. Real use cases, honest costs, and a clear starting point — from operators who implemented this in their own businesses first.</p>
+  </div>
+</section>
+
+<section class="k-section k-section--dark">
+  <div class="k-inner">
+
+    <!-- FEATURED -->
+    <a href="blog/blog-ai-for-irish-businesses.html" class="featured-post">
+      <div class="featured-post__visual">
+        <div class="featured-post__visual-text">AI</div>
+      </div>
+      <div class="featured-post__content">
+        <span class="featured-post__tag">Featured · AI Strategy</span>
+        <h2>How Irish Businesses Are Using AI in 2026: A Practical Guide for SMEs</h2>
+        <p>What AI actually looks like inside an Irish SME in 2026. The five use cases that consistently pay back, the realistic budget, the biggest mistakes — and how to start without spending more than you should.</p>
+        <div class="featured-post__meta">
+          <span>Keystone Intelligence</span>
+          <span>May 2026</span>
+          <span>9 min read</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- GRID -->
+    <div class="blog-listing-grid">
+      <a href="blog/blog-is-your-business-ready-for-ai.html" class="blog-listing-card">
+        <span class="blog-listing-card__tag">AI Strategy</span>
+        <h3>Is Your Irish Business Ready for AI? 5 Signs It's Time to Start</h3>
+        <p>The businesses getting the most out of AI right now are not the most technically sophisticated. They're the ones who identified one specific, painful problem and solved it properly.</p>
+        <div class="blog-listing-card__meta">
+          <span>May 2026</span>
+          <span>7 min read</span>
+        </div>
+      </a>
+      <a href="blog/blog-ai-for-irish-construction.html" class="blog-listing-card">
+        <span class="blog-listing-card__tag">Construction</span>
+        <h3>AI for Irish Construction Companies: Winning More Tenders with Better Tools</h3>
+        <p>An 11-stage pipeline. AI-powered contract extraction. QS capacity visibility. The operational discipline that separates the construction firms winning tenders from the ones losing them.</p>
+        <div class="blog-listing-card__meta">
+          <span>May 2026</span>
+          <span>7 min read</span>
+        </div>
+      </a>
+      <a href="blog/blog-ai-for-irish-solicitors.html" class="blog-listing-card">
+        <span class="blog-listing-card__tag">Legal</span>
+        <h3>AI for Irish Solicitors: Automating Legal Aid Claims and Court Management</h3>
+        <p>LA1, LA10, CLA11, CF1 — generated automatically from existing case data. A practice with three fee-earners is doing fifteen to twenty hours of admin a month that should take two.</p>
+        <div class="blog-listing-card__meta">
+          <span>May 2026</span>
+          <span>8 min read</span>
+        </div>
+      </a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html" class="blog-listing-card">
+        <span class="blog-listing-card__tag">Healthcare</span>
+        <h3>AI for Irish GP Practices: Reducing Admin Overhead Without Compromising Care</h3>
+        <p>Irish GPs carry three to five hours of administrative overhead on a clinical day that's already full. AI fixes the systems problem — which often eliminates the need to add staff.</p>
+        <div class="blog-listing-card__meta">
+          <span>May 2026</span>
+          <span>7 min read</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>See what AI can do for your business.</h3>
+      <p>One free Discovery Call. We'll map the highest-value AI opportunities in your specific business and tell you exactly what we'd build and what it costs.</p>
+      <a href="contact.html" class="btn-primary">Book a Free Discovery Call</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand">
+      <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
+      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+    </div>
+    <div class="k-footer__col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Case Studies</h5>
+      <a href="industries.html#construction-hub">Construction Hub</a>
+      <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
+      <a href="industries.html#waste-hub">Waste Operations Hub</a>
+      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
+      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
+      <a href="industries.html#email-triage">Email Triage Agent</a>
+      <a href="industries.html#balance-sheet">Balance Sheet Recon</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Insights</h5>
+      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
+      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
+      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
+      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
+    </div>
+  </div>
+  <div class="k-footer__bottom">
+    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Book a Discovery Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keystone Intelligence Group — AI for Founder-Led Businesses</title>
+<meta name="description" content="Keystone goes into founder-led businesses turning over €1M–€50M and builds AI hubs that increase revenue, cut costs, and protect margin. Average 3× annual saving on implementation cost. Fixed price. One call.">
+<link rel="canonical" href="https://keystoneintelligence.ie/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="keystone.css">
+<style>
+/* ── PAGE-SPECIFIC STYLES ── */
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 10rem 2.5rem 6rem;
+  background: var(--k-bg);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(ellipse, rgba(196,154,60,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--k-border);
+}
+.hero__inner {
+  max-width: var(--w-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  width: 100%;
+}
+.hero__content {}
+.hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--k-gold-dim);
+  border: 1px solid rgba(196,154,60,0.25);
+  color: var(--k-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  color: var(--k-white);
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--k-gold);
+}
+.hero__sub {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--k-grey);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+}
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.hero__proof {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--k-border);
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.hero__proof-item span:first-child {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--k-gold);
+  line-height: 1;
+}
+.hero__proof-item span:last-child {
+  font-size: 0.78rem;
+  color: var(--k-mid);
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/* Hero right panel */
+.hero__panel {
+  background: linear-gradient(145deg, rgba(196,154,60,0.07), rgba(255,255,255,0.02));
+  border: 1px solid rgba(196,154,60,0.4);
+  border-radius: var(--r-lg);
+  padding: 2.5rem;
+  box-shadow: 0 0 40px rgba(196,154,60,0.08), inset 0 0 0 1px rgba(196,154,60,0.1);
+}
+.hero__panel-title {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--k-white);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--k-border);
+  letter-spacing: -0.01em;
+}
+.hero__checklist { list-style: none; }
+.hero__checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.9rem;
+  color: var(--k-grey);
+  line-height: 1.5;
+}
+.hero__checklist li:last-child { border-bottom: none; }
+.hero__checklist li::before {
+  content: '✓';
+  color: var(--k-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+/* PROBLEM SECTION */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--k-border);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-top: 3.5rem;
+}
+.problem-cell {
+  background: var(--k-bg-2);
+  padding: 2.25rem 2rem;
+  border-left: 3px solid transparent;
+  transition: border-color 0.25s;
+}
+.problem-cell:hover { border-left-color: rgba(196,154,60,0.4); }
+.problem-cell__num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--k-gold);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+.problem-cell h4 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+.problem-cell p {
+  font-size: 0.9rem;
+  color: var(--k-mid);
+  line-height: 1.65;
+}
+
+/* WHAT WE DO */
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+.offer-card {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 2px solid rgba(196,154,60,0.35);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.offer-card:hover {
+  border-color: var(--k-gold);
+  border-top-color: var(--k-gold);
+  box-shadow: 0 0 28px rgba(196,154,60,0.08);
+}
+.offer-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: rgba(196,154,60,0.1);
+  border: 1px solid rgba(196,154,60,0.2);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.offer-card__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: var(--k-gold);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.offer-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.75rem;
+}
+.offer-card p {
+  font-size: 0.875rem;
+  color: var(--k-mid);
+  line-height: 1.7;
+}
+
+/* PROCESS */
+.process-steps {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 6%;
+  right: 6%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--k-gold), var(--k-gold), transparent);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.process-step {
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+.process-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--k-bg);
+  border: 1px solid var(--k-gold);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--k-gold);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.process-step h4 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.6rem;
+}
+.process-step p {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.65;
+}
+.process-step__week {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  background: var(--k-gold-dim);
+  border: 1px solid rgba(196,154,60,0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+}
+
+/* FOUNDERS */
+.founders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+.founder-card {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  padding: 2.5rem;
+}
+.founder-card__role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.75rem;
+}
+.founder-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1rem;
+}
+.founder-card p {
+  font-size: 0.9rem;
+  color: var(--k-mid);
+  line-height: 1.75;
+}
+.founder-card__quote {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--k-border);
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--k-grey);
+  line-height: 1.6;
+}
+
+/* INDUSTRIES */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.industry-card {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  transition: border-color 0.25s, background 0.25s;
+  display: block;
+  text-decoration: none;
+}
+.industry-card:hover {
+  border-color: var(--k-border-h);
+  background: var(--k-card-h);
+}
+.industry-card__icon { font-size: 1.5rem; margin-bottom: 1rem; }
+.industry-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.5rem;
+}
+.industry-card p {
+  font-size: 0.83rem;
+  color: var(--k-mid);
+  line-height: 1.6;
+}
+
+/* BLOG PREVIEW */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.blog-card {
+  display: block;
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.blog-card:hover {
+  border-color: var(--k-border-h);
+  transform: translateY(-2px);
+}
+.blog-card__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.85rem;
+}
+.blog-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+.blog-card p {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.6;
+}
+.blog-card__date {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--k-mid);
+  margin-top: 1.25rem;
+}
+
+/* CTA BAND */
+.cta-band {
+  background: linear-gradient(135deg, #111118 0%, #17171f 100%);
+  border-top: 1px solid var(--k-border);
+  border-bottom: 1px solid var(--k-border);
+  padding: 6rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 50vh;
+  background: radial-gradient(ellipse, rgba(196,154,60,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-band__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.cta-band h2 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.18;
+  margin-bottom: 1.25rem;
+}
+.cta-band p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.cta-band__disclaimer {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--k-mid);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .process-steps::before { display: none; }
+  .industries-grid { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 8rem 1.5rem 4rem; min-height: auto; }
+  .hero__inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero__panel { display: none; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .founders-grid { grid-template-columns: 1fr; }
+  .industries-grid { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .cta-band { padding: 4rem 1.5rem; }
+}
+@media (max-width: 480px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .industries-grid { grid-template-columns: 1fr; }
+  .hero__proof { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="industries.html">Case Studies</a></li>
+    <li><a href="blog.html">Insights</a></li>
+    <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__tag">AI Consultancy for Serious Operators</div>
+      <h1 id="hero-heading">We built businesses.<br><em>Then we built AI</em><br>into all of them.</h1>
+      <p class="hero__sub">Keystone goes into founder-led businesses turning over €1M–€50M and builds AI hubs that increase revenue, cut costs, and protect margin. Our average client sees a 3× annual saving on implementation cost. Fixed price. One 20-minute call to know if we can help.</p>
+      <div class="hero__actions">
+        <a href="contact.html" class="btn-primary">Book a Free Discovery Call</a>
+        <a href="how-it-works.html" class="btn-outline">See How It Works</a>
+      </div>
+      <div class="hero__proof">
+        <div class="hero__proof-item">
+          <span>3×</span>
+          <span>Average annual saving</span>
+        </div>
+        <div class="hero__proof-item">
+          <span>€8K–20K</span>
+          <span>Hub build cost</span>
+        </div>
+        <div class="hero__proof-item">
+          <span>3–6 mo</span>
+          <span>Typical payback</span>
+        </div>
+        <div class="hero__proof-item">
+          <span>Cross-sector</span>
+          <span>Patterns rhyme everywhere</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__panel" aria-hidden="true">
+      <p class="hero__panel-title">What one call tells you</p>
+      <ul class="hero__checklist">
+        <li>Exactly which workflows in your business AI can improve</li>
+        <li>What we would build and in what sequence</li>
+        <li>The fixed cost and timeline for your first implementation</li>
+        <li>Whether you are the right fit — and if not, we'll tell you honestly</li>
+        <li>How long before it pays back</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="k-section k-section--alt" aria-labelledby="problem-heading">
+  <div class="k-inner">
+    <span class="k-label">The Reality</span>
+    <h2 class="k-h2" id="problem-heading">Your business is running on human effort<br>where it should be running on systems.</h2>
+    <p class="k-lead" style="margin-top:1rem;">Most founder-led businesses at this stage have the same problem. Good people doing repetitive work. Revenue slipping through the gaps. Decisions made on instinct when the data exists to make them properly. None of it is a talent problem. It is a systems problem.</p>
+
+    <div class="problem-grid">
+      <div class="problem-cell">
+        <div class="problem-cell__num">01</div>
+        <h4>Revenue is leaking and you can't see where</h4>
+        <p>Leads not followed up. Quotes not chased. Opportunities that sat in a spreadsheet until they were gone. The money is there. The system to capture it isn't.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell__num">02</div>
+        <h4>Your best people are doing admin</h4>
+        <p>Fee-earners completing forms. Sales people updating spreadsheets. Managers reconstructing pipeline from email threads. Talent wasted on tasks that should be automatic.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell__num">03</div>
+        <h4>Margin is being squeezed from the inside</h4>
+        <p>You know what it costs to deliver. You know what you charge. The inefficiency, the rework, the coordination overhead: it's eating your margin.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-cell__num">04</div>
+        <h4>You're making decisions on gut, not data</h4>
+        <p>The information exists somewhere. But extracting it takes a morning. So you run on instinct. It’s served you well. But it only gets you so far.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ URGENCY ═══ -->
+<section class="k-section k-section--dark" aria-labelledby="urgency-heading" style="padding-top:5rem;padding-bottom:5rem;border-bottom:1px solid var(--k-border);">
+  <div class="k-inner" style="max-width:880px;text-align:center;">
+    <span class="k-label">The Window</span>
+    <h2 class="k-h2" id="urgency-heading">Your competitors are not waiting.</h2>
+    <p class="k-lead" style="margin:1.5rem auto 0;max-width:720px;">AI is the operating environment your competition is learning right now. The businesses that move first compound their advantage. The ones that wait spend the next three years catching up against operators who already know what works in their sector. Every quarter of delay is a quarter the competition uses to widen the gap.</p>
+    <p style="font-family:var(--font-head);font-size:1.4rem;font-style:italic;color:var(--k-gold);margin-top:2rem;line-height:1.4;">The best time to start was last year.<br>The second best is now.</p>
+  </div>
+</section>
+
+<!-- ═══ WHAT WE DO ═══ -->
+<section class="k-section k-section--dark" aria-labelledby="offer-heading">
+  <div class="k-inner">
+    <span class="k-label">What We Build</span>
+    <h2 class="k-h2" id="offer-heading">A brain above your business —<br>and every business after it.</h2>
+    <p class="k-lead" style="margin-top:1rem;">We build one central AI hub that sits above your existing systems. Connect what you already have. Layer intelligence on top. Then reuse the same core across every business you run. Each new app costs less and ships faster than the last because the hub already has the data, the connections, and the intelligence behind it. The longer you run it, the more it compounds.</p>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h4>Revenue Workflows</h4>
+        <p>Pipeline management, lead follow-up, quote automation, and client communication. Built so nothing slips through and your team focuses on closing, not chasing.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h4>Operations Automation</h4>
+        <p>Form completion, data entry, status updates, reporting. The repetitive tasks costing your people hours every week, automated and reliable.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card__icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        </div>
+        <h4>Decision Intelligence</h4>
+        <p>Dashboards and reporting that surface what matters, automatically. Stop compiling and start deciding. Your data works for you instead of sitting in a spreadsheet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="k-section k-section--alt" aria-labelledby="process-heading">
+  <div class="k-inner">
+    <span class="k-label">The Process</span>
+    <h2 class="k-h2" id="process-heading">Four steps. Stop at any one.</h2>
+    <p class="k-lead" style="margin-top:1rem;">A 20-minute call is all it takes to know if we can help. From there, you only continue when the value is clear. No long retainers, no surprise fees, no obligation to move past the step you're on.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">01</div>
+        <span class="process-step__week">Free · 20 minutes</span>
+        <h4>Discovery Call</h4>
+        <p>A short call to understand the business and the pressure points. We tell you honestly whether AI is the right move — and if it is, where we'd start.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02</div>
+        <span class="process-step__week">€999 · 48 hours</span>
+        <h4>Discovery Report</h4>
+        <p>A written report mapping the highest-value AI opportunities in your business, what each would cost to build, and the projected return. Take it away and build it yourself, hand it to another team, or come back to us. The €999 is credited against the build if you do.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03</div>
+        <span class="process-step__week">€8K–€20K · Fixed price</span>
+        <h4>Build the Hub</h4>
+        <p>We build the core intelligence hub for your business. Fixed scope, fixed price, typically four weeks. You own it on day one and your team uses it on real data immediately.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04</div>
+        <span class="process-step__week">Ongoing · Economies of scale</span>
+        <h4>Expand the Hub</h4>
+        <p>Every new app you build on the hub costs less and ships faster than the last, because the hub already has the data, the connections, and the intelligence. The more you run it, the more it compounds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE PARTNERS ═══ -->
+<section class="k-section k-section--dark" aria-labelledby="founders-heading">
+  <div class="k-inner">
+    <span class="k-label">The Partners</span>
+    <h2 class="k-h2" id="founders-heading">We built it in our own businesses first.</h2>
+    <p class="k-lead" style="margin-top:1rem;">Keystone was started by partners who run businesses across waste management, financial services, healthcare, construction and professional services. AI was applied internally across every one of those businesses before anyone advised a single client. Now we're bringing what worked to other entrepreneurs.</p>
+
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-card__role">Operators First</div>
+        <h4>Pattern recognition from running businesses.</h4>
+        <p>The partners are business owners. Plural. Across multiple sectors. Every operational problem you're wrestling with — revenue leakage, margin pressure, fee-earners doing admin, decisions made on instinct when the data exists — has been dealt with from the inside, not read about in a case study. That's the experience every Keystone engagement starts with.</p>
+        <div class="founder-card__quote">"Every problem in a client business, we've solved in our own first."</div>
+      </div>
+      <div class="founder-card">
+        <div class="founder-card__role">Built Before Recommended</div>
+        <h4>AI deployed where we live.</h4>
+        <p>Email triage agents giving back hours a week. WIP-to-invoice automation. Invoice reconciliation working across Salesforce and Xero. A nine-agent operations hub running a 30-vehicle waste business end to end. Every one of them is live in a business we run. The systems work. The numbers prove it. Other operators get the same playbook.</p>
+        <div class="founder-card__quote">"Every workflow has a payback case. If the numbers don't work, we don't build it."</div>
+      </div>
+    </div>
+
+    <div class="hero__proof" style="margin-top:3rem;justify-content:space-between;">
+      <div class="hero__proof-item"><span>8</span><span>Businesses operated</span></div>
+      <div class="hero__proof-item"><span>5+</span><span>Sectors covered</span></div>
+      <div class="hero__proof-item"><span>9</span><span>Live agents in our largest hub</span></div>
+      <div class="hero__proof-item"><span>3×</span><span>Average annual saving</span></div>
+      <div class="hero__proof-item"><span>100%</span><span>Fixed-price engagements</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDIES PREVIEW ═══ -->
+<section class="k-section k-section--alt" aria-labelledby="cases-heading">
+  <div class="k-inner">
+    <span class="k-label">The Work</span>
+    <h2 class="k-h2" id="cases-heading">Sectors differ. Operations rhyme.</h2>
+    <p class="k-lead" style="margin-top:1rem;">We've built and operated businesses in waste management, financial services, healthcare, construction and professional services. The operational levers — where revenue leaks, where margin gets squeezed, where the team is doing work a system should — repeat across all of them. The same playbook now runs in client businesses across construction and legal services too. Different industries, same patterns. We don't sell sector specialisation. We sell pattern recognition.</p>
+
+    <div class="industries-grid">
+      <a href="industries.html#construction-hub" class="industry-card">
+        <h4>Five workflows under one roof for an Irish construction company</h4>
+        <p>Pipeline, contracts, invoicing and project delivery — consolidated into a single platform with AI-powered payment-schedule extraction. Live ahead of the 2026 construction season.</p>
+      </a>
+      <a href="industries.html#legal-call-actions" class="industry-card">
+        <h4>Client calls turned into action items, automatically</h4>
+        <p>An Irish solicitor practice we built for: every client call captured, transcribed, and turned into a structured action list. Twenty-five minutes of post-call admin compressed into three.</p>
+      </a>
+      <a href="industries.html#waste-hub" class="industry-card">
+        <h4>A 30-vehicle waste operation, run by nine AI agents</h4>
+        <p>One operations hub. Nine specialised agents working across operations, billing, customer service, and reconciliation. Manual processes that used to take days now run in hours.</p>
+      </a>
+      <a href="industries.html#ar-guardian" class="industry-card">
+        <h4>Invoice reconciliation across Salesforce and Xero</h4>
+        <p>Hundreds of invoices a month, two systems, manual reconciliation gone. Discrepancies surface in minutes instead of being chased at month-end.</p>
+      </a>
+      <a href="industries.html#wip-invoice" class="industry-card">
+        <h4>WIP-to-invoice automation</h4>
+        <p>Work-in-progress data converted to invoiced amounts automatically. Cash conversion cycle compressed. Senior time off the admin pile.</p>
+      </a>
+      <a href="contact.html" class="industry-card">
+        <h4>Your business is next.</h4>
+        <p>If you have revenue, costs, and operations, the patterns apply. Twenty minutes on the phone is enough to know if we can help. No obligation, no pitch deck.</p>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="industries.html" class="btn-outline">See All Case Studies</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOG PREVIEW ═══ -->
+<section class="k-section k-section--dark" aria-labelledby="blog-heading">
+  <div class="k-inner">
+    <span class="k-label">Insights</span>
+    <h2 class="k-h2" id="blog-heading">From people who've done it.</h2>
+    <p class="k-lead" style="margin-top:1rem;">No theory. No hype. Real guidance for Irish business owners who want to understand what AI can actually do for their business.</p>
+
+    <div class="blog-grid">
+      <a href="blog/blog-is-your-business-ready-for-ai.html" class="blog-card">
+        <span class="blog-card__tag">AI Strategy</span>
+        <h4>Is Your Irish Business Ready for AI? 5 Signs It's Time to Start</h4>
+        <p>Five signals that your business is ready to start with AI — and the single most important thing to do before spending money on any technology.</p>
+        <span class="blog-card__date">May 2026</span>
+      </a>
+      <a href="blog/blog-ai-for-irish-solicitors.html" class="blog-card">
+        <span class="blog-card__tag">Legal</span>
+        <h4>AI for Irish Solicitors: Automating Legal Aid Claims and Court Management</h4>
+        <p>LA1, LA10, CLA11, CF1 — generated automatically from case data. Here is what that looks like in practice.</p>
+        <span class="blog-card__date">May 2026</span>
+      </a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html" class="blog-card">
+        <span class="blog-card__tag">Healthcare</span>
+        <h4>AI for Irish GP Practices: Reducing Admin Overhead Without Compromising Care</h4>
+        <p>Three to five hours of administrative overhead a day in a busy GP practice. AI fixes the systems problem — often without adding staff.</p>
+        <span class="blog-card__date">May 2026</span>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="blog.html" class="btn-outline">View All Insights</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band" aria-labelledby="cta-heading">
+  <div class="cta-band__inner">
+    <span class="k-label" style="display:block;margin-bottom:1.5rem;">One Call. No Obligation.</span>
+    <h2 id="cta-heading">Know in twenty minutes<br>what AI can do for your business.</h2>
+    <p>We'll map the highest-value opportunities in your specific business. Tell you exactly what we'd build, what it costs, and what you'd get back. If you're not the right fit, we'll tell you that too.</p>
+    <a href="contact.html" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book a Free Discovery Call</a>
+    <p class="cta-band__disclaimer">Twenty minutes. Fixed price on everything that follows. No retainers until you've seen results.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand">
+      <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
+      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+    </div>
+    <div class="k-footer__col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Case Studies</h5>
+      <a href="industries.html#construction-hub">Construction Hub</a>
+      <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
+      <a href="industries.html#waste-hub">Waste Operations Hub</a>
+      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
+      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
+      <a href="industries.html#email-triage">Email Triage Agent</a>
+      <a href="industries.html#balance-sheet">Balance Sheet Recon</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Insights</h5>
+      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
+      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
+      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
+      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
+    </div>
+  </div>
+  <div class="k-footer__bottom">
+    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Book a Discovery Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Keystone Intelligence Group</title>
+<meta name="description" content="Case studies from Keystone Intelligence. AI systems live in businesses we operate and in client businesses we've built for. Construction, legal, waste operations, finance and founder productivity. Real data, real customers, real consequences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="keystone.css">
+<style>
+/* HERO */
+.page-hero {
+  padding: 9rem 2.5rem 4rem;
+  background: linear-gradient(155deg, #111118 0%, var(--k-bg) 70%);
+  border-bottom: 1px solid var(--k-border);
+}
+.page-hero__inner { max-width: var(--w-max); margin: 0 auto; }
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--k-white);
+  max-width: 700px;
+  margin-top: 1rem;
+}
+.page-hero p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-top: 1.25rem;
+}
+.industry-nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.industry-nav a {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--k-mid);
+  border: 1px solid var(--k-border);
+  border-radius: 100px;
+  padding: 0.4rem 1.1rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.industry-nav a:hover {
+  color: var(--k-gold);
+  border-color: rgba(196,154,60,0.4);
+  background: rgba(196,154,60,0.05);
+}
+
+/* INDUSTRY SECTIONS */
+.industry-section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--k-border);
+}
+.industry-section:last-of-type { border-bottom: none; }
+
+.industry-section__header {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.industry-section__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.industry-section__right {
+  padding-top: 2.2rem;
+}
+.industry-section h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+.industry-section__intro {
+  font-size: 0.95rem;
+  color: var(--k-grey);
+  line-height: 1.85;
+}
+.industry-section__right p {
+  font-size: 0.9rem;
+  color: var(--k-mid);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+.industry-section__right p:last-child { margin-bottom: 0; }
+
+/* USE CASE CARDS — no icons, clean boxes */
+.use-case-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.use-case-item {
+  background: linear-gradient(145deg, rgba(196,154,60,0.06), var(--k-card));
+  border: 1px solid rgba(196,154,60,0.2);
+  border-top: 3px solid rgba(196,154,60,0.6);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.use-case-item:hover {
+  border-top-color: var(--k-gold);
+  border-color: rgba(196,154,60,0.35);
+  box-shadow: 0 0 24px rgba(196,154,60,0.09);
+}
+.use-case-item strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  color: var(--k-white);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.use-case-item span {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+  line-height: 1.7;
+}
+
+/* QUOTE BAR */
+.industry-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(196,154,60,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(196,154,60,0.2);
+  border-radius: var(--r-lg);
+  padding: 1.75rem 2rem;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.industry-cta-bar p {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--k-grey);
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+/* BOTTOM CTA */
+.industries-bottom-cta {
+  background: var(--k-bg-2);
+  border-top: 1px solid var(--k-border);
+  padding: 5rem 2.5rem;
+  text-align: center;
+}
+.industries-bottom-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1rem;
+}
+.industries-bottom-cta p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+  .page-hero { padding: 7rem 1.5rem 3rem; }
+  .industry-section__header { grid-template-columns: 1fr; gap: 2rem; }
+  .use-case-list { grid-template-columns: 1fr; }
+  .industry-cta-bar { flex-direction: column; align-items: flex-start; }
+  .industries-bottom-cta { padding: 3.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="industries.html" style="color:var(--k-white);">Case Studies</a></li>
+    <li><a href="blog.html">Insights</a></li>
+    <li><a href="contact.html" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <span class="k-label">Case Studies</span>
+    <h1>Built in our businesses.<br>Now built in yours.</h1>
+    <p>Each system below is in production today — some running inside businesses a Keystone partner operates, some live with our clients. Real data, real customers, real consequences. Each one is something we'd build for you next.</p>
+    <nav class="industry-nav" aria-label="Jump to case study">
+      <a href="#construction-hub">Construction Hub</a>
+      <a href="#legal-call-actions">Legal Call-Actions</a>
+      <a href="#waste-hub">Waste Operations Hub</a>
+      <a href="#ar-guardian">Invoice Reconciliation</a>
+      <a href="#wip-invoice">WIP-to-Invoice</a>
+      <a href="#email-triage">Email Triage</a>
+      <a href="#balance-sheet">Month-End Close</a>
+    </nav>
+  </div>
+</section>
+
+<section class="k-section k-section--dark">
+  <div class="k-inner">
+
+    <!-- CASE STUDY · CONSTRUCTION HUB -->
+    <div class="industry-section" id="construction-hub">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Construction</span>
+          <h2>Five workflows under one roof. Built for an Irish construction company.</h2>
+          <p class="industry-section__intro">An Irish construction company we built for was running its commercial operation across spreadsheets and shared OneDrive folders — tender deadlines in one file, contracts in another, payment schedules in a third. Five workflows, five sources of truth, no single view of the business. As project volume grew, the gaps were costing hours every week and creating real risk: missed follow-ups, payment milestones nobody owned, no audit trail. We built them one platform that consolidates the full commercial lifecycle into a single staff-facing hub.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>The hub covers the lifecycle end to end: pipeline management with an 11-stage tender workflow, contract management with AI-powered payment-schedule extraction, milestone-driven invoicing, and a project delivery workspace with budget tracking, subcontractor management and weekly progress reporting.</p>
+          <p>Security is enterprise-grade — role-based access control with route-level enforcement, CSRF protection on every form, contract PDFs validated by content before processing, an append-only audit log covering every state-changing action across the application, and nightly AES-256-GCM encrypted off-platform backups with a tested recovery procedure.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Pipeline CRM</strong>
+          <span>Every opportunity tracked from enquiry through an 11-stage tender workflow to project handover. QS assignments, deadlines, funding status and planning status visible at a glance. A full activity log per opportunity so the whole team sees the history without asking.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>AI Payment-Schedule Extraction</strong>
+          <span>Upload a contract PDF. The model extracts milestone names, amounts, percentages, trigger conditions and due dates — and turns them into a live payment schedule in under 30 seconds. Staff review and correct anything the model gets wrong before going live.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Milestone-Driven Invoicing</strong>
+          <span>Generate draft invoices milestone by milestone or in bulk. Track each one through draft → issued → paid. Adjust contract and invoice dates when project timelines shift, without re-uploading anything.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Project Delivery Workspace</strong>
+          <span>Every won deal gets its own environment: document checklist mapped to the construction workflow (legal, surveys, design, build, commissioning), financial dashboard tracking budget vs. committed vs. actual, variation orders, subcontractor roster with PO matching, supplier invoice tracking, and weekly progress reporting.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Five separate systems collapsed into one. Contract payment schedules that used to require manual re-entry now extract in under 30 seconds. Live and in use ahead of the 2026 construction season."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Pipeline</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY · LEGAL CALL-ACTIONS -->
+    <div class="industry-section" id="legal-call-actions">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Legal Practice</span>
+          <h2>Client calls in. Action items out — without a fee-earner typing a thing.</h2>
+          <p class="industry-section__intro">An Irish solicitor practice we built for was losing fee-earner time to the post-call write-up: extracting action items from client calls, logging next steps, assigning follow-ups, checking back through call notes to see what was agreed. We built a system that takes the call transcript and generates a structured action list automatically. The fee-earner reviews, edits if needed, assigns — no typing, no missed follow-ups, no re-listening to a call to check what was committed.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>Every client call is captured, transcribed, and run through an action-extraction model. The output is a clean action list — what needs to happen, who should do it, by when — with each action carrying a transcript reference so anything ambiguous can be verified in a click.</p>
+          <p>The fee-earner walks out of a call and the action list is already waiting. The whole post-call workflow takes minutes instead of half an hour. Nothing gets lost because someone forgot to write it down.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Automatic Call Transcription</strong>
+          <span>Every client call captured and transcribed. No-one taking notes during the call. No-one writing them up after. The transcript becomes the source of truth for everything that follows.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Action Extraction</strong>
+          <span>The model reads the transcript and produces a structured action list — actions, owners, deadlines. Calibrated on legal-practice call patterns so the suggestions are sensible out of the box.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>One-Click Review &amp; Assign</strong>
+          <span>Fee-earner reviews suggested actions, edits anything that needs adjusting, and assigns with one click. Twenty-five minutes of post-call admin compressed into three.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Verifiable Audit Trail</strong>
+          <span>Every action carries a transcript reference. If a client asks "did we agree X on the call," the relevant part of the call surfaces instantly. Disputes resolved without listening back to the whole recording.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"The post-call write-up used to take half an hour. Now it takes three minutes to review the suggested actions and assign them."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Practice</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 1 — WASTE OPERATIONS HUB -->
+    <div class="industry-section" id="waste-hub">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Waste Management &amp; Operations</span>
+          <h2>A 30-vehicle waste operation, run by nine specialist agents.</h2>
+          <p class="industry-section__intro">A waste operation we run — 30+ vehicles, multi-site, thousands of customers — was losing hours every week to manual processes that should have been automatic. Billing reconciliation. Customer queries. Missed-collection chasing. Route-by-route reporting. We built an operations hub with nine specialist agents sitting above the existing systems. Each agent does one job well. The hub coordinates them all.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>The architecture is one core hub with agents bolted on top. Each agent specialises — billing, AR, customer service, reconciliation, reporting — but they all share the same data layer, the same connections to Salesforce, Xero, the route management platform, and the customer portal.</p>
+          <p>The compounding economics matter here: building agent number ten costs a fraction of building agent number one because the hub already exists. Same data, same plumbing, new use case.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Customer Service Triage</strong>
+          <span>Inbound queries — missed collections, billing questions, service changes — read, classified, routed, and (where appropriate) answered automatically. Volume that used to need a full-time coordinator runs in the background.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Invoice Reconciliation</strong>
+          <span>Payments from Xero matched against Salesforce invoices automatically. Partial payments, RCT subcontractor treatment, credit notes — all handled. Exceptions surface; we don't chase them.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Missed-Collection Workflow</strong>
+          <span>Every reported missed collection triggers a documented chase: route check, customer notification, reschedule logged, credit applied if needed. No more emails sitting in someone's inbox.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Operational Reporting</strong>
+          <span>Live dashboards: collection completion rate, revenue per route, margin by client type, AR aging. No-one spending a morning compiling spreadsheets.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Manual processes that took two days a month now run in under an hour. We added an agent in week six and another in week ten — each one cheaper than the last because the hub was already there."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Operation</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 2 — AR GUARDIAN -->
+    <div class="industry-section" id="ar-guardian">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Finance &amp; AR Operations</span>
+          <h2>Two systems, hundreds of invoices, manual reconciliation gone.</h2>
+          <p class="industry-section__intro">Salesforce and Xero don't talk to each other natively. A monthly reconciliation against payments received, partial payments, RCT subcontractor treatment and credit notes used to absorb four days of senior accounting time every month. AR Guardian handles it automatically inside one of our operating businesses.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>The agent reads payment data from Xero, matches it against open invoices in Salesforce, applies the right payment allocation chain (P → WOP → INVP), flags exceptions for human review, and writes the reconciliation back to both systems. Built and live.</p>
+          <p>The senior accountant's job changed. They went from doing the reconciliation to reviewing the reconciliation. Higher-leverage work, same time investment.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Matched Payments</strong>
+          <span>Payments received in Xero matched against open invoices in Salesforce automatically. The clean cases — and most cases are clean — close themselves.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Partial Allocation Logic</strong>
+          <span>Partial payments allocated according to the agreed chain: principal first, then WOP, then INVP. Same logic every time. No human deciding case-by-case at 5pm on a Friday.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>RCT Treatment</strong>
+          <span>Relevant Contracts Tax handled for subcontractor invoices — withholding, deduction, audit trail. Compliant by construction, not by review.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Exception Surfacing</strong>
+          <span>Anything that doesn't match cleanly is flagged with context: which invoice, which payment, what the agent thinks is wrong. The senior accountant reviews; doesn't investigate.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Four days of senior accounting time freed every month. The exceptions surface — we don't chase them."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your AR Process</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 3 — WIP TO INVOICE -->
+    <div class="industry-section" id="wip-invoice">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Professional Services &amp; Cash Cycle</span>
+          <h2>Work-in-progress to invoiced amount, automatically.</h2>
+          <p class="industry-section__intro">In a professional services business, work-in-progress sitting in a timesheet system isn't cash. It's only cash when it's invoiced — and the longer the lag between delivery and invoice, the more cash is locked up. We built an agent that closes that gap.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>The agent pulls WIP data, applies the agreed billing rules (engagement letter terms, capped fees, contingencies), drafts the invoice, and routes it for partner approval before sending. Same agent works across multiple engagement types and billing arrangements.</p>
+          <p>The result: the lag between work being delivered and the invoice going out compresses from weeks to hours. Senior people stop doing admin and go back to client work.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Timesheet Ingestion</strong>
+          <span>WIP data pulled from the practice management system on a schedule. No manual export, no copy-paste into a billing spreadsheet.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Billing Rule Application</strong>
+          <span>Engagement-specific rules applied automatically: capped fees, contingencies, hourly versus fixed, retainer offsets. The agent knows the engagement letter.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Invoice Draft Generation</strong>
+          <span>Draft invoice produced in the right format, with the right line items, the right narrative, and the right client information. Ready for partner review.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Approval Routing</strong>
+          <span>Routed to the right partner with a one-click approve. Adjustments captured and learned. Speed without sacrificing oversight.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Ten days off the cash conversion cycle on average. The senior team is back on client work, not admin."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Cash Cycle</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 4 — EMAIL TRIAGE -->
+    <div class="industry-section" id="email-triage">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Founder &amp; Executive Productivity</span>
+          <h2>A founder inbox that reads, sorts, drafts, and escalates itself.</h2>
+          <p class="industry-section__intro">The CEO inbox in a 30-person business is a part-time job. Two hundred messages a day, ninety-five percent of which don't need the founder's attention but ten percent of which absolutely do — and missing one of the ten is expensive. We built an agent that handles the first ninety-five percent and escalates the rest.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>The agent reads incoming mail, classifies by priority, drafts replies to routine items (with the founder's voice and style, learned over time), and escalates only what genuinely needs the founder's attention. Suppliers, scheduling, routine internal requests — handled. Big customer escalations, board matters, deal flow — flagged.</p>
+          <p>The founder sees a triaged inbox, not a 200-message one. Hours back per week without losing visibility on anything that matters.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Priority Sorting</strong>
+          <span>Every message classified by importance and urgency. Visual priority on the inbox. The founder sees the ten things that matter first.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Auto-Draft Replies</strong>
+          <span>Routine messages — scheduling, FYIs, simple requests — get drafted responses ready for one-click send. In the founder's voice, not generic templates.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Escalation Rules</strong>
+          <span>Specific senders, keywords, customers — all flagged for direct attention. The agent knows which clients are mid-deal and which suppliers are critical.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Signal-from-Noise</strong>
+          <span>Newsletters, automated notifications, internal CCs — sorted into a separate stream so the inbox is a working tool, not a reading list.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Eight hours back every week — without losing visibility on anything that matters."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Inbox</a>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 5 — BALANCE SHEET RECONCILIATION -->
+    <div class="industry-section" id="balance-sheet">
+      <div class="industry-section__header">
+        <div>
+          <span class="industry-section__label">Case Study · Finance &amp; Month-End Close</span>
+          <h2>Month-end close in hours, not days.</h2>
+          <p class="industry-section__intro">Balance sheet reconciliation at month-end used to absorb the better part of a week from a senior accountant in one of our businesses. Account tie-outs. Intercompany. FX. Audit-trail compilation. The agent runs all of it.</p>
+        </div>
+        <div class="industry-section__right">
+          <p>Same input data, same accounting standards, faster output. The agent does the reconciliation; the senior accountant reviews it. The reviewing role is more valuable — it's where judgement actually adds value — and it takes a fraction of the time the doing role used to take.</p>
+          <p>Close happens days earlier. Management accounts go out days earlier. Decisions get made on month-old data instead of two-month-old data. The cascade effect is significant.</p>
+        </div>
+      </div>
+      <div class="use-case-list">
+        <div class="use-case-item">
+          <strong>Account Tie-Outs</strong>
+          <span>Every balance sheet account reconciled to its supporting schedule automatically. The clean cases tie. The exceptions get flagged with the discrepancy explained.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Intercompany Reconciliation</strong>
+          <span>Inter-entity balances matched across the group. Mismatches surfaced with the journal entries that caused them. No detective work required.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>FX Adjustments</strong>
+          <span>Multi-currency revaluation applied automatically at month-end rates. P&amp;L impact captured. Translation differences booked.</span>
+        </div>
+        <div class="use-case-item">
+          <strong>Audit Trail Generation</strong>
+          <span>Every step of every reconciliation logged with the data sources, the matching logic, and the output. Audit-ready by default, not as a separate exercise.</span>
+        </div>
+      </div>
+      <div class="industry-cta-bar">
+        <p>"Close compressed from days to hours. The senior accounting team is looking forward, not looking back."</p>
+        <a href="contact.html" class="btn-primary">Discuss Your Close</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="industries-bottom-cta">
+  <span class="k-label" style="display:block;margin-bottom:1.5rem;">Your Business Is Next</span>
+  <h2>Sectors differ.<br>Operations rhyme.</h2>
+  <p>The case studies above span construction, legal practice, waste operations, finance and founder productivity. Some are running inside businesses we operate; others are live with our clients. The patterns repeat. If you have revenue, costs, and operations, the same playbook applies. Twenty minutes on the phone is enough to know whether we can help.</p>
+  <a href="contact.html" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book Your Discovery Call</a>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand">
+      <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
+      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+    </div>
+    <div class="k-footer__col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Case Studies</h5>
+      <a href="#construction-hub">Construction Hub</a>
+      <a href="#legal-call-actions">Legal Call-Actions</a>
+      <a href="#waste-hub">Waste Operations Hub</a>
+      <a href="#ar-guardian">Invoice Reconciliation</a>
+      <a href="#wip-invoice">WIP-to-Invoice</a>
+      <a href="#email-triage">Email Triage Agent</a>
+      <a href="#balance-sheet">Balance Sheet Recon</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Insights</h5>
+      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
+      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
+      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
+      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
+    </div>
+  </div>
+  <div class="k-footer__bottom">
+    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Book a Discovery Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

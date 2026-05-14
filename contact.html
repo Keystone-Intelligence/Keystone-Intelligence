@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Free Discovery Call — Keystone Intelligence Group</title>
+<meta name="description" content="Book a free 20-minute Discovery Call with Keystone Intelligence Group. We'll map the highest-value AI opportunities in your business and tell you exactly what we'd build and what it costs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="keystone.css">
+<style>
+.contact-page {
+  min-height: 100vh;
+  padding: 9rem 2.5rem 6rem;
+  background: var(--k-bg);
+}
+.contact-page__inner {
+  max-width: var(--w-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* LEFT SIDE */
+.contact-left {}
+.contact-left h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--k-white);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+.contact-left > p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+.contact-promise {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-left: 3px solid rgba(196,154,60,0.6);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  margin-top: 2.5rem;
+}
+.contact-promise h3 {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--k-gold);
+  margin-bottom: 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--k-border);
+}
+.contact-promise ul { list-style: none; }
+.contact-promise ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.875rem;
+  color: var(--k-grey);
+  line-height: 1.55;
+}
+.contact-promise ul li:last-child { border-bottom: none; }
+.contact-promise ul li::before {
+  content: '✓';
+  color: var(--k-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.contact-direct {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--k-border);
+}
+.contact-direct p {
+  font-size: 0.82rem;
+  color: var(--k-mid);
+  margin-bottom: 0.5rem;
+}
+.contact-direct a {
+  font-size: 0.95rem;
+  color: var(--k-gold);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(196,154,60,0.3);
+  transition: border-color 0.2s;
+}
+.contact-direct a:hover { border-bottom-color: var(--k-gold); }
+
+/* RIGHT — FORM */
+.contact-form-wrap {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 3px solid var(--k-gold);
+  border-radius: var(--r-lg);
+  padding: 2.75rem;
+  position: sticky;
+  top: 6rem;
+}
+.contact-form-wrap h2 {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.5rem;
+}
+.contact-form-wrap > p {
+  font-size: 0.875rem;
+  color: var(--k-mid);
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--k-border);
+}
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--k-mid);
+  margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-md);
+  padding: 0.85rem 1.1rem;
+  color: var(--k-white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--k-mid); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: rgba(196,154,60,0.45);
+  background: rgba(255,255,255,0.06);
+}
+.form-group select option { background: #161622; color: var(--k-white); }
+.form-group textarea { height: 120px; resize: vertical; line-height: 1.6; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-submit {
+  width: 100%;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  padding: 1rem;
+  border-radius: var(--r-md);
+}
+.form-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--k-mid);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .contact-page__inner { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-form-wrap { position: static; }
+}
+@media (max-width: 480px) {
+  .contact-page { padding: 7rem 1.5rem 4rem; }
+  .contact-form-wrap { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="index.html" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="industries.html">Case Studies</a></li>
+    <li><a href="blog.html">Insights</a></li>
+    <li><a href="contact.html" class="btn-nav" style="background:var(--k-gold-dim);color:var(--k-gold);border:1px solid rgba(196,154,60,0.3);">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="contact-page">
+  <div class="contact-page__inner">
+
+    <!-- LEFT -->
+    <div class="contact-left">
+      <span class="k-label">Book a Free Discovery Call</span>
+      <h1>Twenty minutes tells you everything you need to know.</h1>
+      <p>We'll map the highest-value AI opportunities in your business. Tell you exactly what we'd build, what it costs, and what you should expect to get back. You leave the call with a clear picture, whether you work with us or not.</p>
+
+      <div class="contact-promise">
+        <h3>What to expect from the call</h3>
+        <ul>
+          <li>A diagnosis of your top pain points. Specific to your business and your sector.</li>
+          <li>A clear view of the three highest-value workflows we'd prioritise first.</li>
+          <li>If we're a fit, a Discovery Report scope and €999 fee confirmation sent within 24 hours. The report itself follows within 48 hours.</li>
+          <li>No follow-up pressure. If you're not the right fit, we'll tell you and we'll tell you why.</li>
+        </ul>
+      </div>
+
+      <div class="contact-direct">
+        <p>Prefer to reach us directly?</p>
+        <a href="mailto:hello@keystoneintelligence.ie">hello@keystoneintelligence.ie</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — FORM -->
+    <div class="contact-form-wrap">
+      <h2>Book Your Discovery Call</h2>
+      <p>Fill in the form and we'll confirm a time within 24 hours. Calls are 20 minutes, held over video or phone, whichever works for you.</p>
+
+      <!-- NOTE FOR DEVELOPER: Connect this form to your preferred CRM or booking system (Calendly embed also works well here) -->
+      <form action="#" method="POST" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Murphy" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@yourbusiness.ie" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+353 87 000 0000">
+        </div>
+        <div class="form-group">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company" placeholder="Your Business Ltd" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="turnover">Annual Turnover</label>
+            <select id="turnover" name="turnover">
+              <option value="" disabled selected>Select range</option>
+              <option value="1-3m">€1M – €3M</option>
+              <option value="3-10m">€3M – €10M</option>
+              <option value="10-25m">€10M – €25M</option>
+              <option value="25-50m">€25M – €50M</option>
+              <option value="50m+">€50M+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="industry">Industry</label>
+            <select id="industry" name="industry">
+              <option value="" disabled selected>Select industry</option>
+              <option value="waste">Waste Management</option>
+              <option value="legal">Legal</option>
+              <option value="construction">Construction</option>
+              <option value="telehealth">Telehealth / Medical</option>
+              <option value="finance">Finance / Debt Recovery</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="problem">What's the biggest operational problem in your business right now?</label>
+          <textarea id="problem" name="problem" placeholder="Tell us what's taking too much time, costing too much, or preventing growth..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">Request Your Discovery Call</button>
+        <p class="form-note">We'll confirm within 24 hours. Twenty minutes. No obligation.</p>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand">
+      <div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div>
+      <p>AI consultancy for founder-led businesses. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p>
+    </div>
+    <div class="k-footer__col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Case Studies</h5>
+      <a href="industries.html#construction-hub">Construction Hub</a>
+      <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
+      <a href="industries.html#waste-hub">Waste Operations Hub</a>
+      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
+      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
+      <a href="industries.html#email-triage">Email Triage Agent</a>
+      <a href="industries.html#balance-sheet">Balance Sheet Recon</a>
+    </div>
+    <div class="k-footer__col">
+      <h5>Insights</h5>
+      <a href="blog/blog-ai-for-irish-businesses.html">AI for Irish Businesses</a>
+      <a href="blog/blog-is-your-business-ready-for-ai.html">Is Your Business Ready for AI?</a>
+      <a href="blog/blog-ai-for-irish-construction.html">AI for Irish Construction</a>
+      <a href="blog/blog-ai-for-irish-solicitors.html">AI for Irish Solicitors</a>
+      <a href="blog/blog-ai-for-irish-gp-practices.html">AI for Irish GP Practices</a>
+    </div>
+  </div>
+  <div class="k-footer__bottom">
+    <p>&copy; 2026 Keystone Intelligence Group. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Book a Discovery Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
