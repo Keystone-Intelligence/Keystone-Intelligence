@@ -10,8 +10,50 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="keystone.css">
+<!-- Mark JS available immediately so the initial-hide CSS guard kicks in.
+     Without this, GSAP-targeted elements would flash visible before the
+     deferred animation script runs and sets the FROM state. -->
+<script>document.documentElement.classList.add('has-js');</script>
 <script src="keystone.js" defer></script>
+<!-- GSAP + ScrollTrigger for scroll-driven choreography on this page only -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="industries-animations.js" defer></script>
 <style>
+/* ── INITIAL-HIDE GUARD (paired with industries-animations.js) ──
+   Hide GSAP-animated elements until JS runs, so the page doesn't flash
+   them in their natural state before the FROM animation begins.
+   Only applied when JS is available; otherwise everything stays visible.
+   Reduced-motion users: rule below restores full visibility. */
+.has-js .page-hero .k-label,
+.has-js .page-hero h1,
+.has-js .page-hero__inner > p,
+.has-js .case-card,
+.has-js .industry-section__label,
+.has-js .industry-section h2,
+.has-js .industry-section__intro,
+.has-js .industry-section__right p,
+.has-js .use-case-item,
+.has-js .industry-cta-bar,
+.has-js .industries-bottom-cta > * {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-js .page-hero .k-label,
+  .has-js .page-hero h1,
+  .has-js .page-hero__inner > p,
+  .has-js .case-card,
+  .has-js .industry-section__label,
+  .has-js .industry-section h2,
+  .has-js .industry-section__intro,
+  .has-js .industry-section__right p,
+  .has-js .use-case-item,
+  .has-js .industry-cta-bar,
+  .has-js .industries-bottom-cta > * {
+    opacity: 1;
+  }
+}
+
 /* HERO */
 .page-hero {
   padding: 9rem 2.5rem 4rem;
@@ -58,12 +100,278 @@
   background: rgba(196,154,60,0.05);
 }
 
+/* ── CASE-STUDY CARD GRID ──
+   The 7 case studies are surfaced as visual cards above the detailed
+   sections. Each card has a stylized graphic, label, title, and one-
+   line description. Clicking scrolls to the matching section below. */
+.case-studies-section {
+  padding: 0 2.5rem 5rem;
+  background: var(--k-bg);
+}
+.case-studies-grid {
+  display: grid;
+  /* 2-col on desktop so SVG illustrations render ~544px wide on a 1280px
+     viewport (≈ double the previous 280px). The small UI text inside each
+     mockup (7-10px in SVG units) now resolves to ~12-17px on screen. */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  max-width: var(--w-max);
+  margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .case-studies-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+.case-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, rgba(196,154,60,0.04), rgba(255,255,255,0.012));
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: border-color 240ms var(--ease-out),
+              transform 240ms var(--ease-out),
+              background 240ms var(--ease-out),
+              box-shadow 240ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .case-card:hover {
+    border-color: var(--k-border-h);
+    transform: translateY(-3px);
+    background: linear-gradient(165deg, rgba(196,154,60,0.08), rgba(255,255,255,0.02));
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.7);
+  }
+  .case-card:hover .case-card__title { color: var(--k-gold); }
+}
+.case-card:active {
+  transform: scale(0.99);
+  transition-duration: 100ms;
+}
+.case-card__graphic {
+  margin: 0;
+  padding: 1rem 1rem 0;
+  display: block;
+}
+.case-card__graphic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.case-card__body {
+  padding: 1.1rem 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.case-card__label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  opacity: 0.85;
+}
+.case-card__title {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.22;
+  transition: color 200ms var(--ease-out);
+}
+.case-card__desc {
+  font-size: 0.86rem;
+  color: var(--k-mid);
+  line-height: 1.55;
+}
+
+/* Animatable elements inside the card graphics */
+.case-card-svg .ccs-pulse {
+  animation: ccs-pulse 2.6s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.case-card-svg .ccs-progress {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transform-box: fill-box;
+  transition: transform 1.4s var(--ease-out);
+}
+.case-card.is-revealed .case-card-svg .ccs-progress { transform: scaleX(1); }
+.case-card.is-revealed .case-card-svg .ccs-progress:nth-of-type(2) { transition-delay: 0.12s; }
+.case-card.is-revealed .case-card-svg .ccs-progress:nth-of-type(3) { transition-delay: 0.24s; }
+@keyframes ccs-pulse {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+
+/* ── Per-card minimal motion ──────────────────────────────────
+   Each case-study card gets ONE signature ambient or reveal
+   motion that maps to its concept. All transform/opacity only,
+   reduced-motion safe. */
+
+/* Legal Call-Actions — waveform: subtle scale-Y ripple on every
+   5th bar (live audio feel). Two staggered groups so the wave
+   reads as motion rather than synchronised pulse. */
+.case-card--legal svg g[transform="translate(12, 48)"] rect:nth-of-type(5n) {
+  animation: ccs-wave 2.4s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.case-card--legal svg g[transform="translate(12, 48)"] rect:nth-of-type(5n+3) {
+  animation: ccs-wave 2.4s ease-in-out infinite;
+  animation-delay: 0.7s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes ccs-wave {
+  0%, 100% { transform: scaleY(0.82); }
+  50%      { transform: scaleY(1.18); }
+}
+
+/* Waste Operations Hub — flow pulses traveling along the 8 lines
+   connecting the central HUB to its satellite agents. A small dot
+   moves outward on each line at staggered intervals (agents talking
+   to the hub). */
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line {
+  stroke-dasharray: 3 50;
+  animation: ccs-flow 3.2s linear infinite;
+}
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(2) { animation-delay: 0.4s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(3) { animation-delay: 0.8s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(4) { animation-delay: 1.2s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(5) { animation-delay: 1.6s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(6) { animation-delay: 2.0s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(7) { animation-delay: 2.4s; }
+.case-card--waste svg g[stroke^="rgba(196,154,60"] line:nth-of-type(8) { animation-delay: 2.8s; }
+@keyframes ccs-flow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -53; }
+}
+
+/* Invoice Reconciliation — matched lines draw themselves in when
+   the card enters view (the dashed "in review" lines stay static). */
+.case-card--ar svg g[stroke="#C49A3C"] path:not([stroke-dasharray]) {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1.6s var(--ease-out);
+}
+.case-card--ar.is-revealed svg g[stroke="#C49A3C"] path:not([stroke-dasharray]) {
+  stroke-dashoffset: 0;
+}
+
+/* WIP-to-Invoice + Legal — the inline arrow ("→") between source
+   and destination drifts gently right to imply directional flow. */
+.case-card-svg .ccs-arrow {
+  animation: ccs-arrow-drift 2.8s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes ccs-arrow-drift {
+  0%, 100% { opacity: 0.7;  transform: translateX(0); }
+  50%      { opacity: 1;    transform: translateX(3px); }
+}
+
+/* Month-End Close — TIED check-marks draw their ticks when the
+   card enters view, with a slight stagger across the 5 rows. */
+.case-card-svg .ccs-check {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  transition: stroke-dashoffset 0.55s var(--ease-out);
+}
+.case-card--close.is-revealed svg .ccs-check { stroke-dashoffset: 0; }
+.case-card--close.is-revealed svg .ccs-check:nth-of-type(2) { transition-delay: 0.10s; }
+.case-card--close.is-revealed svg .ccs-check:nth-of-type(3) { transition-delay: 0.20s; }
+.case-card--close.is-revealed svg .ccs-check:nth-of-type(4) { transition-delay: 0.30s; }
+.case-card--close.is-revealed svg .ccs-check:nth-of-type(5) { transition-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .case-card-svg .ccs-pulse,
+  .case-card--legal svg g rect,
+  .case-card--waste svg g line,
+  .case-card-svg .ccs-arrow { animation: none; }
+  .case-card-svg .ccs-progress,
+  .case-card--ar svg g[stroke="#C49A3C"] path,
+  .case-card-svg .ccs-check {
+    transform: none;
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+  .case-card-svg .ccs-progress { transform: scaleX(1); }
+}
+
+@media (max-width: 768px) {
+  .case-studies-section { padding: 0 1.5rem 3.5rem; }
+  .case-studies-grid { gap: 1rem; }
+}
+
 /* INDUSTRY SECTIONS */
 .industry-section {
   padding: 5rem 0;
   border-bottom: 1px solid var(--k-border);
 }
 .industry-section:last-of-type { border-bottom: none; }
+
+/* CASE-STUDY GRAPHIC
+   Stylized SVG mockup at the top of each case study. Frames the text
+   below it like a magazine spread. The actual SVG content varies per
+   case study; the wrapper is shared. */
+.case-graphic {
+  display: block;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: linear-gradient(165deg, rgba(196,154,60,0.04), rgba(255,255,255,0.01));
+  border: 1px solid var(--k-border);
+  padding: 1.25rem;
+  box-shadow: 0 20px 60px -30px rgba(0,0,0,0.6);
+}
+.case-graphic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--r-lg) - 6px);
+}
+/* Progress bars start collapsed; widen when the parent gets .is-revealed */
+.case-graphic .cg-progress {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transform-box: fill-box;
+  transition: transform 1.6s var(--ease-out);
+}
+.case-graphic.is-revealed .cg-progress {
+  transform: scaleX(1);
+}
+.case-graphic.is-revealed .cg-progress:nth-of-type(2) { transition-delay: 0.15s; }
+.case-graphic.is-revealed .cg-progress:nth-of-type(3) { transition-delay: 0.30s; }
+/* Pulses are subtle ambient motion. */
+.case-graphic .cg-pulse {
+  animation: cg-pulse 2.6s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.case-graphic .cg-dot-pulse {
+  animation: cg-dot-pulse 2.2s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes cg-pulse {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+@keyframes cg-dot-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-graphic .cg-progress { transform: scaleX(1); transition: none; }
+  .case-graphic .cg-pulse,
+  .case-graphic .cg-dot-pulse { animation: none; }
+}
 
 .industry-section__header {
   display: grid;
@@ -230,7 +538,7 @@
       "@type": "ListItem",
       "position": 1,
       "name": "AI Operations Hub — Irish Construction Company",
-      "description": "Five workflows under one roof: pipeline, contracts, invoicing and project delivery consolidated into a single platform with AI-powered payment-schedule extraction."
+      "description": "Five workflows under one roof: pipeline, contracts, invoicing and project delivery consolidated into a single platform that extracts payment schedules from contract PDFs automatically."
     },
     {
       "@type": "ListItem",
@@ -284,16 +592,480 @@
     <span class="k-label">Case Studies</span>
     <h1>Built in our businesses.<br>Now built in yours.</h1>
     <p>Each system below is in production today: some running inside businesses a Keystone partner operates, some live with our clients. Real data, real customers, real consequences. Each one is something we'd build for you next.</p>
-    <nav class="industry-nav" aria-label="Jump to case study">
-      <a href="industries.html#construction-hub">Construction Hub</a>
-      <a href="industries.html#legal-call-actions">Legal Call-Actions</a>
-      <a href="industries.html#waste-hub">Waste Operations Hub</a>
-      <a href="industries.html#ar-guardian">Invoice Reconciliation</a>
-      <a href="industries.html#wip-invoice">WIP-to-Invoice</a>
-      <a href="industries.html#email-triage">Email Triage</a>
-      <a href="industries.html#balance-sheet">Month-End Close</a>
-    </nav>
   </div>
+</section>
+
+<!-- ═══ CASE-STUDY CARD GRID ═══ -->
+<section class="case-studies-section" aria-label="Browse case studies">
+  <nav class="case-studies-grid" aria-label="Case studies">
+
+    <!-- 1. CONSTRUCTION HUB -->
+    <a href="#construction-hub" class="case-card case-card--construction">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+            <linearGradient id="cc-gold-1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#C49A3C"/><stop offset="100%" stop-color="#D4AF5A"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-1)" stroke="rgba(196,154,60,0.22)"/>
+          <!-- chrome -->
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">hub.construction.ie / pipeline</text>
+          <!-- tabs -->
+          <rect x="12" y="34" width="58" height="14" rx="3" fill="rgba(196,154,60,0.12)" stroke="rgba(196,154,60,0.5)" stroke-width="0.7"/>
+          <text x="41" y="43" font-family="Inter,sans-serif" font-size="7" font-weight="600" fill="#D4AF5A" text-anchor="middle">Pipeline</text>
+          <text x="84" y="43" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.45)">Contracts</text>
+          <text x="128" y="43" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.45)">Invoicing</text>
+          <rect x="252" y="34" width="56" height="14" rx="3" fill="#C49A3C"/>
+          <text x="280" y="43" font-family="Inter,sans-serif" font-size="6.5" font-weight="700" fill="#0C0C12" text-anchor="middle">+ New tender</text>
+          <!-- header -->
+          <text x="12" y="65" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">ACTIVE PROJECTS</text>
+          <!-- row 1 -->
+          <rect x="12" y="74" width="296" height="30" rx="4" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+          <text x="20" y="86" font-family="Inter,sans-serif" font-size="7" font-weight="600" fill="rgba(255,255,255,0.92)">Belfast Mixed-Use · St 7</text>
+          <rect x="20" y="92" width="180" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="20" y="92" width="113" height="3" rx="1.5" fill="url(#cc-gold-1)" class="ccs-progress"/>
+          <text x="208" y="96" font-family="JetBrains Mono,monospace" font-size="7" font-weight="700" fill="#D4AF5A">63%</text>
+          <rect x="232" y="88" width="32" height="11" rx="5.5" fill="rgba(196,154,60,0.16)" stroke="rgba(196,154,60,0.4)" stroke-width="0.5"/>
+          <circle cx="238" cy="93.5" r="1.8" fill="#C49A3C" class="ccs-pulse"/>
+          <text x="244" y="96" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="#D4AF5A">LIVE</text>
+          <!-- row 2 -->
+          <rect x="12" y="112" width="296" height="30" rx="4" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+          <text x="20" y="124" font-family="Inter,sans-serif" font-size="7" font-weight="600" fill="rgba(255,255,255,0.92)">Dublin Logistics · St 4</text>
+          <rect x="20" y="130" width="180" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="20" y="130" width="65" height="3" rx="1.5" fill="url(#cc-gold-1)" class="ccs-progress"/>
+          <text x="208" y="134" font-family="JetBrains Mono,monospace" font-size="7" font-weight="700" fill="#D4AF5A">36%</text>
+          <!-- row 3 -->
+          <rect x="12" y="150" width="296" height="22" rx="4" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+          <text x="20" y="164" font-family="Inter,sans-serif" font-size="7" font-weight="600" fill="rgba(255,255,255,0.92)">Cork Coastal · St 9</text>
+          <rect x="120" y="161" width="80" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="120" y="161" width="66" height="3" rx="1.5" fill="url(#cc-gold-1)" class="ccs-progress"/>
+          <text x="208" y="165" font-family="JetBrains Mono,monospace" font-size="7" font-weight="700" fill="#D4AF5A">82%</text>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Construction</span>
+        <h3 class="case-card__title">Construction Hub</h3>
+        <p class="case-card__desc">Five workflows under one roof. Live for the 2026 season.</p>
+      </div>
+    </a>
+
+    <!-- 2. LEGAL CALL-ACTIONS -->
+    <a href="#legal-call-actions" class="case-card case-card--legal">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-2)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">call / 14 May · Mr Walsh v Mrs Walsh</text>
+          <!-- left: waveform/transcript -->
+          <text x="12" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">TRANSCRIPT</text>
+          <g transform="translate(12, 48)">
+            <!-- waveform bars -->
+            <rect x="0" y="10" width="2" height="14" rx="1" fill="rgba(196,154,60,0.35)"/>
+            <rect x="4" y="6" width="2" height="22" rx="1" fill="rgba(196,154,60,0.45)"/>
+            <rect x="8" y="13" width="2" height="8" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="12" y="4" width="2" height="26" rx="1" fill="#C49A3C"/>
+            <rect x="16" y="9" width="2" height="16" rx="1" fill="rgba(196,154,60,0.45)"/>
+            <rect x="20" y="11" width="2" height="12" rx="1" fill="rgba(196,154,60,0.35)"/>
+            <rect x="24" y="6" width="2" height="22" rx="1" fill="rgba(196,154,60,0.5)"/>
+            <rect x="28" y="14" width="2" height="6" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="32" y="2" width="2" height="30" rx="1" fill="#D4AF5A"/>
+            <rect x="36" y="8" width="2" height="18" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="40" y="13" width="2" height="8" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="44" y="5" width="2" height="24" rx="1" fill="rgba(196,154,60,0.5)"/>
+            <rect x="48" y="10" width="2" height="14" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="52" y="7" width="2" height="20" rx="1" fill="rgba(196,154,60,0.45)"/>
+            <rect x="56" y="11" width="2" height="12" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="60" y="3" width="2" height="28" rx="1" fill="#C49A3C"/>
+            <rect x="64" y="9" width="2" height="16" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="68" y="12" width="2" height="10" rx="1" fill="rgba(196,154,60,0.35)"/>
+            <rect x="72" y="6" width="2" height="22" rx="1" fill="rgba(196,154,60,0.45)"/>
+            <rect x="76" y="14" width="2" height="6" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="80" y="9" width="2" height="16" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="84" y="5" width="2" height="24" rx="1" fill="rgba(196,154,60,0.45)"/>
+            <rect x="88" y="11" width="2" height="12" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="92" y="8" width="2" height="18" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="96" y="13" width="2" height="8" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="100" y="6" width="2" height="22" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="104" y="10" width="2" height="14" rx="1" fill="rgba(196,154,60,0.35)"/>
+            <rect x="108" y="4" width="2" height="26" rx="1" fill="#D4AF5A"/>
+            <rect x="112" y="9" width="2" height="16" rx="1" fill="rgba(196,154,60,0.4)"/>
+            <rect x="116" y="12" width="2" height="10" rx="1" fill="rgba(196,154,60,0.3)"/>
+            <rect x="120" y="7" width="2" height="20" rx="1" fill="rgba(196,154,60,0.4)"/>
+          </g>
+          <!-- arrow -->
+          <text class="ccs-arrow" x="148" y="84" font-family="Inter,sans-serif" font-size="14" fill="#C49A3C">→</text>
+          <!-- right: action list -->
+          <text x="166" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">ACTION ITEMS</text>
+          <g transform="translate(166, 48)">
+            <rect x="0" y="0" width="142" height="18" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <circle cx="9" cy="9" r="3" fill="rgba(196,154,60,0.18)" stroke="#C49A3C"/>
+            <path d="M7 9 L9 11 L12 7" stroke="#C49A3C" stroke-width="1" fill="none"/>
+            <text x="18" y="11" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.85)">Draft Section 32 affidavit</text>
+            <text x="118" y="11" font-family="JetBrains Mono,monospace" font-size="5" fill="rgba(196,154,60,0.6)">MD</text>
+
+            <rect x="0" y="24" width="142" height="18" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <circle cx="9" cy="33" r="3" fill="rgba(196,154,60,0.18)" stroke="#C49A3C"/>
+            <text x="18" y="35" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.85)">Request bank statements</text>
+            <text x="118" y="35" font-family="JetBrains Mono,monospace" font-size="5" fill="rgba(196,154,60,0.6)">AB</text>
+
+            <rect x="0" y="48" width="142" height="18" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <circle cx="9" cy="57" r="3" fill="rgba(196,154,60,0.18)" stroke="#C49A3C"/>
+            <text x="18" y="59" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.85)">Schedule mediation</text>
+            <text x="118" y="59" font-family="JetBrains Mono,monospace" font-size="5" fill="rgba(196,154,60,0.6)">JK</text>
+
+            <rect x="0" y="72" width="142" height="18" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <circle cx="9" cy="81" r="3" fill="rgba(196,154,60,0.18)" stroke="#C49A3C"/>
+            <text x="18" y="83" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.85)">File response by 21 May</text>
+            <text x="118" y="83" font-family="JetBrains Mono,monospace" font-size="5" fill="rgba(196,154,60,0.6)">MD</text>
+          </g>
+          <text x="12" y="170" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(255,255,255,0.4)">25 min → 3 min post-call</text>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Legal Practice</span>
+        <h3 class="case-card__title">Legal Call-Actions</h3>
+        <p class="case-card__desc">Client calls → structured action lists, automatically.</p>
+      </div>
+    </a>
+
+    <!-- 3. WASTE OPERATIONS HUB -->
+    <a href="#waste-hub" class="case-card case-card--waste">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+            <radialGradient id="cc-hub-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(196,154,60,0.4)"/><stop offset="100%" stop-color="rgba(196,154,60,0)"/></radialGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-3)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">operations.hub / agents · live</text>
+
+          <!-- Central hub -->
+          <circle cx="160" cy="102" r="40" fill="url(#cc-hub-glow)"/>
+          <circle cx="160" cy="102" r="22" fill="rgba(196,154,60,0.12)" stroke="#C49A3C" stroke-width="1.2"/>
+          <text x="160" y="100" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#D4AF5A" text-anchor="middle">HUB</text>
+          <text x="160" y="109" font-family="JetBrains Mono,monospace" font-size="5.5" fill="#C49A3C" text-anchor="middle">9 agents</text>
+
+          <!-- Connecting lines to 8 agent nodes around -->
+          <g stroke="rgba(196,154,60,0.35)" stroke-width="0.6" fill="none">
+            <line x1="160" y1="80" x2="160" y2="50"/>
+            <line x1="178" y1="90" x2="220" y2="60"/>
+            <line x1="183" y1="102" x2="230" y2="102"/>
+            <line x1="178" y1="114" x2="220" y2="144"/>
+            <line x1="160" y1="124" x2="160" y2="154"/>
+            <line x1="142" y1="114" x2="100" y2="144"/>
+            <line x1="137" y1="102" x2="90" y2="102"/>
+            <line x1="142" y1="90" x2="100" y2="60"/>
+          </g>
+
+          <!-- 8 agent satellite nodes -->
+          <g font-family="Inter,sans-serif" font-size="5.5" fill="rgba(255,255,255,0.7)" text-anchor="middle">
+            <circle cx="160" cy="46" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="160" y="48">Billing</text>
+            <circle cx="220" cy="56" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="220" y="58">Triage</text>
+            <circle cx="236" cy="102" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="236" y="104">AR</text>
+            <circle cx="220" cy="148" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="220" y="150">Recon</text>
+            <circle cx="160" cy="158" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="160" y="160">Route</text>
+            <circle cx="100" cy="148" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="100" y="150">Miss</text>
+            <circle cx="84" cy="102" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="84" y="104">Quote</text>
+            <circle cx="100" cy="56" r="9" fill="rgba(255,255,255,0.04)" stroke="rgba(196,154,60,0.35)"/>
+            <text x="100" y="58">CS</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Waste Management</span>
+        <h3 class="case-card__title">Waste Operations Hub</h3>
+        <p class="case-card__desc">Nine specialist agents running a 30-vehicle operation.</p>
+      </div>
+    </a>
+
+    <!-- 4. INVOICE RECONCILIATION -->
+    <a href="#ar-guardian" class="case-card case-card--ar">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-4)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">ar-guardian / reconcile · may</text>
+
+          <!-- Left column header: Salesforce -->
+          <text x="20" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">SALESFORCE · INVOICES</text>
+          <!-- Right column header: Xero -->
+          <text x="220" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">XERO · PAYMENTS</text>
+
+          <!-- Match lines (gold) -->
+          <g stroke="#C49A3C" stroke-width="0.7" fill="none" opacity="0.7">
+            <path d="M88 56 Q150 56 218 56" stroke-dasharray="2,2"/>
+            <path d="M88 76 Q150 86 218 76"/>
+            <path d="M88 96 Q150 96 218 96"/>
+            <path d="M88 116 Q150 106 218 116" stroke-dasharray="2,2"/>
+            <path d="M88 136 Q150 136 218 136"/>
+          </g>
+
+          <!-- Left rows (5 invoice rows) -->
+          <g font-family="Inter,sans-serif" font-size="6.5">
+            <rect x="12" y="48" width="76" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="18" y="58" fill="rgba(255,255,255,0.85)">INV-2284 · €4,200</text>
+            <rect x="12" y="68" width="76" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="18" y="78" fill="rgba(255,255,255,0.85)">INV-2285 · €1,850</text>
+            <rect x="12" y="88" width="76" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="18" y="98" fill="rgba(255,255,255,0.85)">INV-2286 · €960</text>
+            <rect x="12" y="108" width="76" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="18" y="118" fill="rgba(255,255,255,0.85)">INV-2287 · €7,440</text>
+            <rect x="12" y="128" width="76" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="18" y="138" fill="rgba(255,255,255,0.85)">INV-2288 · €2,100</text>
+          </g>
+          <!-- Right rows -->
+          <g font-family="Inter,sans-serif" font-size="6.5">
+            <rect x="218" y="48" width="90" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="224" y="58" fill="rgba(255,255,255,0.85)">EFT · €4,200 · 12 May</text>
+            <rect x="218" y="68" width="90" height="14" rx="3" fill="rgba(196,154,60,0.10)" stroke="rgba(196,154,60,0.45)"/>
+            <text x="224" y="78" fill="#D4AF5A">EFT · €1,850 · 14 May</text>
+            <rect x="218" y="88" width="90" height="14" rx="3" fill="rgba(196,154,60,0.10)" stroke="rgba(196,154,60,0.45)"/>
+            <text x="224" y="98" fill="#D4AF5A">EFT · €960 · 14 May</text>
+            <rect x="218" y="108" width="90" height="14" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(196,154,60,0.18)"/>
+            <text x="224" y="118" fill="rgba(255,255,255,0.85)">EFT · €7,440 · 16 May</text>
+            <rect x="218" y="128" width="90" height="14" rx="3" fill="rgba(196,154,60,0.10)" stroke="rgba(196,154,60,0.45)"/>
+            <text x="224" y="138" fill="#D4AF5A">EFT · €2,100 · 17 May</text>
+          </g>
+          <text x="12" y="160" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(255,255,255,0.4)">3 / 5 matched · 2 in review</text>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Finance &amp; AR</span>
+        <h3 class="case-card__title">Invoice Reconciliation</h3>
+        <p class="case-card__desc">Salesforce and Xero, matched automatically.</p>
+      </div>
+    </a>
+
+    <!-- 5. WIP-TO-INVOICE -->
+    <a href="#wip-invoice" class="case-card case-card--wip">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-5)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">wip-to-invoice / ENG-08</text>
+
+          <!-- Left: WIP timesheet -->
+          <text x="12" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">WIP · TIMESHEET</text>
+          <g font-family="Inter,sans-serif" font-size="6">
+            <rect x="12" y="48" width="124" height="11" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <text x="18" y="56" fill="rgba(255,255,255,0.85)">04 May · 4.5h · Mtg</text>
+            <text x="108" y="56" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)">€675</text>
+            <rect x="12" y="63" width="124" height="11" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <text x="18" y="71" fill="rgba(255,255,255,0.85)">06 May · 8.0h · Draft</text>
+            <text x="108" y="71" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)">€1,200</text>
+            <rect x="12" y="78" width="124" height="11" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <text x="18" y="86" fill="rgba(255,255,255,0.85)">07 May · 6.5h · Review</text>
+            <text x="108" y="86" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)">€975</text>
+            <rect x="12" y="93" width="124" height="11" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <text x="18" y="101" fill="rgba(255,255,255,0.85)">08 May · 5.0h · Filing</text>
+            <text x="108" y="101" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)">€750</text>
+            <rect x="12" y="108" width="124" height="11" rx="2" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <text x="18" y="116" fill="rgba(255,255,255,0.85)">09 May · 3.0h · Mtg</text>
+            <text x="108" y="116" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)">€450</text>
+          </g>
+
+          <!-- Arrow -->
+          <text class="ccs-arrow" x="148" y="86" font-family="Inter,sans-serif" font-size="14" fill="#C49A3C">→</text>
+
+          <!-- Right: Invoice -->
+          <text x="174" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">DRAFT INVOICE</text>
+          <rect x="174" y="48" width="134" height="100" rx="4" fill="rgba(196,154,60,0.06)" stroke="rgba(196,154,60,0.32)"/>
+          <text x="180" y="60" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#D4AF5A">INV-2289 · ENG-08</text>
+          <line x1="180" y1="64" x2="300" y2="64" stroke="rgba(196,154,60,0.2)" stroke-width="0.4"/>
+          <g font-family="Inter,sans-serif" font-size="6" fill="rgba(255,255,255,0.75)">
+            <text x="180" y="73">Meetings (7.5h)</text>
+            <text x="300" y="73" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">€1,125</text>
+            <text x="180" y="83">Drafting (8.0h)</text>
+            <text x="300" y="83" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">€1,200</text>
+            <text x="180" y="93">Review (6.5h)</text>
+            <text x="300" y="93" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">€975</text>
+            <text x="180" y="103">Filing (5.0h)</text>
+            <text x="300" y="103" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">€750</text>
+          </g>
+          <line x1="180" y1="112" x2="300" y2="112" stroke="rgba(196,154,60,0.2)" stroke-width="0.4"/>
+          <text x="180" y="124" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="rgba(255,255,255,0.95)">Total</text>
+          <text x="300" y="124" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#D4AF5A" text-anchor="end">€4,050</text>
+          <text x="180" y="140" font-family="Inter,sans-serif" font-size="5.5" fill="rgba(255,255,255,0.4)">Ready for partner approval</text>
+
+          <text x="12" y="170" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(255,255,255,0.4)">WIP → invoice: from weeks to hours</text>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Cash Cycle</span>
+        <h3 class="case-card__title">WIP-to-Invoice</h3>
+        <p class="case-card__desc">Work-in-progress to invoiced amount, automatically.</p>
+      </div>
+    </a>
+
+    <!-- 6. EMAIL TRIAGE -->
+    <a href="#email-triage" class="case-card case-card--triage">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-6)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">inbox / triaged · 8h saved / wk</text>
+
+          <text x="12" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">PRIORITY INBOX</text>
+          <text x="248" y="40" font-family="JetBrains Mono,monospace" font-size="6" font-weight="700" fill="#C49A3C">204 today</text>
+
+          <!-- 5 email rows with priority dots -->
+          <g font-family="Inter,sans-serif">
+            <rect x="12" y="48" width="296" height="22" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.16)"/>
+            <circle cx="22" cy="59" r="3" fill="#C49A3C" class="ccs-pulse"/>
+            <text x="32" y="58" font-size="7" font-weight="600" fill="rgba(255,255,255,0.92)">Acme Group · contract negotiation</text>
+            <text x="32" y="66" font-size="5.5" fill="rgba(255,255,255,0.4)">"Can we hop on a call Thursday..."</text>
+            <text x="296" y="60" font-size="5.5" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">URGENT</text>
+
+            <rect x="12" y="74" width="296" height="22" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.16)"/>
+            <circle cx="22" cy="85" r="3" fill="#C49A3C" class="ccs-pulse"/>
+            <text x="32" y="84" font-size="7" font-weight="600" fill="rgba(255,255,255,0.92)">Board · Q3 forecast review</text>
+            <text x="32" y="92" font-size="5.5" fill="rgba(255,255,255,0.4)">"Need your numbers before Friday..."</text>
+            <text x="296" y="86" font-size="5.5" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.7)" text-anchor="end">URGENT</text>
+
+            <rect x="12" y="100" width="296" height="22" rx="3" fill="rgba(255,255,255,0.020)" stroke="rgba(196,154,60,0.10)"/>
+            <circle cx="22" cy="111" r="3" fill="rgba(255,255,255,0.35)"/>
+            <text x="32" y="110" font-size="7" font-weight="500" fill="rgba(255,255,255,0.7)">Calendly · meeting reminder</text>
+            <text x="32" y="118" font-size="5.5" fill="rgba(255,255,255,0.35)">Auto-drafted reply ready</text>
+            <text x="296" y="112" font-size="5.5" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.55)" text-anchor="end">DRAFTED</text>
+
+            <rect x="12" y="126" width="296" height="22" rx="3" fill="rgba(255,255,255,0.020)" stroke="rgba(196,154,60,0.10)"/>
+            <circle cx="22" cy="137" r="3" fill="rgba(255,255,255,0.35)"/>
+            <text x="32" y="136" font-size="7" font-weight="500" fill="rgba(255,255,255,0.7)">Supplier · invoice query</text>
+            <text x="32" y="144" font-size="5.5" fill="rgba(255,255,255,0.35)">Auto-drafted reply ready</text>
+            <text x="296" y="138" font-size="5.5" font-family="JetBrains Mono,monospace" fill="rgba(196,154,60,0.55)" text-anchor="end">DRAFTED</text>
+
+            <rect x="12" y="152" width="296" height="14" rx="3" fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.05)"/>
+            <circle cx="22" cy="159" r="3" fill="rgba(255,255,255,0.18)"/>
+            <text x="32" y="161" font-size="6.5" font-weight="500" fill="rgba(255,255,255,0.45)">+ 198 routine items archived</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Founder Productivity</span>
+        <h3 class="case-card__title">Email Triage</h3>
+        <p class="case-card__desc">An inbox that reads, sorts, drafts, and escalates itself.</p>
+      </div>
+    </a>
+
+    <!-- 7. MONTH-END CLOSE -->
+    <a href="#balance-sheet" class="case-card case-card--close">
+      <figure class="case-card__graphic" aria-hidden="true">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" class="case-card-svg">
+          <defs>
+            <linearGradient id="cc-bg-7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14141c"/><stop offset="100%" stop-color="#0c0c14"/></linearGradient>
+          </defs>
+          <rect x="0.5" y="0.5" width="319" height="179" rx="8" fill="url(#cc-bg-7)" stroke="rgba(196,154,60,0.22)"/>
+          <path d="M0,8 a8,8 0 0 1 8,-8 h304 a8,8 0 0 1 8,8 v16 h-320 z" fill="rgba(196,154,60,0.05)"/>
+          <line x1="0" y1="24" x2="320" y2="24" stroke="rgba(196,154,60,0.18)" stroke-width="0.75"/>
+          <circle cx="12" cy="12" r="2.5" fill="#C49A3C" class="ccs-pulse"/>
+          <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="32" cy="12" r="2.5" fill="rgba(255,255,255,0.10)"/>
+          <rect x="50" y="6" width="220" height="12" rx="2.5" fill="rgba(255,255,255,0.04)"/>
+          <text x="60" y="14" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(196,154,60,0.5)">close / may-2026 · running</text>
+
+          <text x="12" y="40" font-family="Inter,sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="rgba(255,255,255,0.55)">BALANCE SHEET RECONCILIATION</text>
+
+          <!-- Account rows with tick / flag -->
+          <g font-family="Inter,sans-serif">
+            <rect x="12" y="50" width="296" height="14" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <circle cx="22" cy="57" r="4" fill="rgba(196,154,60,0.18)" stroke="#C49A3C" stroke-width="0.7"/>
+            <path class="ccs-check" d="M19 57 L22 60 L26 54" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+            <text x="32" y="60" font-size="7" fill="rgba(255,255,255,0.85)">Bank · IBAN ending 4421</text>
+            <text x="300" y="60" font-size="7" font-family="JetBrains Mono,monospace" fill="#C49A3C" text-anchor="end">TIED</text>
+
+            <rect x="12" y="68" width="296" height="14" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <circle cx="22" cy="75" r="4" fill="rgba(196,154,60,0.18)" stroke="#C49A3C" stroke-width="0.7"/>
+            <path class="ccs-check" d="M19 75 L22 78 L26 72" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+            <text x="32" y="78" font-size="7" fill="rgba(255,255,255,0.85)">Accounts receivable</text>
+            <text x="300" y="78" font-size="7" font-family="JetBrains Mono,monospace" fill="#C49A3C" text-anchor="end">TIED</text>
+
+            <rect x="12" y="86" width="296" height="14" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <circle cx="22" cy="93" r="4" fill="rgba(196,154,60,0.18)" stroke="#C49A3C" stroke-width="0.7"/>
+            <path class="ccs-check" d="M19 93 L22 96 L26 90" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+            <text x="32" y="96" font-size="7" fill="rgba(255,255,255,0.85)">Intercompany · KIG/KOL</text>
+            <text x="300" y="96" font-size="7" font-family="JetBrains Mono,monospace" fill="#C49A3C" text-anchor="end">TIED</text>
+
+            <rect x="12" y="104" width="296" height="14" rx="3" fill="rgba(212,93,48,0.06)" stroke="rgba(212,154,60,0.45)"/>
+            <circle cx="22" cy="111" r="4" fill="rgba(212,154,60,0.25)" stroke="#D4AF5A" stroke-width="0.7"/>
+            <text x="22" y="114" font-size="7" font-weight="700" fill="#D4AF5A" text-anchor="middle">!</text>
+            <text x="32" y="114" font-size="7" fill="rgba(255,255,255,0.92)">FX revaluation · GBP/EUR</text>
+            <text x="300" y="114" font-size="7" font-family="JetBrains Mono,monospace" fill="#D4AF5A" text-anchor="end">REVIEW</text>
+
+            <rect x="12" y="122" width="296" height="14" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <circle cx="22" cy="129" r="4" fill="rgba(196,154,60,0.18)" stroke="#C49A3C" stroke-width="0.7"/>
+            <path class="ccs-check" d="M19 129 L22 132 L26 126" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+            <text x="32" y="132" font-size="7" fill="rgba(255,255,255,0.85)">Accruals · payroll, rent</text>
+            <text x="300" y="132" font-size="7" font-family="JetBrains Mono,monospace" fill="#C49A3C" text-anchor="end">TIED</text>
+
+            <rect x="12" y="140" width="296" height="14" rx="3" fill="rgba(255,255,255,0.025)" stroke="rgba(196,154,60,0.14)"/>
+            <circle cx="22" cy="147" r="4" fill="rgba(196,154,60,0.18)" stroke="#C49A3C" stroke-width="0.7"/>
+            <path class="ccs-check" d="M19 147 L22 150 L26 144" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+            <text x="32" y="150" font-size="7" fill="rgba(255,255,255,0.85)">Fixed assets · depreciation</text>
+            <text x="300" y="150" font-size="7" font-family="JetBrains Mono,monospace" fill="#C49A3C" text-anchor="end">TIED</text>
+          </g>
+
+          <text x="12" y="170" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(255,255,255,0.4)">5 tied · 1 exception · days → hours</text>
+        </svg>
+      </figure>
+      <div class="case-card__body">
+        <span class="case-card__label">Case Study · Month-End Close</span>
+        <h3 class="case-card__title">Month-End Close</h3>
+        <p class="case-card__desc">Balance sheet reconciliation in hours, not days.</p>
+      </div>
+    </a>
+
+  </nav>
 </section>
 
 <section class="k-section k-section--dark">
@@ -308,7 +1080,7 @@
           <p class="industry-section__intro">An Irish construction company we built for was running its commercial operation across spreadsheets and shared OneDrive folders, tender deadlines in one file, contracts in another, payment schedules in a third. Five workflows, five sources of truth, no single view of the business. As project volume grew, the gaps were costing hours every week and creating real risk: missed follow-ups, payment milestones nobody owned, no audit trail. We built them one platform that consolidates the full commercial lifecycle into a single staff-facing hub.</p>
         </div>
         <div class="industry-section__right">
-          <p>The hub covers the lifecycle end to end: pipeline management with an 11-stage tender workflow, contract management with AI-powered payment-schedule extraction, milestone-driven invoicing, and a project delivery workspace with budget tracking, subcontractor management and weekly progress reporting.</p>
+          <p>The hub covers the lifecycle end to end: pipeline management with an 11-stage tender workflow, contract management that extracts payment schedules from PDFs automatically, milestone-driven invoicing, and a project delivery workspace with budget tracking, subcontractor management and weekly progress reporting.</p>
           <p>Security is enterprise-grade: role-based access control with route-level enforcement, CSRF protection on every form, contract PDFs validated by content before processing, an append-only audit log covering every state-changing action across the application, and nightly AES-256-GCM encrypted off-platform backups with a tested recovery procedure.</p>
         </div>
       </div>
@@ -566,7 +1338,7 @@
   <span class="k-label" style="display:block;margin-bottom:1.5rem;">Your Business Is Next</span>
   <h2>Sectors differ.<br>Operations rhyme.</h2>
   <p>The case studies above span construction, legal practice, waste operations, finance and founder productivity. Some are running inside businesses we operate; others are live with our clients. The patterns repeat. If you have revenue, costs, and operations, the same playbook applies. Twenty minutes on the phone is enough to know whether we can help.</p>
-  <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary" style="font-size:1rem;padding:0.9rem 2.25rem;">Book Your Discovery Call</a>
+  <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary" style="font-size:1rem;padding:0.75rem 0.75rem 0.75rem 2rem;">Book Your Discovery Call</a>
 </section>
 
 <footer class="k-footer" role="contentinfo">
@@ -616,515 +1388,4 @@
 
 
 
-</body><div id="aiFabShadowRoot" data-fab-type="react" style="opacity: 1;"><template shadowrootmode="open"><div id="fab-react-root"><div class="fab-root"><div class="acrobat-button-container " style="bottom: 36px;"><div class="acrobat-button " role="button" aria-label="Get summaries and key insights using AI Assistant"><button class="close-btn  "><svg class="close-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_8552_7892" maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="14" style="mask-type: alpha;"><path d="M7.82482 7.00034L10.6374 4.18778C10.7893 4.03592 10.7893 3.78969 10.6374 3.63783L10.3625 3.36292C10.2106 3.21106 9.96446 3.21106 9.81255 3.36292L6.99995 6.17548L4.18734 3.36292C4.03543 3.21106 3.78933 3.21106 3.63743 3.36292L3.36247 3.63783C3.21056 3.78969 3.21056 4.03592 3.36247 4.18778L6.17507 7.00034L3.36247 9.81295C3.21056 9.96481 3.21056 10.2111 3.36247 10.3629L3.63743 10.6378C3.78933 10.7897 4.03543 10.7897 4.18734 10.6378L6.99995 7.82526L9.81255 10.6378C9.96446 10.7897 10.2106 10.7897 10.3625 10.6378L10.6374 10.3629C10.7893 10.2111 10.7893 9.96481 10.6374 9.81295L7.82482 7.00034Z" fill="#222222"></path></mask><g mask="url(#mask0_8552_7892)"><rect width="14" height="14"></rect></g></svg><svg class="burger-icon" width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_12188_28876" maskUnits="userSpaceOnUse" x="3" y="3" width="15" height="14" style="mask-type: alpha;"><path d="M15.1285 12.8008H6.37852C6.08867 12.8008 5.85352 13.0359 5.85352 13.3258C5.85352 13.6156 6.08867 13.8508 6.37852 13.8508H15.1285C15.4184 13.8508 15.6535 13.6156 15.6535 13.3258C15.6535 13.0359 15.4184 12.8008 15.1285 12.8008Z" fill="#292929"></path><path d="M6.37852 6.85078H15.1285C15.4184 6.85078 15.6535 6.61562 15.6535 6.32578C15.6535 6.03594 15.4184 5.80078 15.1285 5.80078H6.37852C6.08867 5.80078 5.85352 6.03594 5.85352 6.32578C5.85352 6.61562 6.08867 6.85078 6.37852 6.85078Z" fill="#292929"></path><path d="M15.1285 9.30078H6.37852C6.08867 9.30078 5.85352 9.53594 5.85352 9.82578C5.85352 10.1156 6.08867 10.3508 6.37852 10.3508H15.1285C15.4184 10.3508 15.6535 10.1156 15.6535 9.82578C15.6535 9.53594 15.4184 9.30078 15.1285 9.30078Z" fill="#292929"></path></mask><g mask="url(#mask0_12188_28876)"><rect x="3.75391" y="3" width="14" height="14" fill="#464646"></rect></g></svg></button><div class="icon-container" role="button" tabindex="0" aria-label="Open AI Assistant"><svg id="ImportedIcons" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" class="fab-svg-icon"><path d="m6.21661,16.39534c-1.35034,2.23499-2.67933,3.64758-3.45616,3.64758-.12795.00539-.25276-.04056-.34667-.12762-.14818-.12483-.21629-.32065-.17758-.5105.14764-.80079,1.68628-1.95576,3.98041-3.00946Zm6.49075-3.19656c-.57993.12528-1.1792.27056-1.78689.43544-.4366.11893-.87951.24862-1.32255.38729.23541-.4949.4515-.98554.6398-1.452.24831-.6159.48156-1.232.69564-1.83456.18831.30354.38304.59839.58195.88207.39375.56092.81787,1.09736,1.19205,1.58176Zm-2.99822-10.63684c.08814-.18001.26644-.29855.46653-.31016.51149,0,.62276.63358.62276,1.1638-.06787,1.25011-.29293,2.48669-.66988,3.68055-.85816-2.33642-.73831-3.97319-.41942-4.53419h.00001Zm9.60883,12.20974c-.13359.4402-.56725.71808-1.023.6555-.15594-.00061-.3112-.02054-.46224-.05933-1.07834-.28263-2.07953-.80363-2.92976-1.5246.71719-.11267,1.44198-.17001,2.16797-.17149.48402-.00813.96771.03017,1.44442.11438.43447.09244.92449.33873.80261.98554Zm1.45515-1.0537c-1.01837-.83309-2.33117-1.21735-3.63802-1.06487-.98482.00983-1.96732.09739-2.93836.26187-.62354-.62512-1.19003-1.30467-1.69272-2.03054-.38314-.54455-.73672-1.10931-1.05923-1.69182.54287-1.57384.85986-3.2167.94151-4.87953,0-1.49369-.57564-3.09087-2.19132-3.09087-.56296.01952-1.07528.33036-1.35261.82066-.68906,1.2165-.41298,3.72002.68705,6.26756-.38306,1.17041-.80046,2.31007-1.31196,3.57265-.43687,1.08123-.93191,2.13803-1.48293,3.16579-1.64775.68213-5.15115,2.33642-5.48494,4.16456-.10306.53569.0783,1.08658.47942,1.45629.39145.35044.90217.53779,1.42737.5236,2.10998,0,4.21366-3.003,5.63044-5.58789.80461-.2816,1.62641-.53671,2.44391-.759.8967-.24407,1.76345-.44427,2.58082-.594,1.39014,1.39224,3.25004,2.21523,5.21531,2.30773,1.36751,0,1.87887-.60942,2.06516-1.122.20733-.5893.08589-1.24438-.3189-1.72019Z" fill="var(--iconRed, #d31510)" fill-rule="evenodd"></path></svg></div></div><div class="draggable-handle "><svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.60039 13.0699C5.26313 13.0699 5.80039 12.5327 5.80039 11.8699C5.80039 11.2072 5.26313 10.6699 4.60039 10.6699C3.93765 10.6699 3.40039 11.2072 3.40039 11.8699C3.40039 12.5327 3.93765 13.0699 4.60039 13.0699Z" fill="#292929"></path><path d="M4.60039 8.27109C5.26313 8.27109 5.80039 7.73384 5.80039 7.07109C5.80039 6.40835 5.26313 5.87109 4.60039 5.87109C3.93765 5.87109 3.40039 6.40835 3.40039 7.07109C3.40039 7.73384 3.93765 8.27109 4.60039 8.27109Z" fill="#292929"></path><path d="M4.60039 3.47031C5.26313 3.47031 5.80039 2.93305 5.80039 2.27031C5.80039 1.60757 5.26313 1.07031 4.60039 1.07031C3.93765 1.07031 3.40039 1.60757 3.40039 2.27031C3.40039 2.93305 3.93765 3.47031 4.60039 3.47031Z" fill="#292929"></path><path d="M9.4002 13.0699C10.0629 13.0699 10.6002 12.5327 10.6002 11.8699C10.6002 11.2072 10.0629 10.6699 9.4002 10.6699C8.73745 10.6699 8.2002 11.2072 8.2002 11.8699C8.2002 12.5327 8.73745 13.0699 9.4002 13.0699Z" fill="#292929"></path><path d="M9.4002 8.27109C10.0629 8.27109 10.6002 7.73384 10.6002 7.07109C10.6002 6.40835 10.0629 5.87109 9.4002 5.87109C8.73745 5.87109 8.2002 6.40835 8.2002 7.07109C8.2002 7.73384 8.73745 8.27109 9.4002 8.27109Z" fill="#292929"></path><path d="M9.4002 3.47031C10.0629 3.47031 10.6002 2.93305 10.6002 2.27031C10.6002 1.60757 10.0629 1.07031 9.4002 1.07031C8.73745 1.07031 8.2002 1.60757 8.2002 2.27031C8.2002 2.93305 8.73745 3.47031 9.4002 3.47031Z" fill="#292929"></path></svg></div></div></div></div><style>
-    .acrobat-button-container {
-        position: fixed;
-        right: 0;
-        bottom: 36px;
-        z-index: 2147483646;
-        visibility: visible !important;
-        pointer-events: all;
-        opacity: 1;
-        display: flex;
-        align-items: center;
-        transition: opacity 0.3s ease-in-out;
-    }
-
-    @media print {
-        .acrobat-button-container {
-            display: none !important;
-        }
-    }
-
-    .acrobat-button {
-        position: relative;
-        background: white;
-        display: flex;
-        align-items: center;
-        pointer-events: all;
-        touch-action: none;
-        box-shadow: 0px 2px 8px 0px #00000029;
-        height: 34px;
-        width: 34px;
-        border: 1px solid transparent;
-        background-clip: padding-box, border-box;
-        background-origin: border-box;
-        background-image: linear-gradient(white, white),
-                        linear-gradient(95.85deg, #D73220 0%, #D92361 33%, #7155FA 100%);
-        border-radius: 18px;
-        justify-content: right;
-        margin-right: var(--fab-margin-right, 28px);
-        overflow: hidden;
-    }
-
-    .acrobat-button-container-transparent {
-        opacity: 0.4 !important;
-        transition: opacity 0.3s ease-in-out;
-    }
-
-    .acrobat-button-container-transparent:hover,
-    .acrobat-button-container-transparent:focus,
-    .acrobat-button-container-transparent:active {
-        opacity: 1;
-    }
-
-    .acrobat-button > svg {
-        flex-shrink: 0;
-        margin: 4px 5px 5px 5px;
-        width: 22px;
-        height: 22px;
-        pointer-events: none;
-        fill: #b40000;
-    }
-    .acrobat-button:has(.close-btn.open),
-    .expand-acrobat-button {
-        width: 64px;
-    }
-
-    .disabled {
-        background: #B1B1B1;
-    }
-
-    .tooltip-text {
-        width: 160px;
-        visibility: hidden;
-        opacity: 0;
-        background-color: #FFFFFF;
-        color: #292929;
-        border-radius: 7px;
-        padding: 4px 1px 5px 9px;
-        position: absolute;
-        z-index: 1;
-        right: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-        margin-right: 10px;
-        transition: opacity 0.3s, visibility 0s linear 2s;
-        font-size: 12px;
-        line-height: 15px;
-        font-family: 'adobe-clean', Adobe Clean, sans-serif;
-        filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.12));
-    }
-
-    .tooltip-text::after {
-       content: '';
-       position: absolute;
-       top: 50%;
-       left: 100%;
-       transform: translateY(-50%);
-       border-width: 6px;
-       border-style: solid;
-       border-color: transparent transparent transparent #fff;
-    }
-
-    .show-tooltip {
-        visibility: visible;
-        opacity: 1;
-        line-height: 1.5;
-        font-family: 'adobe-clean', Adobe Clean, sans-serif;
-        transition: opacity 0.3s;
-        transition-delay: 500ms;
-    }
-
-    .close-btn {
-        position: relative;
-        display: none;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .close-btn svg {
-        fill: #464646;
-    }
-
-    .close-btn.showCloseButton {
-        opacity: 1;
-        display: flex;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        padding: 2px;
-    }
-
-    .fab-view-settings-dialog {
-        display: none;
-        position: absolute;
-        bottom: 40px;
-        z-index: 1;
-    }
-
-    .close-btn:hover {
-        background: #E6E6E6;
-        border-radius: 50%; /* Keep original circular hover */
-        cursor: pointer;
-    }
-
-    .fab-view-settings-dialog.showDialog {
-        display: block;
-    }
-    .close-btn .burger-icon {
-        display: inline;
-        margin-bottom: 2px;
-    }
-    .close-btn .close-icon {
-        display: none;
-    }
-    .close-btn.open .burger-icon {
-        display: none;
-    }
-    .close-btn.open .close-icon {
-        display: inline;
-    }
-    .tooltip-text .tooltip-text-content {
-        font-weight: bold;
-    }
-    .tooltip-text .tooltip-sub-text-text {
-        font-style: italic;
-        font-size: 11px;
-    }
-
-    /* Icon container styles - replaces iframe */
-    .icon-container {
-        width: 33px;
-        height: 34px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: grab;
-        pointer-events: all;
-        flex-shrink: 0;
-        background: transparent;
-        border: none;
-    }
-
-    .icon-container:active {
-        cursor: grabbing;
-    }
-
-    .fab-svg-icon {
-        width: 22px;
-        height: 22px;
-        padding: 5px 5px 5px 6px;
-        pointer-events: none;
-        fill: #b40000;
-    }
-
-    .draggable-handle {
-        display: none;
-        position: absolute;
-        right: var(--drag-handle-right, 12px);
-        cursor: grab;
-    }
-    .draggable-handle-visible {
-        display: flex;
-    }
-
-    /* Font face declarations - for proper font loading in Shadow DOM */
-    @font-face {
-        font-family: 'adobe-clean';
-        font-weight: 400;
-        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Regular.otf') format('opentype');
-    }
-    @font-face {
-        font-family: 'adobe-clean';
-        font-weight: 700;
-        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Bold.otf') format('opentype');
-    }
-    @font-face {
-        font-family: 'AdobeClean-Regular';
-        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Regular.otf') format('opentype');
-    }
-    @font-face {
-        font-family: 'AdobeClean-Bold';
-        src: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/css/fonts/AdobeClean-Bold.otf') format('opentype');
-    }
-    body {
-        font-family: 'AdobeClean-Regular', adobe-clean, "Adobe Clean", sans-serif;
-    }
-
-    .dialog-container {
-        width: 166px;
-        background-color: #ffffff;
-        border-radius: 4px;
-        border: 1px solid #B1B1B1;
-        box-shadow: 0px 1px 4px 0px #00000026;
-        z-index: 1000;
-        padding: 4px;
-        position: relative;
-        margin: 4px 0px;
-    }
-
-    .menu {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .menu .menu_item {
-        cursor: pointer;
-        font-family: 'AdobeClean-Regular', adobe-clean, "Adobe Clean", sans-serif;
-        align-content: center;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18.2px;
-        text-align: left;
-        color: #222222;
-        padding: 0px 12px;
-        height: 32px;
-        width: 140px;
-    }
-
-    .menu .menu_item:hover {
-        background-color: #eaeaea;
-    }
-
-    .preferences {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 18.2px;
-        text-align: left;
-        color: #464646;
-    }
-
-    .divider {
-        border-top: 1px solid #E6E6E6;
-    }
-
-    /* React-specific wrappers - minimal */
-    .fab-root {
-        font-family: 'adobe-clean', Adobe Clean, sans-serif;
-    }
-
-    button.close-btn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 10; /* Ensure clickable above all other elements */
-        pointer-events: auto;
-    }
-
-    /* FAB Action Pills - From Figma Design */
-    .fab-pills-container {
-        position: absolute;
-        bottom: 42px; /* FAB height (34px) + gap (8px) = 42px */
-        right: var(--fab-margin-right, 28px);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        align-items: flex-end;
-        width: 142px;
-        z-index: 1;
-    }
-
-    .fab-pills-container.pills-below {
-        bottom: auto;
-        top: 42px; /* Same gap when positioned below */
-    }
-
-    /* Extend hover area using ::after pseudo-element - doesn't affect visual layout */
-    .fab-pills-container::after {
-        content: '';
-        position: absolute;
-        top: 100%; /* Start right after the pills content */
-        left: 0;
-        right: 0;
-        height: 8px;
-        background: transparent;
-        pointer-events: auto;
-    }
-
-    .fab-pills-container.pills-below::after {
-        top: auto;
-        bottom: 100%; /* Start right before the pills when positioned below */
-    }
-
-    /* FTE Header - First Time Experience (56px with close button) */
-    .fab-fte-header {
-        position: relative;
-        width: 142px;
-        min-height: 56px;
-        background: #FFFFFF;
-        border-radius: 12px;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-    }
-
-    .fab-fte-background {
-        position: absolute;
-        left: -13px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 183.33px;
-        height: 126.82px;
-        background: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/images/fab-header-background.svg') no-repeat center;
-        background-size: cover;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .fab-fte-close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 2;
-        color: #222222;
-        padding: 0;
-    }
-
-    .fab-fte-close:hover {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 12px;
-    }
-
-    .fab-fte-close svg {
-        width: 8px;
-        height: 8px;
-    }
-
-    .fab-fte-text {
-        position: relative;
-        width: 102px;
-        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
-        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
-        font-size: 12px;
-        line-height: 16px;
-        color: #222222; /* Figma spec color */
-        z-index: 1;
-        white-space: normal;
-        word-wrap: break-word;
-        margin-left: 16px;
-        margin-right: auto;
-        box-sizing: border-box;
-        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
-        -moz-osx-font-smoothing: auto;
-    }
-
-    /* Hover Header - Normal state (24px without close button) */
-    .fab-hover-header {
-        position: relative;
-        width: 142px;
-        min-height: 24px;
-        background: #FFFFFF; /* White background to show the colorful SVG and text */
-        border-radius: 12px;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    .fab-hover-background {
-        position: absolute;
-        left: -27px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 212.63px;
-        height: 147.09px;
-        background: url('chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/browser/images/fab-header-background.svg') no-repeat center;
-        background-size: cover;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .fab-hover-text {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
-        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
-        font-size: 12px;
-        line-height: 15px;
-        color: #222222; /* Figma spec color */
-        z-index: 1;
-        white-space: normal;
-        padding: 4px 9px;
-        box-sizing: border-box;
-        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
-        -moz-osx-font-smoothing: auto;
-    }
-
-    /* Individual Pill Buttons */
-    .fab-pill-button {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-        width: 142px;
-        min-height: 24px; /* Min height, allows growth with content */
-        background: #FFFFFF;
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 0px 2px 0px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        padding: 0;
-        transition: background 0.2s ease;
-        overflow: visible;
-    }
-
-    .fab-pill-button:hover {
-        background: #D5D5D5;
-    }
-
-    .fab-pill-button:hover .fab-pill-label,
-    .fab-pill-button:hover .fab-pill-icon {
-        color: #000000; /* Hover state color from Figma Alias/content/neutral/hover */
-    }
-
-    .fab-pill-button:active {
-        background: #F4F4F4;
-    }
-
-    .fab-pill-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px 7px 4px 10px; /* Exact Figma specs: top right bottom left */
-        flex-shrink: 0;
-        box-sizing: border-box;
-    }
-
-    .fab-pill-icon img {
-        width: 16px;
-        height: 16px;
-        display: block;
-        flex-shrink: 0;
-        /* SVG icons with currentColor fill will inherit color from parent */
-        filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(0%) hue-rotate(196deg) brightness(97%) contrast(97%); /* #222222 */
-    }
-
-    .fab-pill-button:hover .fab-pill-icon img {
-        filter: brightness(0) saturate(100%); /* #000000 on hover */
-    }
-
-    .fab-pill-label {
-        display: flex;
-        align-items: center;
-        font-family: 'AdobeClean-Bold', adobe-clean, sans-serif;
-        font-weight: 400; /* Use Bold font file directly, not synthetic bold */
-        font-size: 12px;
-        line-height: 15px; /* 1.252 * 12px = 15.024px */
-        color: #222222; /* Default text color from Figma Alias/content/neutral/default */
-        padding: 4px 9px 5px 0; /* Reduced right padding to prevent wrapping */
-        text-align: left;
-        white-space: normal; /* Allow text wrapping for multi-line content */
-        box-sizing: border-box;
-        flex: 1;
-        overflow: visible;
-        -webkit-font-smoothing: subpixel-antialiased; /* Better font rendering */
-        -moz-osx-font-smoothing: auto;
-    }
-</style></template></div></html>
+</body></html>

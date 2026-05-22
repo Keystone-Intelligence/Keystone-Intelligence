@@ -149,14 +149,70 @@
     });
   }
 
+  /* ─── SCROLL-REVEAL STAGGER ─── */
+  /* Fades grid children in with a 50ms stagger as the container enters the
+     viewport. JS-driven so no-JS visitors see content immediately (we only
+     hide elements after JS confirms the browser supports IntersectionObserver
+     and the user hasn't requested reduced motion). */
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var containerSelectors = [
+      '.problem-grid',
+      '.offer-grid',
+      '.process-steps',
+      '.industries-grid',
+      '.blog-grid',
+      '.pricing-grid',
+      '.founders-grid',
+      '.why-grid',
+      '.hero__proof'
+    ];
+    var containers = document.querySelectorAll(containerSelectors.join(','));
+    if (!containers.length) return;
+
+    var STAGGER_MS = 50;
+
+    containers.forEach(function (container) {
+      var children = container.children;
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        if (child.nodeType !== 1) continue;
+        child.classList.add('k-reveal-pending');
+        child.style.setProperty('--k-reveal-delay', (i * STAGGER_MS) + 'ms');
+      }
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var container = entry.target;
+        var children = container.children;
+        for (var i = 0; i < children.length; i++) {
+          var child = children[i];
+          if (child.classList && child.classList.contains('k-reveal-pending')) {
+            child.classList.remove('k-reveal-pending');
+            child.classList.add('k-reveal-visible');
+          }
+        }
+        observer.unobserve(container);
+      });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+
+    containers.forEach(function (c) { observer.observe(c); });
+  }
+
   /* ─── INIT ─── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       initMobileNav();
       initContactForm();
+      initScrollReveal();
     });
   } else {
     initMobileNav();
     initContactForm();
+    initScrollReveal();
   }
 })();

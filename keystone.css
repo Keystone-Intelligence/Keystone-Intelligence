@@ -52,6 +52,10 @@ html { scroll-behavior: smooth; }
   /* Widths */
   --w-content: 740px;
   --w-max:     1180px;
+
+  /* Easing curves (Emil Kowalski design philosophy: strong custom curves) */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ─── BASE ─── */
@@ -82,7 +86,7 @@ textarea:focus-visible { outline-offset: 0; }
 /* ─── SKIP LINK (a11y) ─── */
 .k-skip-link {
   position: absolute;
-  top: -40px;
+  top: 1rem;
   left: 1rem;
   background: var(--k-gold);
   color: var(--k-dark-txt);
@@ -91,9 +95,10 @@ textarea:focus-visible { outline-offset: 0; }
   font-weight: 600;
   font-size: 0.875rem;
   z-index: 999;
-  transition: top 0.2s;
+  transform: translateY(calc(-100% - 2rem));
+  transition: transform 200ms var(--ease-out);
 }
-.k-skip-link:focus { top: 1rem; }
+.k-skip-link:focus { transform: translateY(0); }
 
 /* ─── NAVIGATION ─── */
 .k-nav {
@@ -133,7 +138,7 @@ textarea:focus-visible { outline-offset: 0; }
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--k-grey);
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
 }
 .k-nav__links a:hover { color: var(--k-white); }
 
@@ -156,46 +161,96 @@ textarea:focus-visible { outline-offset: 0; }
 }
 
 /* ─── BUTTONS ─── */
+/* ── PRIMARY CTA ──
+   Premium "button-in-button" pattern (taste-skill R2): a fully rounded
+   pill with a circular icon-wrapper nested flush against the right inner
+   padding. The arrow inside the circle shifts right on hover for kinetic
+   feedback. Linear/Vercel/Stripe-style signature. */
 .btn-primary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   background: var(--k-gold);
   color: var(--k-dark-txt);
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--r-md);
+  /* Asymmetric padding: larger on the left so the nested circle on the
+     right balances the visual weight without floating away from the edge. */
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  border-radius: 100px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 160ms var(--ease-out),
+              box-shadow 160ms var(--ease-out),
+              transform 160ms var(--ease-out);
   text-align: center;
   letter-spacing: 0.01em;
 }
-.btn-primary:hover {
-  background: var(--k-gold-l);
-  box-shadow: 0 4px 20px rgba(196,154,60,0.28);
+.btn-primary::after {
+  content: '';
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  background-color: rgba(12, 12, 18, 0.18);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'><path d='M2.5 6h7M6 2.5L9.5 6L6 9.5' stroke='%230C0C12' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+  border-radius: 50%;
+  transition: background-color 200ms var(--ease-out),
+              transform 200ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--k-gold-l);
+    box-shadow: 0 4px 20px rgba(196,154,60,0.28);
+    transform: translateY(-1px);
+  }
+  .btn-primary:hover::after {
+    background-color: rgba(12, 12, 18, 0.30);
+    transform: translateX(2px);
+  }
+}
+.btn-primary:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
 }
 
+/* ── SECONDARY CTA ──
+   Outline variant mirrors the pill shape for visual cohesion with
+   .btn-primary but stays icon-less to read as subordinate. */
 .btn-outline {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: transparent;
   color: var(--k-gold);
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.7rem 1.7rem;
-  border-radius: var(--r-md);
+  padding: 0.6rem 1.5rem;
+  border-radius: 100px;
   border: 1.5px solid var(--k-gold);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 160ms var(--ease-out),
+              color 160ms var(--ease-out),
+              transform 160ms var(--ease-out);
   text-align: center;
 }
-.btn-outline:hover {
-  background: var(--k-gold-dim);
-  color: var(--k-gold-l);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    background: var(--k-gold-dim);
+    color: var(--k-gold-l);
+  }
+}
+.btn-outline:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
 }
 
-.btn-nav {
+.btn-nav,
+.k-nav__links a.btn-nav {
   display: inline-block;
   background: var(--k-gold);
   color: var(--k-dark-txt);
@@ -204,9 +259,19 @@ textarea:focus-visible { outline-offset: 0; }
   font-weight: 600;
   padding: 0.5rem 1.25rem;
   border-radius: var(--r-sm);
-  transition: background 0.2s;
+  transition: background 160ms var(--ease-out),
+              transform 160ms var(--ease-out),
+              color 160ms var(--ease-out);
 }
-.btn-nav:hover { background: var(--k-gold-l); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-nav:hover,
+  .k-nav__links a.btn-nav:hover { background: var(--k-gold-l); }
+}
+.btn-nav:active,
+.k-nav__links a.btn-nav:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+}
 
 /* When .btn-nav is the current page (contact page), invert to outline style */
 .k-nav__links a.btn-nav[aria-current="page"] {
@@ -219,7 +284,10 @@ textarea:focus-visible { outline-offset: 0; }
 
 /* ─── SECTION WRAPPER ─── */
 .k-section {
-  padding: 6rem 2.5rem;
+  /* Top/bottom padding lifted from 6rem to 7.5rem for premium breathing
+     room (taste-skill: high-end agency standard is py-24..py-40). Mobile
+     stays at 4rem to keep the page compact on small screens. */
+  padding: 7.5rem 2.5rem;
 }
 .k-section--dark  { background: var(--k-bg); }
 .k-section--alt   { background: var(--k-bg-2); }
@@ -300,7 +368,8 @@ textarea:focus-visible { outline-offset: 0; }
   border: 1px solid var(--k-border);
   border-radius: var(--r-lg);
   padding: 2rem;
-  transition: border-color 0.25s, background 0.25s;
+  transition: border-color 200ms var(--ease-out),
+              background 200ms var(--ease-out);
 }
 .k-card:hover {
   background: var(--k-card-h);
@@ -390,7 +459,7 @@ textarea:focus-visible { outline-offset: 0; }
   font-size: 0.875rem;
   color: var(--k-mid);
   margin-bottom: 0.6rem;
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
 }
 .k-footer__col a:hover { color: var(--k-white); }
 .k-footer__bottom {
@@ -411,7 +480,7 @@ textarea:focus-visible { outline-offset: 0; }
 .k-footer__bottom a {
   font-size: 0.78rem;
   color: var(--k-mid);
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
 }
 .k-footer__bottom a:hover { color: var(--k-gold); }
 
@@ -480,7 +549,7 @@ textarea:focus-visible { outline-offset: 0; }
   margin-bottom: 1.25rem;
 }
 .k-article-body li { margin-bottom: 0.6rem; line-height: 1.75; }
-.k-article-body a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); transition: border-color 0.2s; }
+.k-article-body a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); transition: border-color 150ms var(--ease-out); }
 .k-article-body a:hover { border-bottom-color: var(--k-gold); }
 
 /* Sidebar */
@@ -507,7 +576,7 @@ textarea:focus-visible { outline-offset: 0; }
   color: var(--k-mid);
   padding: 0.25rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.04);
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
 }
 .k-toc a:hover { color: var(--k-gold); }
 .k-sidebar__cta {
@@ -551,11 +620,18 @@ textarea:focus-visible { outline-offset: 0; }
   border: 1px solid var(--k-border);
   border-radius: var(--r-lg);
   padding: 1.5rem;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: border-color 200ms var(--ease-out),
+              transform 200ms var(--ease-out);
 }
-.k-related__card:hover {
-  border-color: var(--k-border-h);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .k-related__card:hover {
+    border-color: var(--k-border-h);
+    transform: translateY(-2px);
+  }
+}
+.k-related__card:active {
+  transform: scale(0.99);
+  transition-duration: 100ms;
 }
 .k-related__card .tag {
   display: block;
@@ -598,7 +674,8 @@ textarea:focus-visible { outline-offset: 0; }
   height: 2px;
   background: var(--k-white);
   border-radius: 2px;
-  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 220ms var(--ease-out),
+              opacity 220ms var(--ease-out);
   transform-origin: center;
 }
 
@@ -624,9 +701,11 @@ textarea:focus-visible { outline-offset: 0; }
 @media (max-width: 768px) {
   .k-nav { padding: 1rem 1.5rem; }
 
-  /* Mobile menu: drops from under the nav, full-width */
+  /* Mobile menu: drops from under the nav, full-width.
+     Always flex (not display:none) so we can animate opacity+transform.
+     visibility+pointer-events keep the closed menu inert. */
   .k-nav__links {
-    display: none;
+    display: flex;
     position: fixed;
     top: 60px;
     left: 0;
@@ -639,11 +718,27 @@ textarea:focus-visible { outline-offset: 0; }
     -webkit-backdrop-filter: blur(18px);
     padding: 1.5rem;
     border-bottom: 1px solid var(--k-border);
-    max-height: calc(100vh - 60px);
+    /* dvh = dynamic viewport height; stays correct when iOS Safari's
+       address bar collapses, so the mobile menu never exceeds the
+       actual visible area. */
+    max-height: calc(100dvh - 60px);
     overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 220ms var(--ease-out),
+                transform 220ms var(--ease-out),
+                visibility 0s linear 220ms;
   }
   .k-nav--open .k-nav__links {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 220ms var(--ease-out),
+                transform 220ms var(--ease-out),
+                visibility 0s linear 0s;
   }
   .k-nav__links li {
     border-bottom: 1px solid var(--k-border);
@@ -684,12 +779,16 @@ textarea:focus-visible { outline-offset: 0; }
 }
 
 /* ─── REDUCED MOTION ─── */
+/* Skill principle: reduced motion means gentler animations, not zero.
+   Preserve opacity/color/background/border transitions (they aid comprehension).
+   Cancel transform-based movement. */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition-property: opacity, color, background-color, border-color, box-shadow, fill, stroke !important;
+    transition-duration: 200ms !important;
   }
 }
 
@@ -765,7 +864,7 @@ textarea:focus-visible { outline-offset: 0; }
 .k-footer__contact a {
   font-size: 0.82rem;
   color: var(--k-mid);
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
@@ -798,7 +897,7 @@ textarea:focus-visible { outline-offset: 0; }
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  transition: color 0.2s;
+  transition: color 150ms var(--ease-out);
 }
 .contact-direct__phones a:hover { color: var(--k-white); }
 .contact-direct__cc {
@@ -818,4 +917,70 @@ textarea:focus-visible { outline-offset: 0; }
   .ceo-profile { grid-template-columns: 1fr; gap: 2rem; }
   .ceo-profile__photo { max-width: 320px; }
   .ceo-profile__name { font-size: 2rem; }
+}
+
+/* ============================================================
+   PRESS FEEDBACK + TOUCH-SAFE HOVER GUARDS
+   ------------------------------------------------------------
+   Skill principle:
+   - Pressable elements should give instant tactile feedback (scale on :active).
+   - Hover translates must be gated by (hover: hover) so touch devices don't
+     get sticky lifted states on tap.
+   These rules complement the per-page card styles in inline <style> blocks.
+   ============================================================ */
+
+/* Clickable card surfaces (some are defined in inline page <style> blocks
+   that load AFTER keystone.css; we double the class selector to bump
+   specificity above those single-class rules). */
+.industry-card.industry-card,
+.blog-card.blog-card,
+.blog-listing-card.blog-listing-card,
+.offer-card.offer-card,
+.k-related__card.k-related__card {
+  transition: border-color 200ms var(--ease-out),
+              background 200ms var(--ease-out),
+              transform 200ms var(--ease-out);
+}
+.industry-card:active,
+.blog-card:active,
+.blog-listing-card:active,
+.k-related__card:active {
+  transform: scale(0.99);
+  transition-duration: 100ms;
+}
+
+/* Touch devices: cancel hover-based translateY lifts so they don't get
+   stuck after a tap (the per-page :hover rules use translateY(-2px)). */
+@media (hover: none) {
+  .blog-card.blog-card:hover,
+  .blog-listing-card.blog-listing-card:hover,
+  .k-related__card.k-related__card:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   SCROLL-REVEAL STAGGER
+   ------------------------------------------------------------
+   Containers tagged by keystone.js fade their children in with a small
+   stagger as they enter the viewport. Initial state is set by JS so that
+   no-JS visitors see content immediately (no flash-of-hidden-content).
+   ============================================================ */
+.k-reveal-pending {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.k-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms var(--ease-out) var(--k-reveal-delay, 0ms),
+              transform 400ms var(--ease-out) var(--k-reveal-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .k-reveal-pending,
+  .k-reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
