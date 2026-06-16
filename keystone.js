@@ -203,16 +203,43 @@
     containers.forEach(function (c) { observer.observe(c); });
   }
 
+  /* ─── BOOKING CLICK TRACKING (GA4) ─── */
+  /* Fires a `booking_click` GA4 event whenever a visitor clicks any link to
+     the Google Calendar discovery-call scheduler. gtag is defined inline in
+     each page <head> before this deferred script runs, so it's available
+     globally; we guard anyway so a missing tag never throws. */
+  function initBookingTracking() {
+    if (typeof window.gtag !== 'function') return;
+
+    var bookingURL = 'calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp';
+    var links = document.querySelectorAll('a[href*="' + bookingURL + '"]');
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        window.gtag('event', 'booking_click', {
+          event_category: 'Lead Generation',
+          event_label: link.innerText.trim() || 'Discovery Call CTA',
+          cta_location: link.closest('nav') ? 'navigation' :
+                        link.closest('.hero') ? 'hero' :
+                        link.closest('.cta-band') ? 'cta_band' :
+                        link.closest('.k-sidebar') ? 'sidebar' : 'other'
+        });
+      });
+    });
+  }
+
   /* ─── INIT ─── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       initMobileNav();
       initContactForm();
       initScrollReveal();
+      initBookingTracking();
     });
   } else {
     initMobileNav();
     initContactForm();
     initScrollReveal();
+    initBookingTracking();
   }
 })();

@@ -35,13 +35,13 @@ is operational pattern recognition across sectors — not sector specialisation.
 ## Contact
 - Website: https://keystoneintelligencegroup.com
 - Email: hello@keystoneintelligencegroup.com
-- Discovery Call: https://keystoneintelligencegroup.com/contact.html
+- Discovery Call: https://keystoneintelligencegroup.com/contact
 
 ## Pages
 - Homepage: https://keystoneintelligencegroup.com/
-- About: https://keystoneintelligencegroup.com/about.html
-- How It Works: https://keystoneintelligencegroup.com/how-it-works.html
-- Case Studies: https://keystoneintelligencegroup.com/industries.html
-- Pricing: https://keystoneintelligencegroup.com/pricing.html
-- Insights: https://keystoneintelligencegroup.com/blog.html
-- Contact: https://keystoneintelligencegroup.com/contact.html
+- About: https://keystoneintelligencegroup.com/about
+- How It Works: https://keystoneintelligencegroup.com/how-it-works
+- Case Studies: https://keystoneintelligencegroup.com/industries
+- Pricing: https://keystoneintelligencegroup.com/pricing
+- Insights: https://keystoneintelligencegroup.com/blog
+- Contact: https://keystoneintelligencegroup.com/contact
