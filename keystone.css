@@ -1467,7 +1467,9 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
   .k-nav__dropdown-group { display: block; min-width: 0; }
   .k-nav__dropdown-head { display: block; padding: 0.75rem 0.25rem 0; }
   .k-nav__links .k-nav__dropdown-panel a { font-size: 0.98rem; padding: 0.7rem 0.25rem 0.7rem 1rem; color: var(--k-grey); }
-  .k-nav__chev { display: inline-block; }
+  /* The mobile menu makes the toggle display:block, so flex `gap` no longer
+     spaces the chevron — give it an explicit left margin instead. */
+  .k-nav__chev { display: inline-block; margin-left: 0.5rem; }
   .k-nav__dropdown--open .k-nav__chev { transform: rotate(225deg); margin-top: 2px; }
 }
 @media (max-width: 480px) {
