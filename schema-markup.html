@@ -297,3 +297,54 @@
   }
 }
 </script>
+
+
+<!-- ============================================================
+     SERVICE PAGES ( /ai-consultancy, /ai-automation, /ai-agents,
+     /ai-development, /ai-for-professional-services,
+     /ai-for-financial-services, /ai-for-waste-management )
+     Each service page ships FOUR JSON-LD blocks in its own <head>
+     (already inline in each file — listed here for reference):
+       1. Organization  (identical site-wide boilerplate)
+       2. Service        (retargeted per page — example below)
+       3. BreadcrumbList (Home > [Page])
+       4. FAQPage        (mirrors that page's on-page FAQ)
+     Note: /ai-automation and /ai-development intentionally avoid the
+     word "workflow" everywhere, including in their Service schema,
+     to match their target search intent.
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI Consultancy",
+  "name": "AI Consultancy for Irish SMEs",
+  "provider": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "areaServed": { "@type": "Country", "name": "Ireland" },
+  "audience": { "@type": "BusinessAudience", "name": "Irish SMEs turning over €1M–€50M" },
+  "description": "Fixed-price AI consultancy for Irish businesses. Keystone identifies, costs, and builds the AI systems that move a metric — no retainers, every recommendation backed by a payback case.",
+  "url": "https://keystoneintelligencegroup.com/ai-consultancy"
+}
+</script>
+
+
+<!-- ============================================================
+     AI GLOSSARY ( /ai-glossary )
+     Reference page. Ships Organization + BreadcrumbList + a
+     DefinedTermSet listing all 15 glossary terms (inline in file).
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "AI Glossary for Irish Business Owners",
+  "url": "https://keystoneintelligencegroup.com/ai-glossary",
+  "hasDefinedTerm": [
+    { "@type": "DefinedTerm", "name": "AI Agent", "description": "Software that can take actions on its own toward a goal, not just answer questions." }
+  ]
+}
+</script>

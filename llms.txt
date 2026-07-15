@@ -17,6 +17,18 @@ and legal services — before being offered to clients.
 - Free 20-minute Discovery Call
 - Ongoing agent development from €1,000 per workflow
 
+## Services
+- AI Consultancy: https://keystoneintelligencegroup.com/ai-consultancy
+- AI Automation: https://keystoneintelligencegroup.com/ai-automation
+- AI Agents: https://keystoneintelligencegroup.com/ai-agents
+- Custom AI Development: https://keystoneintelligencegroup.com/ai-development
+- AI for Professional Services: https://keystoneintelligencegroup.com/ai-for-professional-services
+- AI for Financial Services: https://keystoneintelligencegroup.com/ai-for-financial-services
+- AI for Waste Management: https://keystoneintelligencegroup.com/ai-for-waste-management
+
+## Reference
+- AI Glossary for Irish Business Owners: https://keystoneintelligencegroup.com/ai-glossary
+
 ## Proven Builds (Internal)
 - Nine-agent operations hub running a 30-vehicle waste management business
 - Invoice reconciliation across Salesforce and Xero (AR Guardian)

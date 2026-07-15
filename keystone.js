@@ -167,7 +167,9 @@
       '.pricing-grid',
       '.founders-grid',
       '.why-grid',
-      '.hero__proof'
+      '.hero__proof',
+      '.svc-grid',
+      '.svc-stats'
     ];
     var containers = document.querySelectorAll(containerSelectors.join(','));
     if (!containers.length) return;
