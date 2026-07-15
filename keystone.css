@@ -435,8 +435,8 @@ textarea:focus-visible { outline-offset: 0; }
   max-width: var(--w-max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 2.5rem;
 }
 .k-footer__brand p {
   font-size: 0.875rem;
@@ -983,4 +983,497 @@ textarea:focus-visible { outline-offset: 0; }
     transform: none;
     transition: none;
   }
+}
+
+/* ============================================================
+   NAV — SERVICES DROPDOWN
+   ------------------------------------------------------------
+   Desktop: reveal on hover / focus-within (no JS needed).
+   Mobile: panel renders inline (always expanded) inside the
+   existing .k-nav--open mobile menu.
+   ============================================================ */
+.k-nav__dropdown { position: relative; }
+.k-nav__dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.k-nav__chev {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -3px;
+  opacity: 0.65;
+  transition: transform 200ms var(--ease-out);
+}
+.k-nav__dropdown:hover .k-nav__chev,
+.k-nav__dropdown:focus-within .k-nav__chev {
+  transform: rotate(225deg);
+  margin-top: 2px;
+}
+
+.k-nav__dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: flex;
+  gap: 2.25rem;
+  padding: 1.5rem 1.75rem;
+  margin-top: 1.15rem;
+  background: rgba(12,12,18,0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-md);
+  box-shadow: 0 24px 60px -24px rgba(0,0,0,0.7);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity 180ms var(--ease-out),
+              transform 180ms var(--ease-out),
+              visibility 0s linear 180ms;
+  z-index: 210;
+}
+/* Transparent bridge so the cursor can cross the gap without dropping :hover */
+.k-nav__dropdown-panel::before {
+  content: '';
+  position: absolute;
+  top: -1.15rem;
+  left: 0;
+  right: 0;
+  height: 1.15rem;
+}
+.k-nav__dropdown:hover .k-nav__dropdown-panel,
+.k-nav__dropdown:focus-within .k-nav__dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 180ms var(--ease-out),
+              transform 180ms var(--ease-out),
+              visibility 0s linear 0s;
+}
+.k-nav__dropdown-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 172px;
+}
+.k-nav__dropdown-head {
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.6rem;
+}
+.k-nav__links .k-nav__dropdown-panel a {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--k-grey);
+  padding: 0.45rem 0;
+  white-space: nowrap;
+  transition: color 150ms var(--ease-out);
+}
+.k-nav__links .k-nav__dropdown-panel a:hover { color: var(--k-white); }
+.k-nav__links .k-nav__dropdown-panel a[aria-current="page"] { color: var(--k-gold); }
+.k-nav__links .k-nav__dropdown-panel a[aria-current="page"]::after { display: none; }
+
+/* ============================================================
+   SERVICE PAGES — shared component kit
+   Used by /ai-consultancy, /ai-automation, /ai-agents,
+   /ai-development, /ai-for-* sector pages, /ai-glossary.
+   All colours, type and spacing draw from the design tokens
+   above so every service page matches the existing brand.
+   ============================================================ */
+
+/* ─── Hero ─── */
+.svc-hero {
+  padding: 9rem 2.5rem 4.5rem;
+  background: linear-gradient(155deg, #111118 0%, var(--k-bg) 72%);
+  border-bottom: 1px solid var(--k-border);
+}
+.svc-hero__inner { max-width: var(--w-max); margin: 0 auto; }
+.svc-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--k-white);
+  max-width: 900px;
+  margin-top: 1rem;
+}
+.svc-hero__sub {
+  font-size: 1.15rem;
+  color: var(--k-grey);
+  line-height: 1.75;
+  max-width: 660px;
+  margin-top: 1.5rem;
+}
+.svc-hero__cta {
+  margin-top: 2.25rem;
+  display: flex;
+  gap: 1rem 1.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.svc-hero__note {
+  font-size: 0.85rem;
+  color: var(--k-mid);
+}
+
+/* ─── Hero proof stats ─── */
+.svc-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: 3.25rem;
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.svc-stat {
+  padding: 1.5rem 1.75rem;
+  border-right: 1px solid var(--k-border);
+  background: rgba(255,255,255,0.02);
+}
+.svc-stat:last-child { border-right: none; }
+.svc-stat__num {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--k-gold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.svc-stat__label {
+  font-size: 0.8rem;
+  color: var(--k-mid);
+  margin-top: 0.55rem;
+  line-height: 1.5;
+}
+
+/* ─── Grid + card kit ─── */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.svc-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.svc-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.svc-card {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 2px solid rgba(196,154,60,0.35);
+  border-radius: var(--r-lg);
+  padding: 1.85rem;
+  transition: border-color 200ms var(--ease-out),
+              background 200ms var(--ease-out),
+              transform 200ms var(--ease-out);
+}
+.svc-card:hover {
+  border-top-color: var(--k-gold);
+  background: var(--k-card-h);
+}
+.svc-card__kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  margin-bottom: 0.75rem;
+}
+.svc-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--k-white);
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+.svc-card p {
+  font-size: 0.9rem;
+  color: var(--k-grey);
+  line-height: 1.75;
+}
+.svc-card__metric {
+  display: block;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--k-border);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--k-gold);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+/* Anchor card variant (case-study proof links) */
+a.svc-card { display: block; }
+a.svc-card .svc-card__more {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--k-gold);
+}
+a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
+@media (hover: hover) and (pointer: fine) {
+  a.svc-card:hover { transform: translateY(-2px); }
+}
+
+/* ─── Feature band (hub economics / operator differentiator) ─── */
+.svc-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.svc-feature__body p {
+  font-size: 0.98rem;
+  color: var(--k-grey);
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+  max-width: 560px;
+}
+.svc-feature__body p:last-child { margin-bottom: 0; }
+.svc-feature__aside {
+  background: linear-gradient(145deg, rgba(196,154,60,0.07), var(--k-card));
+  border: 1px solid var(--k-border-h);
+  border-radius: var(--r-lg);
+  padding: 2.25rem;
+}
+.svc-feature__aside h3 {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1.25rem;
+}
+
+/* ─── Tick list (benefit checklists) ─── */
+.svc-tick-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.svc-tick-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 0.92rem;
+  color: var(--k-grey);
+  line-height: 1.6;
+}
+.svc-tick-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid var(--k-gold);
+  border-bottom: 2px solid var(--k-gold);
+  transform: rotate(-45deg);
+}
+.svc-tick-list strong { color: var(--k-white); font-weight: 600; }
+
+/* ─── Sector tags ─── */
+.svc-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.svc-tag {
+  font-size: 0.82rem;
+  color: var(--k-grey);
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-radius: 100px;
+  padding: 0.45rem 1rem;
+}
+
+/* ─── FAQ accordion (native <details>) ─── */
+.svc-faq { margin-top: 2.75rem; max-width: 860px; border-top: 1px solid var(--k-border); }
+.svc-faq__item { border-bottom: 1px solid var(--k-border); }
+.svc-faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.4rem 0.25rem;
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--k-white);
+  transition: color 150ms var(--ease-out);
+}
+.svc-faq__item summary::-webkit-details-marker { display: none; }
+.svc-faq__item summary::marker { content: ''; }
+.svc-faq__item summary:hover { color: var(--k-gold-l); }
+.svc-faq__item summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--k-gold);
+  border-bottom: 2px solid var(--k-gold);
+  transform: rotate(45deg);
+  transition: transform 220ms var(--ease-out);
+}
+.svc-faq__item[open] summary::after { transform: rotate(225deg); }
+.svc-faq__answer {
+  padding: 0 0.25rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--k-grey);
+  line-height: 1.8;
+  max-width: 760px;
+}
+.svc-faq__answer a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); }
+.svc-faq__answer a:hover { border-bottom-color: var(--k-gold); }
+
+/* Centered FAQ column — the FAQ section's .k-inner also carries .svc-faq-block,
+   which narrows and centres the whole block (heading + accordion) on desktop.
+   Accordion rows stay left-aligned for readability. */
+.svc-faq-block { max-width: 880px; margin-left: auto; margin-right: auto; }
+.svc-faq-block .k-label { display: block; text-align: center; }
+.svc-faq-block .k-h2 { text-align: center; }
+.svc-faq-block .k-lead { text-align: center; margin-left: auto; margin-right: auto; }
+.svc-faq-block .svc-faq { max-width: none; text-align: left; }
+
+/* ─── CTA band ─── */
+.svc-cta {
+  text-align: center;
+  padding: 5.5rem 2.5rem;
+  background: var(--k-bg-2);
+  border-top: 1px solid var(--k-border);
+}
+.svc-cta .k-label { display: inline-block; margin-bottom: 1.25rem; }
+.svc-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+.svc-cta p {
+  font-size: 1rem;
+  color: var(--k-grey);
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* ─── Glossary (/ai-glossary) ─── */
+.glossary-nav { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2.5rem; }
+.glossary-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--k-gold);
+  border: 1px solid var(--k-border);
+  border-radius: var(--r-sm);
+  padding: 0.35rem 0.7rem;
+  transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.glossary-nav a:hover { border-color: var(--k-border-h); background: var(--k-gold-dim); }
+.glossary-term {
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--k-border);
+  scroll-margin-top: 6rem;
+}
+.glossary-term__term {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--k-white);
+  margin-bottom: 0.85rem;
+}
+.glossary-term__term .glossary-term__vol {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--k-mid);
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+.glossary-term__def { color: var(--k-grey); line-height: 1.8; margin-bottom: 0.9rem; font-size: 0.98rem; max-width: 800px; }
+.glossary-term__def a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); }
+.glossary-term__eg {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  border-top: 2px solid rgba(196,154,60,0.35);
+  border-radius: var(--r-md);
+  padding: 1.1rem 1.4rem;
+  margin-top: 0.5rem;
+  max-width: 800px;
+}
+.glossary-term__eg .glossary-term__eg-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.glossary-term__eg p { font-size: 0.9rem; color: var(--k-grey); margin: 0; line-height: 1.7; }
+.glossary-term__eg a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); }
+
+/* ─── Service page + glossary responsive ─── */
+@media (max-width: 900px) {
+  .svc-feature { grid-template-columns: 1fr; gap: 2.25rem; }
+  .svc-grid--3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .svc-hero { padding: 7rem 1.5rem 3rem; }
+  .svc-grid, .svc-grid--2, .svc-grid--3 { grid-template-columns: 1fr; }
+  .svc-stats { grid-template-columns: 1fr 1fr; }
+  .svc-cta { padding: 3.5rem 1.5rem; }
+
+  /* Services dropdown → click-to-expand accordion inside the mobile menu.
+     Collapsed by default; JS toggles .k-nav__dropdown--open on tap so the
+     toggle no longer navigates away and the panel isn't open on load. */
+  .k-nav__dropdown-panel {
+    position: static;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    margin-top: 0;
+    padding: 0 0 0.5rem;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    transition: none;
+  }
+  .k-nav__dropdown--open .k-nav__dropdown-panel { display: block; }
+  /* Kill the desktop hover/focus reveal on mobile: touch must NEVER apply the
+     translateX(-50%) centring transform (it slid the panel off to the side).
+     The panel stays in normal flow; only the tap (--open) shows/hides it. */
+  .k-nav__dropdown:hover .k-nav__dropdown-panel,
+  .k-nav__dropdown:focus-within .k-nav__dropdown-panel {
+    position: static;
+    transform: none;
+  }
+  .k-nav__dropdown-panel::before { display: none; }
+  .k-nav__dropdown-group { display: block; min-width: 0; }
+  .k-nav__dropdown-head { display: block; padding: 0.75rem 0.25rem 0; }
+  .k-nav__links .k-nav__dropdown-panel a { font-size: 0.98rem; padding: 0.7rem 0.25rem 0.7rem 1rem; color: var(--k-grey); }
+  /* The mobile menu makes the toggle display:block, so flex `gap` no longer
+     spaces the chevron — give it an explicit left margin instead. */
+  .k-nav__chev { display: inline-block; margin-left: 0.5rem; }
+  .k-nav__dropdown--open .k-nav__chev { transform: rotate(225deg); margin-top: 2px; }
+}
+@media (max-width: 480px) {
+  .svc-stats { grid-template-columns: 1fr; }
+  .svc-stat { border-right: none; border-bottom: 1px solid var(--k-border); }
+  .svc-stat:last-child { border-bottom: none; }
 }

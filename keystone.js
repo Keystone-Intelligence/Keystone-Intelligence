@@ -23,6 +23,13 @@
       nav.classList.remove('k-nav--open');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Open menu');
+      // Collapse the Services sub-menu so it isn't pre-opened next time.
+      var dd = nav.querySelector('.k-nav__dropdown');
+      if (dd) {
+        dd.classList.remove('k-nav__dropdown--open');
+        var ddToggle = dd.querySelector('.k-nav__dropdown-toggle');
+        if (ddToggle) ddToggle.setAttribute('aria-expanded', 'false');
+      }
     }
     function openMenu() {
       nav.classList.add('k-nav--open');
@@ -55,6 +62,36 @@
     var onMQChange = function (e) { if (e.matches) closeMenu(); };
     if (mq.addEventListener) mq.addEventListener('change', onMQChange);
     else if (mq.addListener) mq.addListener(onMQChange);
+  }
+
+  /* ─── SERVICES NAV DROPDOWN (mobile click-to-open) ─── */
+  /* Desktop reveals the panel on hover/focus (pure CSS). On mobile there's no
+     hover, and the toggle is a real link to the pillar page — so tapping it used
+     to navigate away. Here we intercept the tap on small screens: it expands the
+     sub-menu instead of navigating, and doesn't bubble up to the mobile-menu
+     close handler. Desktop taps fall through and follow the link normally. */
+  function initServicesDropdown() {
+    var dd = document.querySelector('.k-nav__dropdown');
+    if (!dd) return;
+    var toggle = dd.querySelector('.k-nav__dropdown-toggle');
+    if (!toggle) return;
+    var mq = window.matchMedia('(max-width: 768px)');
+
+    toggle.setAttribute('aria-haspopup', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+
+    toggle.addEventListener('click', function (e) {
+      if (!mq.matches) return; // desktop: let the link navigate to the pillar page
+      e.preventDefault();
+      e.stopPropagation();     // don't trigger the mobile-menu close handler
+      var open = dd.classList.toggle('k-nav__dropdown--open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // If the viewport grows past mobile, clear the mobile open-state.
+    var onChange = function (e) { if (!e.matches) dd.classList.remove('k-nav__dropdown--open'); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
   }
 
   /* ─── CONTACT FORM VALIDATION ─── */
@@ -167,7 +204,9 @@
       '.pricing-grid',
       '.founders-grid',
       '.why-grid',
-      '.hero__proof'
+      '.hero__proof',
+      '.svc-grid',
+      '.svc-stats'
     ];
     var containers = document.querySelectorAll(containerSelectors.join(','));
     if (!containers.length) return;
@@ -232,12 +271,14 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       initMobileNav();
+      initServicesDropdown();
       initContactForm();
       initScrollReveal();
       initBookingTracking();
     });
   } else {
     initMobileNav();
+    initServicesDropdown();
     initContactForm();
     initScrollReveal();
     initBookingTracking();
