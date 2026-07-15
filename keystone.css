@@ -1334,6 +1334,15 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
 .svc-faq__answer a { color: var(--k-gold); border-bottom: 1px solid rgba(196,154,60,0.3); }
 .svc-faq__answer a:hover { border-bottom-color: var(--k-gold); }
 
+/* Centered FAQ column — the FAQ section's .k-inner also carries .svc-faq-block,
+   which narrows and centres the whole block (heading + accordion) on desktop.
+   Accordion rows stay left-aligned for readability. */
+.svc-faq-block { max-width: 880px; margin-left: auto; margin-right: auto; }
+.svc-faq-block .k-label { display: block; text-align: center; }
+.svc-faq-block .k-h2 { text-align: center; }
+.svc-faq-block .k-lead { text-align: center; margin-left: auto; margin-right: auto; }
+.svc-faq-block .svc-faq { max-width: none; text-align: left; }
+
 /* ─── CTA band ─── */
 .svc-cta {
   text-align: center;
@@ -1426,10 +1435,12 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
   .svc-stats { grid-template-columns: 1fr 1fr; }
   .svc-cta { padding: 3.5rem 1.5rem; }
 
-  /* Services dropdown → inline expanded list inside the mobile menu */
+  /* Services dropdown → click-to-expand accordion inside the mobile menu.
+     Collapsed by default; JS toggles .k-nav__dropdown--open on tap so the
+     toggle no longer navigates away and the panel isn't open on load. */
   .k-nav__dropdown-panel {
     position: static;
-    display: block;
+    display: none;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -1443,11 +1454,13 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
     box-shadow: none;
     transition: none;
   }
+  .k-nav__dropdown--open .k-nav__dropdown-panel { display: block; }
   .k-nav__dropdown-panel::before { display: none; }
   .k-nav__dropdown-group { display: block; min-width: 0; }
   .k-nav__dropdown-head { display: block; padding: 0.75rem 0.25rem 0; }
   .k-nav__links .k-nav__dropdown-panel a { font-size: 0.98rem; padding: 0.7rem 0.25rem 0.7rem 1rem; color: var(--k-grey); }
-  .k-nav__chev { display: none; }
+  .k-nav__chev { display: inline-block; }
+  .k-nav__dropdown--open .k-nav__chev { transform: rotate(225deg); margin-top: 2px; }
 }
 @media (max-width: 480px) {
   .svc-stats { grid-template-columns: 1fr; }
