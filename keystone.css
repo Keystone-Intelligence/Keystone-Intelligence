@@ -1455,6 +1455,14 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
     transition: none;
   }
   .k-nav__dropdown--open .k-nav__dropdown-panel { display: block; }
+  /* Kill the desktop hover/focus reveal on mobile: touch must NEVER apply the
+     translateX(-50%) centring transform (it slid the panel off to the side).
+     The panel stays in normal flow; only the tap (--open) shows/hides it. */
+  .k-nav__dropdown:hover .k-nav__dropdown-panel,
+  .k-nav__dropdown:focus-within .k-nav__dropdown-panel {
+    position: static;
+    transform: none;
+  }
   .k-nav__dropdown-panel::before { display: none; }
   .k-nav__dropdown-group { display: block; min-width: 0; }
   .k-nav__dropdown-head { display: block; padding: 0.75rem 0.25rem 0; }
