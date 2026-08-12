@@ -28,6 +28,7 @@ and legal services — before being offered to clients.
 
 ## Reference
 - AI Glossary for Irish Business Owners: https://keystoneintelligencegroup.com/ai-glossary
+- Frequently Asked Questions: https://keystoneintelligencegroup.com/faq
 
 ## Proven Builds (Internal)
 - Nine-agent operations hub running a 30-vehicle waste management business
@@ -56,4 +57,5 @@ is operational pattern recognition across sectors — not sector specialisation.
 - Case Studies: https://keystoneintelligencegroup.com/industries
 - Pricing: https://keystoneintelligencegroup.com/pricing
 - Insights: https://keystoneintelligencegroup.com/blog
+- FAQ: https://keystoneintelligencegroup.com/faq
 - Contact: https://keystoneintelligencegroup.com/contact
