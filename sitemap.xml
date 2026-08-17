@@ -46,7 +46,7 @@
 
   <url>
     <loc>https://keystoneintelligencegroup.com/blog</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -156,6 +156,27 @@
     <lastmod>2026-05-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://keystoneintelligencegroup.com/blog/blog-what-is-business-process-automation</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://keystoneintelligencegroup.com/blog/blog-ai-cost-and-roi-ireland</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://keystoneintelligencegroup.com/blog/blog-ai-gdpr-ireland</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>

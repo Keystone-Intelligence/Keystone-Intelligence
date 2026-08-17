@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Search Console verification -->
+<meta name="google-site-verification" content="GZOeIuWbbR7SqPr9c-diliUJ6rWhMphGpiPk-F7wPag" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4EYW6T0G2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4EYW6T0G2K');
+</script>
+<!-- Clarity tracking code for https://keystoneintelligencegroup.com/ -->
+<script>
+ (function(c,l,a,r,i,t,y){
+ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+ })(window, document, "clarity", "script", "x6rqjlc5jy");
+</script>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Does AI Cost for an Irish Business? Real Numbers</title>
+<meta name="description" content="Real build costs, real payback calculations, real Irish businesses. Keystone Intelligence breaks down what AI actually costs and what you get back. No estimates.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://keystoneintelligencegroup.com/blog/blog-ai-cost-and-roi-ireland">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Does AI Actually Cost for an Irish Business? Real Numbers, Real Payback",
+  "description": "What an AI build actually costs an Irish SME, broken into its three components, with payback maths from three live systems and the compounding economics of building incrementally.",
+  "url": "https://keystoneintelligencegroup.com/blog/blog-ai-cost-and-roi-ireland",
+  "datePublished": "2026-08-17",
+  "dateModified": "2026-08-17",
+  "inLanguage": "en-IE",
+  "keywords": ["AI ROI", "AI cost Ireland", "AI implementation cost Ireland", "how much does AI cost for Irish business", "AI payback period Ireland", "AI return on investment Ireland", "AI budget SME Ireland"],
+  "articleSection": "Cost & ROI",
+  "author": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://keystoneintelligencegroup.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://keystoneintelligencegroup.com/blog/blog-ai-cost-and-roi-ireland"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does AI cost for an Irish business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At Keystone Intelligence there are three costs. A free 20-minute Discovery Call, a €1,000 Discovery Report that maps and prices the build exactly, and the build itself at a fixed price between €1,000 and €20,000 depending on complexity. Running costs afterwards are usage-based hosting and model processing, typically a small fraction of the build cost. There are no licence fees and no monthly retainers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a realistic payback period for an AI build in Ireland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Between three and twelve months across Keystone's live builds. An email triage agent returning eight hours a week to a founder paid back inside three months. A legal call-actions system recovering nine hours of fee-earner time a month paid back inside six. An invoice reconciliation system recovering four days of senior accounting time a month paid back inside twelve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AI worth it for a small Irish business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is worth it when a specific manual process costs more per year than the build costs once. That is an arithmetic question, not a belief. Work out the annual cost of the process in hours and salary, compare it to a fixed build price between €1,000 and €20,000, and the answer is either obvious or it is no. If the numbers do not work, the build should not happen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there grants available for AI adoption in Ireland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Local Enterprise Office Grow Digital Voucher offers matched funding of up to 50% of eligible spend, capped at €5,000, for businesses with up to 50 staff. Enterprise Ireland's Innovation Voucher is worth €5,000 to €10,000 for work with third-level research partners, and its Digital Process Innovation grant co-funds larger process projects. Skillnet Ireland part-funds staff training alongside the build."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the second AI build cost less than the first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first build pays for the infrastructure — the data layer, the integrations, the authentication and the platform. Every build after that connects to infrastructure that already exists. In practice a second build costs roughly half the first, and a third roughly half the second. Building incrementally over three years produces more capability for less money than commissioning one large project up front."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../keystone.css">
+<script src="../keystone.js" defer></script>
+<style>
+/* Cost component cards */
+.cost-stack { margin: 1.75rem 0; }
+.cost-item { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.6rem; margin-bottom: .85rem; display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: start; }
+.cost-item h4 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: var(--k-white); margin-bottom: .5rem; }
+.k-article-body .cost-item p { font-size: .88rem; color: var(--k-mid); line-height: 1.65; margin-bottom: 0; }
+.cost-item .price { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; color: var(--k-gold); white-space: nowrap; text-align: right; }
+.cost-item .price small { display: block; font-family: var(--font-body, inherit); font-size: .68rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--k-mid); margin-top: .35rem; }
+
+/* Payback example */
+.pb-card { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.75rem; margin: 1.5rem 0; }
+.pb-card__tag { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--k-gold); margin-bottom: .6rem; }
+.pb-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; color: var(--k-white); margin: 0 0 1rem; }
+.k-article-body .pb-card > p { font-size: .95rem; margin-bottom: 0; }
+.pb-maths { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.35rem; padding-top: 1.35rem; border-top: 1px solid var(--k-border); }
+.pb-maths .lab { display: block; font-size: .64rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--k-mid); margin-bottom: .4rem; }
+.pb-maths .val { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; color: var(--k-white); line-height: 1.3; }
+.pb-maths .payback .val { color: var(--k-gold); }
+
+/* Compounding */
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+.comp-box { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.5rem; text-align: center; }
+.comp-box .stage { display: block; font-size: .66rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--k-mid); margin-bottom: .75rem; }
+.comp-box .num { display: block; font-family: var(--font-mono); font-size: 1.75rem; font-weight: 700; color: var(--k-gold); margin-bottom: .4rem; }
+.comp-box .label { font-size: .8rem; color: var(--k-mid); line-height: 1.5; }
+
+/* Drivers */
+.drv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+.drv-col { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.5rem; }
+.drv-col h4 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--k-white); margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--k-border); }
+.k-article-body .drv-col ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+.k-article-body .drv-col li { font-size: .86rem; line-height: 1.6; color: var(--k-grey); padding-left: 1.15rem; position: relative; margin-bottom: .7rem; }
+.k-article-body .drv-col li:last-child { margin-bottom: 0; }
+.drv-col li::before { content: ''; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--k-gold); }
+
+@media (max-width: 700px) {
+  .cost-item { grid-template-columns: 1fr; }
+  .cost-item .price { text-align: left; }
+  .pb-maths { grid-template-columns: 1fr 1fr; }
+  .comp-grid, .drv-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a class="k-skip-link" href="blog-ai-cost-and-roi-ireland#main">Skip to content</a>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="/" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links" id="k-nav-links">
+    <li><a href="../about">About</a></li>
+    <li class="k-nav__dropdown"><a href="/ie/ai-consultancy" class="k-nav__dropdown-toggle">Services<span class="k-nav__chev" aria-hidden="true"></span></a><div class="k-nav__dropdown-panel"><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Services</span><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">By Sector</span><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Resources</span><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div></div></li>
+    <li><a href="../how-it-works">How It Works</a></li>
+    <li><a href="../pricing">Pricing</a></li>
+    <li><a href="../industries">Case Studies</a></li>
+    <li><a href="../blog" aria-current="page">Insights</a></li>
+    <li><a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="k-nav-links"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="k-article-hero" id="main">
+  <div class="k-article-hero__inner">
+    <span class="k-label">Cost &amp; ROI</span>
+    <hr class="k-rule">
+    <h1>What Does AI Actually Cost for an Irish Business? Real Numbers, Real Payback</h1>
+    <div class="k-article-meta">
+      <span>Keystone Intelligence Group</span>
+      <span>August 2026</span>
+      <span>10 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="k-article-wrap">
+  <article class="k-article-body">
+
+    <p>Cost is the number one barrier to AI adoption for Irish SMEs. Not scepticism about whether it works. Not lack of awareness. Cost. Around <strong>24% of Irish SMEs name cost as the primary obstacle</strong> to adopting the technology, and among Irish firms planning digital investment, 60% expect to spend €10,000 or less — a budget that pushes most of them towards off-the-shelf subscriptions rather than anything built for how their business actually runs.</p>
+
+    <p>The Central Statistics Office puts AI use across all Irish enterprises at 20.2%, but that headline hides the real story: 57.7% of large enterprises use it, against 28.6% of medium firms and just 17.2% of small ones. The gap is not curiosity. It is budget certainty.</p>
+
+    <p>So this piece does not reassure. It gives numbers — what the components cost, what three live builds recovered, and how to run the payback arithmetic on your own process before you talk to anyone.</p>
+
+    <h2 id="paying-for">What you are actually paying for</h2>
+
+    <p>Most Irish business owners do not know what they are buying when they commission an AI build, and that is largely the industry's fault. Conventional providers bundle the development into a recurring licence, add a mandatory monthly retainer, and let maintenance charges surface at month six. There are three components and they should be visible separately.</p>
+
+    <div class="cost-stack">
+      <div class="cost-item">
+        <div>
+          <h4>1. Discovery and scoping</h4>
+          <p>Your workflows, database connections and existing software get audited properly. The output is a technical blueprint: where the bottlenecks are, what gets built, how it is secured, and a fixed price for the build itself. Delivered within 48 hours and credited against the build if you proceed.</p>
+        </div>
+        <div class="price">€1,000<small>Fixed</small></div>
+      </div>
+      <div class="cost-item">
+        <div>
+          <h4>2. The build</h4>
+          <p>System engineering, integration with the tools you already run, testing, and onboarding your team. Fixed price, agreed in writing before work starts. Where it lands inside the band depends on complexity, not on how many hours it happens to take.</p>
+        </div>
+        <div class="price">€1,000–€20,000<small>Fixed</small></div>
+      </div>
+      <div class="cost-item">
+        <div>
+          <h4>3. Running costs</h4>
+          <p>Cloud hosting and model processing. Because foundation models charge by token usage, this stays low — a small fraction of the build cost for a typical operational system. No licence fee, no retainer, no surprise at month six.</p>
+        </div>
+        <div class="price">Usage-based<small>No retainer</small></div>
+      </div>
+    </div>
+
+    <p>That is the whole commercial structure. The full breakdown, including what happens when you want to expand a system later, is on the <a href="../pricing">pricing page</a>.</p>
+
+    <h2 id="payback">The payback calculation: three real examples</h2>
+
+    <p>Every build starts with a payback case. If the numbers do not work, the build does not happen. Here is that arithmetic run on three live systems.</p>
+
+    <div class="pb-card">
+      <span class="pb-card__tag">Example 1 · Finance</span>
+      <h3>Invoice reconciliation</h3>
+      <p>Manual invoice processing, supplier verification and ledger matching between Salesforce and Xero consumed four full days of senior accounting time every month. At an average Irish senior accountant day rate of €350, that process was costing €1,400 a month before anyone counted the errors. The automated system extracts invoice data, validates it against purchase orders, and pushes reconciled entries into the accounting package.</p>
+      <div class="pb-maths">
+        <div><span class="lab">Time recovered</span><span class="val">4 days<br>per month</span></div>
+        <div><span class="lab">Value recovered</span><span class="val">€1,400<br>per month</span></div>
+        <div><span class="lab">Annualised</span><span class="val">€16,800</span></div>
+        <div class="payback"><span class="lab">Payback</span><span class="val">Under 12<br>months</span></div>
+      </div>
+    </div>
+
+    <div class="pb-card">
+      <span class="pb-card__tag">Example 2 · Legal</span>
+      <h3>Legal call-actions</h3>
+      <p>Documenting instructions, building follow-up lists and updating case files took roughly 25 minutes of admin after every client call. Across a three-fee-earner practice handling 50 calls a month, that is 1,250 minutes of documentation. A voice processing and action extraction agent compressed it to 3 minutes per call, recovering 550 minutes — just over nine hours — every month at a fee-earner rate of €150 an hour.</p>
+      <div class="pb-maths">
+        <div><span class="lab">Time recovered</span><span class="val">9+ hours<br>per month</span></div>
+        <div><span class="lab">Value recovered</span><span class="val">€1,350<br>per month</span></div>
+        <div><span class="lab">Annualised</span><span class="val">€16,200</span></div>
+        <div class="payback"><span class="lab">Payback</span><span class="val">Under 6<br>months</span></div>
+      </div>
+    </div>
+
+    <div class="pb-card">
+      <span class="pb-card__tag">Example 3 · Owner-managed</span>
+      <h3>Founder email triage</h3>
+      <p>A founder spending eight hours a week sorting customer enquiries, filtering sales approaches and routing internal messages loses a full working day every week. At a conservative founder opportunity cost of €100 an hour, the inbox was costing €800 a week. The triage agent categorises incoming mail, drafts responses to routine queries, extracts action items into the task system and escalates anything genuinely urgent.</p>
+      <div class="pb-maths">
+        <div><span class="lab">Time recovered</span><span class="val">8 hours<br>per week</span></div>
+        <div><span class="lab">Value recovered</span><span class="val">€800<br>per week</span></div>
+        <div><span class="lab">Annualised</span><span class="val">€41,600</span></div>
+        <div class="payback"><span class="lab">Payback</span><span class="val">Under 3<br>months</span></div>
+      </div>
+    </div>
+
+    <div class="k-callout">
+      <p>The point of these examples is not the specific numbers. It is the method. Cost of the manual process for one year, against the cost of the build once. If the first number is not comfortably larger than the second, do not build it.</p>
+    </div>
+
+    <p>All three are documented in more detail on the <a href="../industries">case studies</a> page.</p>
+
+    <h2 id="compounding">The compounding economics</h2>
+
+    <p>This is the part competitors never explain, and it changes how you should budget.</p>
+
+    <p>The first build is the expensive one, because it is not really paying for the automation. It is paying for the infrastructure underneath it: the secure data layer, the integration pipelines, the authentication. Once that exists, every subsequent build connects to something already in place.</p>
+
+    <div class="comp-grid">
+      <div class="comp-box">
+        <span class="stage">First build</span>
+        <span class="num">100%</span>
+        <span class="label">Establishes the data layer, integrations and platform</span>
+      </div>
+      <div class="comp-box">
+        <span class="stage">Second build</span>
+        <span class="num">~50%</span>
+        <span class="label">Reuses the existing pipeline; roughly half the first</span>
+      </div>
+      <div class="comp-box">
+        <span class="stage">Third build</span>
+        <span class="num">~25%</span>
+        <span class="label">Extensively reusable; roughly half the second</span>
+      </div>
+    </div>
+
+    <p>Over three years, a business that builds incrementally ends up with substantially more capability for substantially less money than one that commissions a single large project. It also de-risks the decision: you prove the first system works before you commit to the second. That is why Keystone prices expansion work separately from the initial build rather than folding everything into one number.</p>
+
+    <h2 id="drivers">What drives the cost up and what drives it down</h2>
+
+    <p>The €1,000 to €20,000 band is wide because complexity genuinely varies. These are the variables that decide where a given project lands.</p>
+
+    <div class="drv-grid">
+      <div class="drv-col">
+        <h4>Pushes cost up</h4>
+        <ul>
+          <li>Legacy on-premise systems with no standard API — the interface has to be built</li>
+          <li>Multiple agents coordinating a multi-step decision across departments</li>
+          <li>High data volumes and heavy processing requirements</li>
+          <li>Unstructured or fragmented source data, including paper records</li>
+          <li>Regulated processing needing extensive audit logging and governance</li>
+        </ul>
+      </div>
+      <div class="drv-col">
+        <h4>Pulls cost down</h4>
+        <ul>
+          <li>One clearly defined starting problem rather than a department-wide brief</li>
+          <li>Modern cloud platforms with standard REST APIs</li>
+          <li>Clean, structured data in consistent formats</li>
+          <li>A single-agent administrative task with stable rules</li>
+          <li>An existing hub from a previous build to connect into</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>You do not have to guess which side of that list your project sits on. That is precisely what the Discovery Report is for — €1,000 buys you the exact position on the range before you commit build capital.</p>
+
+    <h2 id="supports">Irish government supports that offset the cost</h2>
+
+    <p>Several state schemes reduce the net cost of adoption. The Local Enterprise Office <strong>Grow Digital Voucher</strong> provides matched funding of up to 50% of eligible spend, capped at €5,000, for businesses with up to 50 staff. Enterprise Ireland's <strong>Innovation Voucher</strong> is worth €5,000 to €10,000 for work with third-level research partners, and its Digital Process Innovation grant co-funds larger process projects at up to 50%. Skillnet Ireland part-funds training so your team can actually run what gets built. Eligibility rules differ for each and change periodically, so check directly with your Local Enterprise Office or Enterprise Ireland adviser before assuming a build qualifies.</p>
+
+    <h2 id="faq">Common questions about AI cost and ROI</h2>
+
+    <div class="svc-faq">
+      <details class="svc-faq__item">
+        <summary>Is AI worth it for a small Irish business?</summary>
+        <div class="svc-faq__answer">
+          <p>It is worth it when a specific manual process costs more per year than the build costs once. That is arithmetic, not belief. Take the hours, multiply by a realistic loaded rate, annualise it, and compare to a fixed price between €1,000 and €20,000. If the first number is not comfortably bigger, the answer is no — and a decent consultancy will tell you so.</p>
+        </div>
+      </details>
+      <details class="svc-faq__item">
+        <summary>Is there an AI cost calculator for Irish businesses?</summary>
+        <div class="svc-faq__answer">
+          <p>You do not need one. Three inputs give you the answer: hours the process consumes per month, the loaded hourly cost of whoever does it, and the build price. Multiply the first two, multiply by twelve, and divide the build price by the monthly saving to get the payback in months. The Discovery Report does this properly against your real numbers rather than estimates.</p>
+        </div>
+      </details>
+      <details class="svc-faq__item">
+        <summary>What are the ongoing costs after the build?</summary>
+        <div class="svc-faq__answer">
+          <p>Cloud hosting and model processing, charged on usage. For a typical operational system this is a small fraction of the build cost. There is no licence fee and no retainer, so the ongoing number stays proportional to how much the system is actually used.</p>
+        </div>
+      </details>
+      <details class="svc-faq__item">
+        <summary>What happens if the build costs more than quoted?</summary>
+        <div class="svc-faq__answer">
+          <p>It does not. The price is fixed in writing before work begins, which is the entire purpose of doing the Discovery Report first. Scope changes you request mid-build get priced separately and agreed before they start.</p>
+        </div>
+      </details>
+      <details class="svc-faq__item">
+        <summary>How quickly will I see a return?</summary>
+        <div class="svc-faq__answer">
+          <p>Across live builds, between three and twelve months depending on how much time the manual process consumed. The system goes live in around four weeks, so the saving starts accruing well before the payback point is reached.</p>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="bottom-line">The honest bottom line</h2>
+
+    <p>AI in an Irish SME is not a strategic bet. It is a capital decision with a payback period, and it should be evaluated like any other one. The businesses getting value from it are not the technically sophisticated ones. They are the ones that picked a process with a measurable annual cost, bought a fixed-price system to handle it, and moved on to the next process once the first one proved out.</p>
+
+    <p>If you want to know where your own numbers land, the <a href="../contact">Discovery Call</a> is free and takes twenty minutes. If the payback is not there, we will say so on the call.</p>
+
+  </article>
+
+  <aside class="k-sidebar">
+    <div class="k-sidebar__card">
+      <h4>In this article</h4>
+      <ul class="k-toc">
+        <li><a href="blog-ai-cost-and-roi-ireland#paying-for">What you are paying for</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#payback">Three real payback examples</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#compounding">The compounding economics</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#drivers">What drives cost up and down</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#supports">Irish government supports</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#faq">Common questions</a></li>
+        <li><a href="blog-ai-cost-and-roi-ireland#bottom-line">The honest bottom line</a></li>
+      </ul>
+    </div>
+    <div class="k-sidebar__cta">
+      <p>Get the payback numbers for your own business, free and with no obligation.</p>
+      <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="../pricing" class="btn-outline">See Full Pricing</a>
+      <a href="../industries" class="btn-outline">See Case Studies</a>
+    </div>
+  </aside>
+</div>
+
+<section class="k-related">
+  <div class="k-related__inner">
+    <h3>Related Reading</h3>
+    <div class="k-related__grid">
+      <a href="blog-what-is-business-process-automation" class="k-related__card"><span class="tag">Automation</span><h4>What is Business Process Automation? Four Irish Examples That Show What It Actually Looks Like</h4></a>
+      <a href="blog-is-your-business-ready-for-ai" class="k-related__card"><span class="tag">Strategy</span><h4>Is Your Irish Business Ready for AI? 5 Signs It's Time to Start</h4></a>
+      <a href="blog-ai-gdpr-ireland" class="k-related__card"><span class="tag">Compliance</span><h4>AI and GDPR in Ireland: What Irish Business Owners Actually Need to Know</h4></a>
+    </div>
+  </div>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand"><div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div><p>AI consultancy for businesses that want to grow. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p><div class="k-footer__contact"><a href="mailto:jamie@keystoneintelligencegroup.com">jamie@keystoneintelligencegroup.com</a><a href="tel:+353858719756"><span class="cc">IE</span> +353 85 871 9756</a><a href="tel:+14049088990"><span class="cc">US</span> +1 404 908 8990</a></div></div>
+    <div class="k-footer__col"><h5>Services</h5><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a></div><div class="k-footer__col"><h5>Company</h5><a href="../about">About Us</a><a href="../how-it-works">How It Works</a><a href="../contact">Contact</a></div>
+    <div class="k-footer__col"><h5>Case Studies</h5><a href="../industries#construction-hub">Construction Hub</a><a href="../industries#legal-call-actions">Legal Call-Actions</a><a href="../industries#waste-hub">Waste Operations Hub</a></div>
+    <div class="k-footer__col"><h5>Insights &amp; Resources</h5><a href="blog-ai-for-irish-businesses">AI for Irish Businesses</a><a href="blog-is-your-business-ready-for-ai">Is Your Business Ready for AI?</a><a href="blog-ai-for-irish-construction">AI for Irish Construction</a><a href="blog-ai-for-irish-solicitors">AI for Irish Solicitors</a><a href="blog-ai-for-irish-gp-practices">AI for Irish GP Practices</a><a href="blog-what-is-business-process-automation">What is Business Process Automation?</a><a href="blog-ai-cost-and-roi-ireland">What AI Costs in Ireland</a><a href="blog-ai-gdpr-ireland">AI and GDPR in Ireland</a><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div>
+  </div>
+  <div class="k-footer__bottom"><p>© 2026 Keystone Intelligence Group. All rights reserved.</p><a href="../contact">Book a Discovery Call</a></div>
+</footer>
+
+</body></html>
