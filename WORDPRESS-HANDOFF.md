@@ -15,11 +15,11 @@ industries.html         → Case Studies (anchor links: #waste-hub, #ar-guardian
 blog.html               → Insights listing page
 contact.html            → Book Your Discovery Call (form page)
 blog/
-  blog-ai-for-irish-businesses.html
-  blog-is-your-business-ready-for-ai.html
-  blog-ai-for-irish-construction.html
-  blog-ai-for-irish-solicitors.html
-  blog-ai-for-irish-gp-practices.html
+  ai-for-irish-businesses.html
+  is-your-business-ready-for-ai.html
+  ai-for-irish-construction.html
+  ai-for-irish-solicitors.html
+  ai-for-irish-gp-practices.html
 keystone.css            → Shared design system
 ```
 
