@@ -1,4 +1,14 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/blog/blog-ai-cost-and-roi-ireland", "destination": "/blog/ai-cost-and-roi-ireland", "statusCode": 301 },
+    { "source": "/blog/blog-ai-for-irish-businesses", "destination": "/blog/ai-for-irish-businesses", "statusCode": 301 },
+    { "source": "/blog/blog-ai-for-irish-construction", "destination": "/blog/ai-for-irish-construction", "statusCode": 301 },
+    { "source": "/blog/blog-ai-for-irish-gp-practices", "destination": "/blog/ai-for-irish-gp-practices", "statusCode": 301 },
+    { "source": "/blog/blog-ai-for-irish-solicitors", "destination": "/blog/ai-for-irish-solicitors", "statusCode": 301 },
+    { "source": "/blog/blog-ai-gdpr-ireland", "destination": "/blog/ai-gdpr-ireland", "statusCode": 301 },
+    { "source": "/blog/blog-is-your-business-ready-for-ai", "destination": "/blog/is-your-business-ready-for-ai", "statusCode": 301 },
+    { "source": "/blog/blog-what-is-business-process-automation", "destination": "/blog/what-is-business-process-automation", "statusCode": 301 }
+  ]
 }
