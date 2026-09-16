@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Search Console verification -->
+<meta name="google-site-verification" content="GZOeIuWbbR7SqPr9c-diliUJ6rWhMphGpiPk-F7wPag" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4EYW6T0G2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4EYW6T0G2K');
+</script>
+<!-- Clarity tracking code for https://keystoneintelligencegroup.com/ -->
+<script>
+ (function(c,l,a,r,i,t,y){
+ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+ })(window, document, "clarity", "script", "x6rqjlc5jy");
+</script>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<meta name="theme-color" content="#0D0D12">
+<title>What Happens When an AI Agent Gets It Wrong | Keystone</title>
+<meta name="description" content="AI agents do make mistakes. What matters is whether yours catches them. See how Keystone builds oversight into every system. Free discovery call.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://keystoneintelligencegroup.com/blog/what-happens-when-ai-agent-gets-it-wrong">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Happens When an AI Agent Gets It Wrong",
+  "description": "AI agents do make mistakes. The difference between a silent failure and a surfaced one is architecture. How Keystone Intelligence builds error handling and human review into live systems, and what to ask any AI provider before you commit.",
+  "url": "https://keystoneintelligencegroup.com/blog/what-happens-when-ai-agent-gets-it-wrong",
+  "datePublished": "2026-09-16",
+  "dateModified": "2026-09-16",
+  "inLanguage": "en-IE",
+  "keywords": ["AI agent mistakes", "what happens when AI gets it wrong", "AI agent errors", "human in the loop AI", "AI oversight Ireland", "AI agents Ireland", "AI exception handling", "safe AI for business Ireland"],
+  "articleSection": "AI Agents",
+  "author": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://keystoneintelligencegroup.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://keystoneintelligencegroup.com/blog/what-happens-when-ai-agent-gets-it-wrong"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../keystone.css">
+<script src="../keystone.js" defer></script>
+<style>
+/* Failure modes */
+.fail-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+.fail-box { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.5rem; }
+.fail-box .tag { display: inline-block; font-family: var(--font-mono); font-size: .68rem; font-weight: 700; letter-spacing: .06em; color: var(--k-gold); background: var(--k-gold-dim); border-radius: 4px; padding: .2rem .5rem; margin-bottom: .8rem; }
+.fail-box h4 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--k-white); margin-bottom: .55rem; }
+.k-article-body .fail-box p { font-size: .86rem; color: var(--k-mid); line-height: 1.65; margin-bottom: 0; }
+
+/* Case study proof */
+.proof-card { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.75rem; margin: 1.5rem 0; }
+.proof-card__tag { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--k-gold); margin-bottom: .6rem; }
+.proof-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; color: var(--k-white); margin: 0 0 1rem; }
+.k-article-body .proof-card p { font-size: .95rem; margin-bottom: .8rem; }
+.k-article-body .proof-card p:last-child { margin-bottom: 0; }
+
+/* Questions to ask */
+.q-stack { margin: 1.75rem 0; }
+.q-item { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.6rem; margin-bottom: .85rem; }
+.q-item .n { display: block; font-family: var(--font-mono); font-size: .72rem; font-weight: 700; letter-spacing: .12em; color: var(--k-gold); margin-bottom: .6rem; }
+.q-item h4 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: var(--k-white); margin-bottom: .6rem; line-height: 1.3; }
+.k-article-body .q-item p { font-size: .89rem; color: var(--k-mid); line-height: 1.7; margin-bottom: 0; }
+
+@media (max-width: 700px) {
+  .fail-row { grid-template-columns: 1fr; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://keystoneintelligencegroup.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://keystoneintelligencegroup.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "What Happens When an AI Agent Gets It Wrong", "item": "https://keystoneintelligencegroup.com/blog/what-happens-when-ai-agent-gets-it-wrong" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="k-skip-link" href="what-happens-when-ai-agent-gets-it-wrong#main">Skip to content</a>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="/" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links" id="k-nav-links">
+    <li><a href="../about">About</a></li>
+    <li class="k-nav__dropdown"><a href="/ie/ai-consultancy" class="k-nav__dropdown-toggle">Services<span class="k-nav__chev" aria-hidden="true"></span></a><div class="k-nav__dropdown-panel"><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Services</span><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">By Sector</span><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a><a href="/ie/ai-for-construction">Construction</a><a href="/ie/ai-for-healthcare">Healthcare</a><a href="/ie/ai-for-legal">Legal Practices</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Resources</span><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div></div></li>
+    <li><a href="../how-it-works">How It Works</a></li>
+    <li><a href="../pricing">Pricing</a></li>
+    <li><a href="../industries">Case Studies</a></li>
+    <li><a href="../blog" aria-current="page">Insights</a></li>
+    <li><a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="k-nav-links"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="k-article-hero" id="main">
+  <div class="k-article-hero__inner">
+    <span class="k-label">AI Agents</span>
+    <hr class="k-rule">
+    <h1>What Happens When an AI Agent Gets It Wrong</h1>
+    <div class="k-article-meta">
+      <span>Keystone Intelligence Group</span>
+      <span>September 2026</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="k-article-wrap">
+  <article class="k-article-body">
+
+    <p>Anyone considering handing a piece of their business over to an <a href="/ie/ai-agents">AI agent</a> has the same quiet worry: what if it gets something wrong?</p>
+
+    <p>The wrong invoice matched. The wrong action assigned from a client call. The wrong email sent in a founder's name. It is a fair question, and most AI vendors do not answer it directly. This piece does.</p>
+
+    <h2 id="two-failures">Two ways AI systems fail, and why it matters which one you are dealing with</h2>
+
+    <p>Every system makes mistakes eventually, whether it is software or a person. The useful question is not whether an error will happen. It is what happens next.</p>
+
+    <div class="fail-row">
+      <div class="fail-box">
+        <span class="tag">The dangerous kind</span>
+        <h4>Silent failure</h4>
+        <p>The system gets something wrong and nobody notices until real damage is done. A payment allocated to the wrong account, a follow-up that never gets assigned, a reply that should never have gone out. This is common in systems built without a deliberate strategy for catching errors.</p>
+      </div>
+      <div class="fail-box">
+        <span class="tag">The designed-for kind</span>
+        <h4>Surfaced failure</h4>
+        <p>The system gets something wrong, flags it clearly, and routes it to a person before it causes harm. This is the outcome every well-built AI system should be designed around, and it is the standard every Keystone build is held to.</p>
+      </div>
+    </div>
+
+    <div class="k-callout">
+      <p>The difference between the two is not luck. It is architecture, decided before a single line of the system is built.</p>
+    </div>
+
+    <h2 id="how-we-build">How Keystone builds this in: three live systems</h2>
+
+    <p>Principles are easy to write down. Here is what error handling looks like in systems that are running today.</p>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Finance &amp; AR Operations</span>
+      <h3>AR Guardian: invoice reconciliation</h3>
+      <p><a href="/industries#ar-guardian">AR Guardian</a> matches payments received in Xero against open invoices in Salesforce automatically. The clean cases, and most cases are clean, close themselves.</p>
+      <p>Anything that does not match cleanly is flagged with context: which invoice, which payment, what the system thinks is wrong. The senior accountant reviews; they do not investigate from scratch. The system does not guess and move on. It flags the exception for human review instead.</p>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Legal Practice</span>
+      <h3>Legal Call-Actions: call transcription</h3>
+      <p><a href="/industries#legal-call-actions">Legal Call-Actions</a> takes the transcript of a client call and generates a structured action list: what needs to happen, who should do it, by when. The fee-earner reviews it, edits anything that needs adjusting, and assigns.</p>
+      <p>Every single action carries a transcript reference. If a client later asks "did we agree X on that call", the relevant part of the call surfaces instantly. The system is not asking to be trusted blindly. It is built so its work can be checked in seconds, not reconstructed from memory.</p>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Waste Management &amp; Operations</span>
+      <h3>Waste operations hub: nine agents, one live business</h3>
+      <p>The <a href="/industries#waste-hub">waste operations hub</a> runs nine specialist agents across a live 30-vehicle operation, covering billing, AR, customer service, reconciliation and reporting. When payments are reconciled against invoices, exceptions surface for review rather than being silently applied.</p>
+    </div>
+
+    <p>The accountant in finance, the fee-earner in a legal practice, the team running the operation: across all three, a person always makes the final call on anything the system is not fully confident about.</p>
+
+    <h2 id="principle">The principle: review where it matters, automation where it doesn't</h2>
+
+    <p>Not every step needs a human checking it. That would defeat the purpose of automation entirely.</p>
+
+    <p>The judgement is in knowing which steps carry real consequences and building a checkpoint there, while letting the low-risk, high-confidence work run untouched. A payment that matches perfectly against an invoice does not need a human to bless it. A payment that does not match cleanly does.</p>
+
+    <p>That distinction, made deliberately for every system Keystone builds, is what "human in the loop" actually means in practice, rather than as a compliance buzzword.</p>
+
+    <h2 id="questions">What to ask any AI provider before you commit</h2>
+
+    <p>Whoever you choose to build with, these four questions will tell you quickly whether errors have been thought about or left to chance.</p>
+
+    <div class="q-stack">
+      <div class="q-item">
+        <span class="n">QUESTION 01</span>
+        <h4>Does the system tell you when it is uncertain, or does it guess silently?</h4>
+        <p>A system that always produces an answer is not the same as a system that is always right. You want one that knows the difference and says so.</p>
+      </div>
+      <div class="q-item">
+        <span class="n">QUESTION 02</span>
+        <h4>Can you trace any specific output back to the data it came from?</h4>
+        <p>If an action, a match or a draft cannot be traced to its source, checking it means redoing the work. Traceability is what makes review fast enough to actually happen.</p>
+      </div>
+      <div class="q-item">
+        <span class="n">QUESTION 03</span>
+        <h4>What happens to the exceptions?</h4>
+        <p>Do they disappear, get logged somewhere nobody looks, or get routed to a person who can act on them? Only one of those answers is acceptable.</p>
+      </div>
+      <div class="q-item">
+        <span class="n">QUESTION 04</span>
+        <h4>Who is accountable if something goes wrong: the vendor, or you?</h4>
+        <p>Get a clear answer before the build starts, not after the first mistake.</p>
+      </div>
+    </div>
+
+    <p>If you want to see how these questions would be answered for a specific process in your business, that is what the <a href="/contact">Discovery Call</a> is for. It is free. You can also see how each of these systems works in detail across our <a href="/industries">case studies</a>.</p>
+
+  </article>
+
+  <aside class="k-sidebar">
+    <div class="k-sidebar__card">
+      <h4>In this article</h4>
+      <ul class="k-toc">
+        <li><a href="what-happens-when-ai-agent-gets-it-wrong#two-failures">Two ways AI systems fail</a></li>
+        <li><a href="what-happens-when-ai-agent-gets-it-wrong#how-we-build">How Keystone builds this in</a></li>
+        <li><a href="what-happens-when-ai-agent-gets-it-wrong#principle">Review where it matters</a></li>
+        <li><a href="what-happens-when-ai-agent-gets-it-wrong#questions">What to ask any AI provider</a></li>
+      </ul>
+    </div>
+    <div class="k-sidebar__cta">
+      <p>Find out where the checkpoints belong in a system for your business. Free, no obligation.</p>
+      <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="/industries" class="btn-outline">See Case Studies</a>
+      <a href="/ie/ai-agents" class="btn-outline">AI Agents</a>
+    </div>
+  </aside>
+</div>
+
+<section class="k-related">
+  <div class="k-related__inner">
+    <h3>Related Reading</h3>
+    <div class="k-related__grid">
+      <a href="/blog/ai-agent-vs-chatbot-ireland" class="k-related__card"><span class="tag">AI Agents</span><h4>AI Agent vs AI Chatbot: What Irish Businesses Actually Need</h4></a>
+      <a href="/blog/ai-gdpr-ireland" class="k-related__card"><span class="tag">Compliance</span><h4>AI and GDPR in Ireland: What Irish Business Owners Actually Need to Know</h4></a>
+      <a href="/industries#ar-guardian" class="k-related__card"><span class="tag">Case Study</span><h4>Invoice Reconciliation Across Salesforce and Xero</h4></a>
+    </div>
+  </div>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand"><div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div><p>AI consultancy for businesses that want to grow. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p><div class="k-footer__contact"><a href="mailto:jamie@keystoneintelligencegroup.com">jamie@keystoneintelligencegroup.com</a><a href="tel:+353858719756"><span class="cc">IE</span> +353 85 871 9756</a><a href="tel:+14049088990"><span class="cc">US</span> +1 404 908 8990</a></div></div>
+    <div class="k-footer__col"><h5>Services</h5><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a><a href="/ie/ai-for-construction">Construction</a><a href="/ie/ai-for-healthcare">Healthcare</a><a href="/ie/ai-for-legal">Legal Practices</a></div><div class="k-footer__col"><h5>Company</h5><a href="../about">About Us</a><a href="../how-it-works">How It Works</a><a href="../contact">Contact</a></div>
+    <div class="k-footer__col"><h5>Case Studies</h5><a href="../industries#construction-hub">Construction Hub</a><a href="../industries#legal-call-actions">Legal Call-Actions</a><a href="../industries#waste-hub">Waste Operations Hub</a></div>
+    <div class="k-footer__col"><h5>Insights &amp; Resources</h5><a href="ai-for-irish-businesses">AI for Irish Businesses</a><a href="is-your-business-ready-for-ai">Is Your Business Ready for AI?</a><a href="ai-for-irish-construction">AI for Irish Construction</a><a href="ai-for-irish-solicitors">AI for Irish Solicitors</a><a href="ai-for-irish-gp-practices">AI for Irish GP Practices</a><a href="what-is-business-process-automation">What is Business Process Automation?</a><a href="ai-cost-and-roi-ireland">What AI Costs in Ireland</a><a href="ai-gdpr-ireland">AI and GDPR in Ireland</a><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div>
+  </div>
+  <div class="k-footer__bottom"><p>© 2026 Keystone Intelligence Group. All rights reserved.</p><a href="../contact">Book a Discovery Call</a></div>
+</footer>
+
+</body></html>
