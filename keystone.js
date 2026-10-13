@@ -240,6 +240,40 @@
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
 
     containers.forEach(function (c) { observer.observe(c); });
+
+    /* Safety net for renders that never scroll.
+       The observer only reveals a container once it enters the viewport, so a
+       client that renders the page without scrolling — Googlebot, the Search
+       Console URL Inspection screenshot, social preview bots, print — would
+       leave every below-the-fold section blank. If nothing has scrolled by the
+       time the page has settled, reveal everything. A visitor who starts
+       scrolling first cancels this, so they still get the stagger. */
+    function revealAll() {
+      var pending = document.querySelectorAll('.k-reveal-pending');
+      for (var i = 0; i < pending.length; i++) {
+        pending[i].classList.remove('k-reveal-pending');
+        pending[i].classList.add('k-reveal-visible');
+      }
+      observer.disconnect();
+    }
+
+    var settleTimer = null;
+    function schedule(ms) {
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(revealAll, ms);
+    }
+    function onFirstScroll() {
+      // A real visitor is reading: hand the stagger back to the observer, but
+      // keep a long backstop so nothing can stay hidden if it never fires.
+      schedule(10000);
+    }
+    function armFallback() {
+      window.addEventListener('scroll', onFirstScroll, { passive: true, once: true });
+      schedule(window.pageYOffset > 0 ? 10000 : 2000);
+    }
+
+    if (document.readyState === 'complete') armFallback();
+    else window.addEventListener('load', armFallback);
   }
 
   /* ─── BOOKING CLICK TRACKING (GA4) ─── */

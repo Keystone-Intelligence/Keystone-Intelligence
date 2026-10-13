@@ -149,4 +149,37 @@
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   }
+
+  /* ─── SAFETY NET FOR RENDERS THAT NEVER SCROLL ─────────────── */
+  // Every animation above is scroll-triggered, so a client that renders the
+  // page without scrolling — Googlebot, the Search Console URL Inspection
+  // screenshot, social preview bots, print — would leave each case study
+  // stuck at its FROM state (opacity 0). If nothing has scrolled by the time
+  // the page has settled, jump any animation that hasn't played to its
+  // finished state. A visitor who starts scrolling first cancels this, so
+  // they still get the choreography.
+  function settleAnimations() {
+    ScrollTrigger.getAll().forEach(function (st) {
+      if (st.animation && st.animation.progress() === 0) st.animation.progress(1);
+      st.kill();
+    });
+  }
+
+  var settleTimer = null;
+  function schedule(ms) {
+    if (settleTimer) clearTimeout(settleTimer);
+    settleTimer = setTimeout(settleAnimations, ms);
+  }
+  function onFirstScroll() {
+    // A real visitor is reading: hand the choreography back to ScrollTrigger,
+    // but keep a long backstop so nothing can stay hidden if it never fires.
+    schedule(10000);
+  }
+  function armSettle() {
+    window.addEventListener('scroll', onFirstScroll, { passive: true, once: true });
+    schedule(window.pageYOffset > 0 ? 10000 : 2000);
+  }
+
+  if (document.readyState === 'complete') armSettle();
+  else window.addEventListener('load', armSettle);
 })();
