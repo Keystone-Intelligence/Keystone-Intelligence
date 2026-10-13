@@ -1480,37 +1480,71 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
 
 /* Named contact block — service page CTA */
 .svc-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
   margin: 2.5rem auto 0;
   padding-top: 2.25rem;
   max-width: 560px;
   border-top: 1px solid var(--k-border);
+  text-align: left;
+}
+.svc-contact__photo {
+  flex-shrink: 0;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 1px solid var(--k-border);
+  background: var(--k-card);
 }
 .svc-contact__lead {
   font-family: var(--font-head);
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--k-white);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 .svc-contact__role {
   font-size: 0.9rem;
   color: var(--k-grey);
-  margin-bottom: 1.25rem;
+  margin: 0 0 0.75rem;
 }
 .svc-contact__links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem 2rem;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
 }
-.svc-contact__links a {
+.svc-contact__links a:not(.k-linkedin) {
   font-size: 0.95rem;
   color: var(--k-gold);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
-.svc-contact__links a:hover { border-bottom-color: var(--k-gold); }
+.svc-contact__links a:not(.k-linkedin):hover { border-bottom-color: var(--k-gold); }
 @media (max-width: 600px) {
-  .svc-contact__links { flex-direction: column; align-items: center; gap: 0.6rem; }
+  .svc-contact { flex-direction: column; text-align: center; gap: 1rem; }
+  .svc-contact__links { justify-content: center; }
 }
+
+/* LinkedIn icon link — About page + service page contact block */
+.k-linkedin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  color: var(--k-gold);
+  border-radius: 4px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.k-linkedin svg { width: 100%; height: 100%; display: block; }
+.k-linkedin:hover { color: var(--k-white); transform: translateY(-1px); }
+.k-linkedin:focus-visible { outline: 2px solid var(--k-gold); outline-offset: 3px; }
+.svc-contact .k-linkedin { width: 1.5rem; height: 1.5rem; }
+.ceo-profile__name-row { display: flex; align-items: center; gap: 1rem; }
