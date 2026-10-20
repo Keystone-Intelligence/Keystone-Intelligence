@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Search Console verification -->
+<meta name="google-site-verification" content="GZOeIuWbbR7SqPr9c-diliUJ6rWhMphGpiPk-F7wPag" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4EYW6T0G2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4EYW6T0G2K');
+</script>
+<!-- Clarity tracking code for https://keystoneintelligencegroup.com/ -->
+<script>
+ (function(c,l,a,r,i,t,y){
+ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+ })(window, document, "clarity", "script", "x6rqjlc5jy");
+</script>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<meta name="theme-color" content="#0D0D12">
+<title>How to Find AI Use Cases in Your Business</title>
+<meta name="description" content="Five questions to ask your team and a simple way to put a number on each task before you pick any AI tool. Book a free 20-minute call.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://keystoneintelligencegroup.com/blog/how-to-find-ai-use-cases">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Find the Right AI Use Cases in Your Business",
+  "description": "A practical AI opportunity assessment for Irish SMEs: five questions to ask your team, how to put a number on each task, how to judge AI potential, how to pick and run a first AI pilot, and real examples from live builds.",
+  "url": "https://keystoneintelligencegroup.com/blog/how-to-find-ai-use-cases",
+  "datePublished": "2026-10-20",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en-IE",
+  "keywords": ["AI use cases", "AI use cases for business", "AI opportunity assessment", "AI pilot", "first AI project", "AI use cases Ireland"],
+  "articleSection": "AI Strategy",
+  "author": {
+    "@type": "Person",
+    "name": "Jamie Walsh",
+    "jobTitle": "Founder, Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com/about",
+    "sameAs": "https://www.linkedin.com/in/jamie-walsh-56719183",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Keystone Intelligence Group",
+      "url": "https://keystoneintelligencegroup.com"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Keystone Intelligence Group",
+    "url": "https://keystoneintelligencegroup.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://keystoneintelligencegroup.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://keystoneintelligencegroup.com/blog/how-to-find-ai-use-cases"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../keystone.css">
+<script src="../keystone.js" defer></script>
+<style>
+/* Five questions */
+.q-stack { margin: 1.75rem 0; counter-reset: q; }
+.q-line { counter-increment: q; background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-md); padding: 1rem 1.25rem 1rem 3.4rem; margin-bottom: .6rem; position: relative; }
+.q-line::before { content: counter(q, decimal-leading-zero); position: absolute; left: 1.2rem; top: 1.05rem; font-family: var(--font-mono); font-size: .8rem; font-weight: 700; color: var(--k-gold); }
+.q-line strong { display: block; font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--k-white); margin-bottom: .2rem; }
+.q-line span { display: block; font-size: .86rem; color: var(--k-mid); line-height: 1.6; }
+
+/* Opportunity map */
+.opp-wrap { margin: 1.75rem 0; border: 1px solid var(--k-border); border-radius: var(--r-lg); overflow-x: auto; background: var(--k-card); }
+.opp { width: 100%; border-collapse: collapse; min-width: 620px; font-size: .86rem; }
+.opp th { text-align: left; font-size: .66rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--k-gold); padding: 1rem 1.1rem; border-bottom: 1px solid var(--k-border-h); white-space: nowrap; }
+.opp td { padding: .95rem 1.1rem; border-bottom: 1px solid var(--k-border); color: var(--k-grey); vertical-align: top; }
+.opp tr:last-child td { border-bottom: 0; }
+.opp td:first-child { color: var(--k-white); font-weight: 500; }
+.opp .num { font-family: var(--font-mono); font-size: .82rem; white-space: nowrap; }
+.pot { display: inline-block; font-family: var(--font-mono); font-size: .68rem; font-weight: 700; letter-spacing: .06em; border-radius: 4px; padding: .2rem .5rem; }
+.pot--high { color: var(--k-bg); background: var(--k-gold); }
+.pot--med { color: var(--k-gold); background: var(--k-gold-dim); }
+.pot--low { color: var(--k-mid); border: 1px solid var(--k-border-h); }
+.opp-note { font-size: .8rem; color: var(--k-mid); margin-top: -.75rem; margin-bottom: 1.5rem; }
+
+/* AI potential: two columns */
+.pot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+.pot-col { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.5rem; }
+.pot-col h4 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--k-white); margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--k-border); }
+.k-article-body .pot-col ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+.k-article-body .pot-col li { font-size: .86rem; line-height: 1.6; color: var(--k-grey); padding-left: 1.15rem; position: relative; margin-bottom: .6rem; }
+.k-article-body .pot-col li:last-child { margin-bottom: 0; }
+.pot-col li::before { content: ''; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--k-gold); }
+
+/* Three stages */
+.stage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.75rem 0; }
+.stage-box { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.5rem; }
+.stage-box .when { display: block; font-family: var(--font-mono); font-size: .7rem; font-weight: 700; letter-spacing: .1em; color: var(--k-gold); margin-bottom: .55rem; }
+.stage-box h4 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; color: var(--k-white); margin-bottom: .3rem; }
+.stage-box .sub { display: block; font-size: .82rem; color: var(--k-white); font-weight: 500; margin-bottom: .65rem; }
+.k-article-body .stage-box p { font-size: .85rem; color: var(--k-mid); line-height: 1.65; margin-bottom: 0; }
+
+/* Real examples */
+.proof-card { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--r-lg); padding: 1.6rem; margin: 1rem 0; }
+.proof-card__tag { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--k-gold); margin-bottom: .5rem; }
+.proof-card h3 { font-family: var(--font-head); font-size: 1.25rem; font-weight: 600; color: var(--k-white); margin: 0 0 .7rem; }
+.k-article-body .proof-card p { font-size: .92rem; margin-bottom: 0; }
+.proof-card .result { display: block; margin-top: .85rem; padding-top: .85rem; border-top: 1px solid var(--k-border); font-family: var(--font-mono); font-size: .8rem; color: var(--k-gold); }
+
+@media (max-width: 700px) {
+  .pot-grid, .stage-grid { grid-template-columns: 1fr; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://keystoneintelligencegroup.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://keystoneintelligencegroup.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How to Find the Right AI Use Cases in Your Business", "item": "https://keystoneintelligencegroup.com/blog/how-to-find-ai-use-cases" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="k-skip-link" href="how-to-find-ai-use-cases#main">Skip to content</a>
+
+<nav class="k-nav" aria-label="Main navigation">
+  <a href="/" class="k-nav__logo">Keystone <em>Intelligence</em></a>
+  <ul class="k-nav__links" id="k-nav-links">
+    <li><a href="../about">About</a></li>
+    <li class="k-nav__dropdown"><a href="/ie/ai-consultancy" class="k-nav__dropdown-toggle">Services<span class="k-nav__chev" aria-hidden="true"></span></a><div class="k-nav__dropdown-panel"><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Services</span><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">By Sector</span><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a></div><div class="k-nav__dropdown-group"><span class="k-nav__dropdown-head">Resources</span><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div></div></li>
+    <li><a href="../how-it-works">How It Works</a></li>
+    <li><a href="../pricing">Pricing</a></li>
+    <li><a href="../industries">Case Studies</a></li>
+    <li><a href="../blog" aria-current="page">Insights</a></li>
+    <li><a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-nav">Book a Free Discovery Call</a></li>
+  </ul>
+  <button class="k-nav__mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="k-nav-links"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="k-article-hero" id="main">
+  <div class="k-article-hero__inner">
+    <span class="k-label">AI Strategy</span>
+    <hr class="k-rule">
+    <h1>How to Find the Right AI Use Cases in Your Business</h1>
+    <div class="k-article-meta">
+      <span>Jamie Walsh</span>
+      <span>October 2026</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="k-article-wrap">
+  <article class="k-article-body">
+
+    <p>Most AI projects that disappoint were chosen the wrong way round. Someone saw a tool, liked it, and went looking for a problem it could solve.</p>
+
+    <p>The projects that pay back start from the other end. They begin with a task that is already costing the business time or money, put a number on it, and only then ask whether AI can help. This guide sets out a simple way to do that, so you know what your first AI project should be before you speak to any vendor, including us.</p>
+
+    <h2 id="start">Start with the business, not the AI</h2>
+
+    <p>Good AI use cases hide in plain sight. Look for the places where people repeatedly <strong>read, move, check, rewrite or reconcile</strong> information. Copying figures from an email into a spreadsheet. Checking an invoice against a purchase order. Rewriting call notes into a client file. Reading a hundred enquiries to find the ten that matter.</p>
+
+    <p>Then measure the pain before you brainstorm the fix. A task that "takes ages" is not a use case yet. A task that takes eight hours a week is.</p>
+
+    <h2 id="five-questions">Five questions to ask your team</h2>
+
+    <p>The people doing the work know where the time goes. Ask them directly. You will get better answers in a short conversation than in any survey.</p>
+
+    <div class="q-stack">
+      <div class="q-line"><strong>What do you do repeatedly?</strong><span>The same steps, every day or every week, with only small changes.</span></div>
+      <div class="q-line"><strong>What takes too long?</strong><span>The tasks people put off, or that eat the end of every day.</span></div>
+      <div class="q-line"><strong>Where do mistakes happen?</strong><span>Rework, missed follow-ups and errors a client spots before you do.</span></div>
+      <div class="q-line"><strong>Where are you copying data between systems?</strong><span>Anything that is typed in twice is a strong candidate.</span></div>
+      <div class="q-line"><strong>Where are expensive people doing low-value work?</strong><span>Partners doing admin, senior accountants matching payments, clinicians writing up notes.</span></div>
+    </div>
+
+    <h2 id="opportunity-map">Put a number beside the pain</h2>
+
+    <p>Take the answers and turn them into an <strong>AI opportunity map</strong>: one row per task, with how often it happens, how long it takes and what it costs in hours. This is the core of any AI opportunity assessment, and you can do it on a single sheet of paper.</p>
+
+    <div class="opp-wrap">
+      <table class="opp">
+        <thead>
+          <tr><th>Task</th><th>Frequency</th><th>Time each</th><th>Cost</th><th>AI potential</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Qualify inbound leads</td><td class="num">50 / week</td><td class="num">10 mins</td><td class="num">8+ hrs / week</td><td><span class="pot pot--high">HIGH</span></td></tr>
+          <tr><td>Write up actions after client calls</td><td class="num">15 / week</td><td class="num">25 mins</td><td class="num">6+ hrs / week</td><td><span class="pot pot--high">HIGH</span></td></tr>
+          <tr><td>Chase overdue invoices</td><td class="num">30 / week</td><td class="num">5 mins</td><td class="num">2.5 hrs / week</td><td><span class="pot pot--med">MEDIUM</span></td></tr>
+          <tr><td>Negotiate a key client renewal</td><td class="num">2 / month</td><td class="num">2 hrs</td><td class="num">1 hr / week</td><td><span class="pot pot--low">LOW</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="opp-note">The first row is the worked example from Jamie Walsh's founder briefing. The other rows are illustrative.</p>
+
+    <p>The first row alone is more than a full working day every week. At a loaded staff cost of €40 an hour, that is over €17,000 a year spent on one task, before you count the leads that went cold while they waited.</p>
+
+    <p>Notice what the map does. It turns a vague sense that "sales admin is a pain" into a figure you can compare against the cost of fixing it. It also shows you which tasks are not worth automating, which matters just as much.</p>
+
+    <h2 id="ai-potential">How to judge AI potential</h2>
+
+    <p>The last column is the one people find hardest. A simple rule helps: <strong>if a task starts with reading text, it is a strong candidate.</strong> If AI can read something, it can usually classify it, flag what matters and recommend a next step.</p>
+
+    <div class="pot-grid">
+      <div class="pot-col">
+        <h4>Strong candidates</h4>
+        <ul>
+          <li>Sorting and prioritising emails and enquiries</li>
+          <li>Reading invoices, contracts and postings to extract or check details</li>
+          <li>Matching records across two systems</li>
+          <li>Drafting standard documents, replies and reports</li>
+          <li>Turning call transcripts into action lists</li>
+        </ul>
+      </div>
+      <div class="pot-col">
+        <h4>Stays with people</h4>
+        <ul>
+          <li>Relationship work with clients and suppliers</li>
+          <li>Negotiation and anything that depends on trust</li>
+          <li>Final judgement on decisions that carry real consequences</li>
+          <li>Approving anything client-facing or financially material</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>An accounting practice we worked with started with an AI agent that read the text descriptions on accounting postings. Once the team saw that, they realised the same capability applied anywhere a judgement began with reading text, and they found the next uses themselves.</p>
+
+    <h2 id="first-project">Pick the right first project</h2>
+
+    <p>Your map will probably show several good candidates. The best first AI pilot is not always the biggest number. It is the one most likely to succeed and be seen to succeed. Look for three things:</p>
+
+    <ul>
+      <li><strong>Narrow enough to finish.</strong> One task with a clear start and end, not "improve sales".</li>
+      <li><strong>Owned by one team.</strong> One manager can say yes and one group of people uses it.</li>
+      <li><strong>Safe if it gets something wrong.</strong> A mistake is caught and corrected before it reaches a client or moves money.</li>
+    </ul>
+
+    <div class="k-callout">
+      <p>If three departments have to agree before it can start, it is the wrong first project.</p>
+    </div>
+
+    <h2 id="three-stages">Run it in three stages</h2>
+
+    <p>Do not guess what would help people. Ask, then build exactly what they asked for. Teams are often particular about how things should work, and they are usually right.</p>
+
+    <div class="stage-grid">
+      <div class="stage-box">
+        <span class="when">WEEKS 1–2</span>
+        <h4>Ask</h4>
+        <span class="sub">The task they name, not yours.</span>
+        <p>Start with the task the team says they want gone. It is more likely to be used, and they already know what good looks like.</p>
+      </div>
+      <div class="stage-box">
+        <span class="when">WEEKS 3–8</span>
+        <h4>Prove</h4>
+        <span class="sub">A result they can feel.</span>
+        <p>Show it working in their own week. Give someone back the part of the job they resent and you have made the argument for you.</p>
+      </div>
+      <div class="stage-box">
+        <span class="when">MONTH 3 ONWARDS</span>
+        <h4>Spread</h4>
+        <span class="sub">Champions do the selling.</span>
+        <p>A respected sceptic who comes round will convince the rest of the business faster than you can.</p>
+      </div>
+    </div>
+
+    <h2 id="measure">Measure it</h2>
+
+    <p>Before the pilot goes live, record how long the task takes today. After it goes live, measure again. That baseline is what turns a good feeling into a business case for the next project.</p>
+
+    <p>The savings do not need to be dramatic. One hour saved per person per week is 52 hours a year, more than a full working week of capacity for every person it touches. Our guide to <a href="/blog/ai-cost-and-roi-ireland">what AI costs an Irish business</a> shows how to set that against the cost of the build to get a payback period.</p>
+
+    <h2 id="examples">Real examples of AI use cases</h2>
+
+    <p>These are live systems, each of which started as a row on a map like the one above.</p>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Finance &amp; AR</span>
+      <h3><a href="/industries#ar-guardian">Invoice reconciliation across Salesforce and Xero</a></h3>
+      <p>An AI agent matches payments in Xero against open invoices in Salesforce, applies the agreed allocation rules and flags exceptions for a senior accountant to review.</p>
+      <span class="result">Four days of senior accounting time freed every month</span>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Professional services</span>
+      <h3><a href="/industries#wip-invoice">Work-in-progress to invoice</a></h3>
+      <p>The agent pulls WIP from the practice management system, applies each engagement's billing rules, drafts the invoice and routes it to a partner for approval.</p>
+      <span class="result">Ten days off the cash conversion cycle on average</span>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Founder productivity</span>
+      <h3><a href="/industries#email-triage">Email triage agent</a></h3>
+      <p>A founder's inbox of 200 messages a day is read, sorted by priority and drafted for routine replies. Only what needs the founder is escalated.</p>
+      <span class="result">Eight hours back every week</span>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Month-end close</span>
+      <h3><a href="/industries#balance-sheet">Balance sheet reconciliation</a></h3>
+      <p>Account tie-outs, intercompany matching and FX adjustments run automatically. The senior accountant reviews the result instead of doing the work.</p>
+      <span class="result">Close compressed from days to hours</span>
+    </div>
+
+    <div class="proof-card">
+      <span class="proof-card__tag">Construction</span>
+      <h3><a href="/industries#construction-hub">Construction hub</a></h3>
+      <p>Five separate spreadsheets and shared folders brought into one platform, including AI that reads contract PDFs and builds the payment schedule for staff to check.</p>
+      <span class="result">Payment schedules extracted in under 30 seconds</span>
+    </div>
+
+    <p>Two more from Jamie's own work show how wide the range is. In a healthcare practice, AI sped up clinician report writing and the case admin around each patient. Clinicians kept the part they trained for, the time with patients, and lost the paperwork they resented. And lead qualification, the first row of the map above, is one of the most common first projects we see.</p>
+
+    <p>Not every use case needs a custom build. Some are best handled with <a href="/ie/ai-automation">AI automation</a> of a fixed process. Others need an <a href="/ie/ai-agents">AI agent</a> that can read, decide and act within limits. Our explainer on <a href="/blog/what-is-business-process-automation">business process automation</a> covers where the line sits. The method for finding the task is the same either way.</p>
+
+    <h2 id="next-step">Find your first use case</h2>
+
+    <p>Finding the right first project is the step that decides whether AI pays for itself. Once you have it, the rest of the <a href="/blog/is-your-business-ready-for-ai">six-step AI readiness guide</a> shows how to build on it.</p>
+
+    <p>If you would rather not do it alone, we will map the highest-value opportunities in your business. Book a free 20-minute call and we will tell you which task to start with, what it would cost and what you would get back.</p>
+
+  </article>
+
+  <aside class="k-sidebar">
+    <div class="k-sidebar__card">
+      <h4>In this article</h4>
+      <ul class="k-toc">
+        <li><a href="how-to-find-ai-use-cases#start">Start with the business</a></li>
+        <li><a href="how-to-find-ai-use-cases#five-questions">Five questions to ask</a></li>
+        <li><a href="how-to-find-ai-use-cases#opportunity-map">The AI opportunity map</a></li>
+        <li><a href="how-to-find-ai-use-cases#ai-potential">How to judge AI potential</a></li>
+        <li><a href="how-to-find-ai-use-cases#first-project">Pick the first project</a></li>
+        <li><a href="how-to-find-ai-use-cases#three-stages">Run it in three stages</a></li>
+        <li><a href="how-to-find-ai-use-cases#measure">Measure it</a></li>
+        <li><a href="how-to-find-ai-use-cases#examples">Real examples</a></li>
+      </ul>
+    </div>
+    <div class="k-sidebar__cta">
+      <p>We'll map the highest-value opportunities in your business. 20 minutes, free, no obligation.</p>
+      <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yqdb3J1_LOqD5bve9cEdAUF0GLc9D4q65PTZPRS6LhqPWHWSP9twoDRWz-SM-dzJF-It0tWjp" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="/industries" class="btn-outline">See Case Studies</a>
+      <a href="/ie/ai-automation" class="btn-outline">AI Automation</a>
+    </div>
+  </aside>
+</div>
+
+<section class="k-related">
+  <div class="k-related__inner">
+    <h3>Related Reading</h3>
+    <div class="k-related__grid">
+      <a href="/blog/is-your-business-ready-for-ai" class="k-related__card"><span class="tag">AI Strategy</span><h4>Is Your Business Ready for AI? A 6-Step Guide for Irish SMEs</h4></a>
+      <a href="/blog/ai-cost-and-roi-ireland" class="k-related__card"><span class="tag">Cost &amp; ROI</span><h4>What Does AI Actually Cost for an Irish Business? Real Numbers</h4></a>
+      <a href="/blog/what-is-business-process-automation" class="k-related__card"><span class="tag">Automation</span><h4>What is Business Process Automation? Four Irish Examples That Show What It Actually Looks Like</h4></a>
+    </div>
+  </div>
+</section>
+
+<footer class="k-footer" role="contentinfo">
+  <div class="k-footer__inner">
+    <div class="k-footer__brand"><div class="k-nav__logo" style="font-size:1.1rem;">Keystone <em style="font-style:normal;color:var(--k-gold);">Intelligence</em></div><p>AI consultancy for businesses that want to grow. We build systems that increase revenue, cut costs, and protect margin. Fixed price. Average 3× annual saving.</p><div class="k-footer__contact"><a href="mailto:jamie@keystoneintelligencegroup.com">jamie@keystoneintelligencegroup.com</a><a href="tel:+353858719756"><span class="cc">IE</span> +353 85 871 9756</a><a href="tel:+14049088990"><span class="cc">US</span> +1 404 908 8990</a></div></div>
+    <div class="k-footer__col"><h5>Services</h5><a href="/ie/ai-consultancy">AI Consultancy</a><a href="/ie/ai-automation">AI Automation</a><a href="/ie/ai-agents">AI Agents</a><a href="/ie/ai-development">Custom AI Development</a><a href="/ie/ai-for-professional-services">Professional Services</a><a href="/ie/ai-for-financial-services">Financial Services</a><a href="/ie/ai-for-waste-management">Waste Management</a></div><div class="k-footer__col"><h5>Company</h5><a href="../about">About Us</a><a href="../how-it-works">How It Works</a><a href="../contact">Contact</a></div>
+    <div class="k-footer__col"><h5>Case Studies</h5><a href="../industries#construction-hub">Construction Hub</a><a href="../industries#legal-call-actions">Legal Call-Actions</a><a href="../industries#waste-hub">Waste Operations Hub</a></div>
+    <div class="k-footer__col"><h5>Insights &amp; Resources</h5><a href="ai-for-irish-businesses">AI for Irish Businesses</a><a href="is-your-business-ready-for-ai">Is Your Business Ready for AI?</a><a href="ai-for-irish-construction">AI for Irish Construction</a><a href="ai-for-irish-solicitors">AI for Irish Solicitors</a><a href="ai-for-irish-gp-practices">AI for Irish GP Practices</a><a href="what-is-business-process-automation">What is Business Process Automation?</a><a href="ai-cost-and-roi-ireland">What AI Costs in Ireland</a><a href="ai-gdpr-ireland">AI and GDPR in Ireland</a><a href="/ai-glossary">AI Glossary</a><a href="/faq">FAQ</a></div>
+  </div>
+  <div class="k-footer__bottom"><p>© 2026 Keystone Intelligence Group. All rights reserved.</p><a href="../contact">Book a Discovery Call</a></div>
+</footer>
+
+</body></html>
