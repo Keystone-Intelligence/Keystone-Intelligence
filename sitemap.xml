@@ -132,7 +132,7 @@
 
   <url>
     <loc>https://keystoneintelligencegroup.com/blog/is-your-business-ready-for-ai</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -203,4 +203,16 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://keystoneintelligencegroup.com/blog/ai-policy-ireland</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keystoneintelligencegroup.com/blog/how-to-find-ai-use-cases</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
