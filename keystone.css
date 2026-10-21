@@ -1548,3 +1548,10 @@ a.svc-card:active { transform: scale(0.99); transition-duration: 100ms; }
 .k-linkedin:focus-visible { outline: 2px solid var(--k-gold); outline-offset: 3px; }
 .svc-contact .k-linkedin { width: 1.5rem; height: 1.5rem; }
 .ceo-profile__name-row { display: flex; align-items: center; gap: 1rem; }
+.k-footer__contact .k-linkedin {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.45rem;
+  color: var(--k-mid);
+}
+.k-footer__contact .k-linkedin:hover { color: var(--k-gold); }
