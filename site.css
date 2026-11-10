@@ -318,3 +318,39 @@ button.btn{border:0;cursor:pointer;font-family:var(--sans)}
   .ui-th,.ui-tr{grid-template-columns:44px 1fr 1fr;}
   .ui-th span:nth-child(4),.ui-tr span:nth-child(4),.ui-th span:nth-child(5),.ui-tr span:nth-child(5){display:none}
 }
+
+/* Services dropdown (header). Opens on hover and keyboard focus without JS;
+   nav.js adds click, Escape and outside-click handling. */
+.nav{align-items:center}
+.nav-dd{position:relative}
+.nav-dd__btn{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--sand);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.nav-dd__btn::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.nav-dd__btn:hover,.nav-dd.is-open .nav-dd__btn,.nav-dd.is-current .nav-dd__btn{color:var(--peach)}
+.nav-dd__btn:focus-visible{outline:2px solid var(--peach);outline-offset:4px;border-radius:4px}
+.nav-dd__panel{display:none;position:absolute;top:100%;left:-24px;padding-top:14px;z-index:50}
+.nav-dd:hover .nav-dd__panel,.nav-dd:focus-within .nav-dd__panel{display:block}
+.nav-dd[data-enhanced] .nav-dd__panel{display:none}
+.nav-dd[data-enhanced]:hover .nav-dd__panel,.nav-dd[data-enhanced].is-open .nav-dd__panel{display:block}
+.nav-dd__inner{display:grid;grid-template-columns:repeat(2,max-content);gap:24px 48px;background:var(--navy);border:1px solid var(--navy-line);border-radius:14px;padding:24px 28px}
+.nav-dd__head{margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--peach)}
+.nav-dd__group a{display:block;padding:6px 0;white-space:nowrap}
+/* Tablet: once the six menu items no longer fit beside the logo, give the
+   nav its own full-width row instead of letting it wrap raggedly. */
+@media (max-width:1023px) and (min-width:761px){.site-header .nav{order:3;flex:1 0 100%;gap:28px}.site-header .wrap{row-gap:18px}}
+
+/* Footer columns */
+.site-footer .wrap{display:block}
+.footer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 48px}
+.footer-col{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.footer-col a{overflow-wrap:anywhere}
+.footer-head{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--peach)}
+.site-footer a{color:var(--sand);text-decoration:none}
+.site-footer a:hover{color:var(--peach)}
+.site-footer a[aria-current]{color:var(--peach)}
+.footer-tel{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.footer-place{color:var(--mist);font-size:13px}
+.footer-book{margin-top:6px;font-weight:700;text-decoration:underline!important;text-underline-offset:5px}
+.footer-base{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;margin-top:40px;padding-top:24px;border-top:1px solid var(--navy-line);color:var(--mist)}
+.footer-legal{display:flex;gap:24px}
+@media (max-width:1023px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
