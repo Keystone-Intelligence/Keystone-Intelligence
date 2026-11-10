@@ -29,7 +29,7 @@
   "description": "A plain-language guide to what GDPR requires when you deploy AI in an Irish SME, what the EU AI Act adds on top, and the compliance controls Keystone Intelligence builds into every system.",
   "url": "https://keystoneintelligencegroup.com/blog/ai-gdpr-ireland",
   "datePublished": "2026-08-17",
-  "dateModified": "2026-08-17",
+  "dateModified": "2026-11-10",
   "inLanguage": "en-IE",
   "keywords": ["AI and GDPR", "GDPR AI Ireland", "AI GDPR compliance Ireland", "EU AI Act Ireland", "GDPR compliant AI Ireland", "AI data protection Ireland", "DPC AI Ireland", "AI Act compliance Ireland"],
   "articleSection": "Compliance",
@@ -67,42 +67,42 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is AI GDPR compliant in Ireland?",
+      "name": "Is AI GDPR compliant?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI is not compliant or non-compliant in itself, the deployment is. An AI system processing personal data in an Irish business is GDPR compliant when it has a documented lawful basis, processes only the data it needs, runs on EU-hosted infrastructure, is covered by a Data Processing Agreement with the provider, and has a Data Protection Impact Assessment where the processing is high risk. All five are achievable for the kinds of operational systems an Irish SME actually builds."
+        "text": "AI is not compliant or non-compliant in itself, the deployment is. A system is compliant when it has a documented lawful basis, processes only what it needs, runs on EU-hosted infrastructure, is covered by a DPA, and has a DPIA where the processing is high risk. Every one of those is achievable for the kind of operational system an Irish SME actually builds."
       }
     },
     {
       "@type": "Question",
-      "name": "What lawful basis applies to AI in an Irish business?",
+      "name": "Can I use AI on customer data without asking for consent?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For most operational AI, invoice processing, call transcription, email triage, reconciliation, the lawful basis under Article 6 is legitimate interests or performance of a contract. Healthcare data processed for direct care relies on Article 9(2)(h). The basis is rarely complicated, but it must be identified and documented before processing begins, not afterwards."
+        "text": "Usually yes, consent is only one of six lawful bases under Article 6, and for operational processing it is often the wrong one to rely on. Legitimate interests or contract performance typically fit better and are more robust, because consent can be withdrawn at any time. What you cannot skip is identifying and documenting which basis you are relying on, and telling people what you are doing under Articles 13 and 14."
       }
     },
     {
       "@type": "Question",
-      "name": "Does the EU AI Act apply to Irish SMEs?",
+      "name": "What happens to my data when it goes through an AI model?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It applies, but for most Irish SMEs it changes far less than the headlines suggest. The systems an SME typically deploys, invoice processing, call transcription, email triage, reconciliation, sit in the minimal or limited risk tiers, which carry transparency obligations rather than the full compliance regime reserved for high-risk uses such as credit scoring, recruitment filtering or biometric identification."
+        "text": "That depends entirely on how the system is configured, which is why it is worth asking directly. In a properly built system, data is processed for the specific purpose and not retained by the model provider or used for training. DPC guidance is clear that AI systems should not hold input data or prompts indefinitely. Get the answer in writing in the DPA."
       }
     },
     {
       "@type": "Question",
-      "name": "Can AI systems used by Irish businesses store data outside the EU?",
+      "name": "Does the EU AI Act mean I need to register my system?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "They can, but transferring personal data outside the EEA triggers additional transfer mechanism requirements and considerably more scrutiny. EU-hosted infrastructure is the simpler and safer baseline, and it is what Keystone Intelligence uses exclusively across every client build, patient records, client call data and financial transaction data all stay inside the EEA."
+        "text": "Not for the minimal and limited risk systems most Irish SMEs run. Registration and conformity obligations attach to high-risk uses such as credit scoring, recruitment screening and biometric identification. If you are automating invoice matching or email triage, your obligations are transparency and, where decisions affect people, human oversight. Following the Digital Omnibus, those obligations apply from 2 December 2027 for standalone high-risk systems."
       }
     },
     {
       "@type": "Question",
-      "name": "Do I need a DPIA for an AI system?",
+      "name": "Who is responsible if the AI gets something wrong, us or the provider?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You need a Data Protection Impact Assessment under Article 35 where the processing is likely to result in high risk, typically special category data at scale, or automated decisions with significant effects on people. Healthcare, legal and financial systems usually meet that threshold. A single-purpose internal automation on non-sensitive operational data usually does not."
+        "text": "As the business deploying the system you are the data controller, so responsibility for the processing sits with you. That is exactly why human-in-the-loop review on consequential decisions matters, and why the DPA needs to set out the provider's obligations clearly rather than vaguely."
       }
     }
   ]
@@ -139,6 +139,7 @@
 <div class="k-article-meta">
 <span>Jamie Walsh</span>
 <span>August 2026</span>
+<span>Updated November 2026</span>
 <span>9 min read</span>
 </div>
 </div>
@@ -194,8 +195,9 @@
 <div class="k-callout">
 <p>Compliance is not a document you produce at the end. It is a set of decisions about hosting, retention and access that get made in the first week of a build and are almost impossible to reverse cheaply afterwards.</p>
 </div>
-<h2 id="ai-act">The EU AI Act: what changed in August 2026</h2>
-<p>Regulation (EU) 2024/1689, the EU AI Act, reached full application in August 2026. For most Irish SMEs it changes considerably less than the coverage suggests.</p>
+<h2 id="ai-act">The EU AI Act: what applies now, and what was delayed</h2>
+<p>Most of the EU AI Act (Regulation (EU) 2024/1689), including the rules for high-risk systems listed in Annex III, was due to apply from 2 August 2026. Days before that deadline, the EU’s Digital Omnibus on AI (Regulation (EU) 2026/1744) was published in the Official Journal on 24 July 2026 and entered into force on 27 July 2026. It moved the high-risk obligations back: standalone high-risk systems listed in Annex III, such as credit scoring and recruitment screening, now apply from 2 December 2027, and high-risk AI built into regulated products (Annex I) from 2 August 2028. The transparency rules in Article 50 still apply from 2 August 2026, and generative AI systems already on the market before then have until 2 December 2026 to mark their output as AI-generated.</p>
+<p>For most Irish SMEs it changes considerably less than the coverage suggests.</p>
 <p>The Act works on risk tiers. The overwhelming majority of systems an SME deploys sit in the minimal or limited risk categories, which carry transparency obligations rather than the full compliance regime.</p>
 <div class="tier-row">
 <div class="tier-box">
@@ -209,6 +211,7 @@
 </div>
 <div class="tier-box">
 <h4>High risk, the full regime</h4>
+<p>These obligations now apply from 2 December 2027, not August 2026.</p>
 <ul>
 <li>Credit scoring and creditworthiness assessment</li>
 <li>Recruitment and HR screening</li>
@@ -217,7 +220,7 @@
 </ul>
 </div>
 </div>
-<p>Two things do change for everyone. General-purpose AI models used in the business now carry transparency requirements, meaning people should understand when they are dealing with an automated process. And where a system makes automated decisions that significantly affect a person, declining an application, flagging an employee for review, human oversight is mandatory.</p>
+<p>Two things do apply to everyone. The transparency rules in Article 50 apply from 2 August 2026, so people should know when they are dealing with an AI system or reading AI-generated content. And where a system makes automated decisions that significantly affect a person, declining an application, flagging an employee for review, a person needs to stay in the loop: GDPR already restricts decisions made solely by automated means, and the AI Act’s human oversight rules for high-risk systems follow from 2 December 2027.</p>
 <p>Keystone builds human-in-the-loop review into every system as a default rather than as a compliance response. The system proposes; a person decides anything consequential. That was the design principle before the Act required it, because it is also how you get systems people will actually trust and use.</p>
 <h2 id="how-we-build">How Keystone builds compliance in</h2>
 <p>Article 25 of GDPR requires data protection by design and by default. In practice that comes down to four engineering standards applied to every client build.</p>
@@ -284,7 +287,7 @@
 <details class="svc-faq__item">
 <summary>Does the EU AI Act mean I need to register my system?</summary>
 <div class="svc-faq__answer">
-<p>Not for the minimal and limited risk systems most Irish SMEs run. Registration and conformity obligations attach to high-risk uses such as credit scoring, recruitment screening and biometric identification. If you are automating invoice matching or email triage, your obligations are transparency and, where decisions affect people, human oversight.</p>
+<p>Not for the minimal and limited risk systems most Irish SMEs run. Registration and conformity obligations attach to high-risk uses such as credit scoring, recruitment screening and biometric identification. If you are automating invoice matching or email triage, your obligations are transparency and, where decisions affect people, human oversight. Following the Digital Omnibus, those obligations apply from 2 December 2027 for standalone high-risk systems.</p>
 </div>
 </details>
 <details class="svc-faq__item">
